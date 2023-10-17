@@ -6,11 +6,11 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:56:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/17 14:32:46 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/17 17:22:30 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parsing.h"
+#include "../../includes/minishell.h"
 
 t_node	*ast_new()
 {
@@ -20,6 +20,10 @@ t_node	*ast_new()
 	//else
 		//get_simple_cmd();
 	//get_children();
+}
+
+t_node	*get_children(t_token_type op, t_node *left, t_node *right)
+{// get the left and right children of the parent node
 }
 
 t_node	*parser(void)

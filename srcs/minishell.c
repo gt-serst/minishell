@@ -6,9 +6,11 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:30:26 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/17 13:54:25 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/17 17:03:42 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "minishell.h"
 
 void	read_cmd(char *av, char *cmd_line)
 {// read function using readline from stdio library

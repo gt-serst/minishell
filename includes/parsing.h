@@ -6,46 +6,57 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:45:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/17 14:28:29 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/17 17:03:13 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 #define PARSER_H
 
-#include <stdbool.h>
-#include "minishell.h"
-#include "tokenization.h"
-
 typedef enum e_node_type
 {
-	NODE_CMD,
-	NODE_CHILD,
+	N_PIPE,
+	N_CMD
 }	t_node_type;
 
-typedef struct s_simple_cmd
+typedef enum e_io_type
 {
-	char	**argv;
-	int		fdin;
-	int		fdout;
-}	t_simple_cmd;
+	IO_IN,
+	IO_OUT,
+	IO_HEREDOC,
+	IO_APPEND
+}	t_io_type;
 
-typedef struct s_children
+typedef enum e_parsing_err_type
 {
-	struct s_node	*left;
-	struct s_node	*right;
-}	t_children;
+	E_MEM,
+	E_SYNTAX
+}	t_parsing_err_type;
 
-typedef struct s_node_data
+typedef struct s_io_node
 {
-	t_simple_cmd	simple_cmd;
-	t_children		child;
-}	t_node_data;
+	t_io_type			type;
+	char				*value;
+	char				**expanded_value;
+	int					here_doc;
+	struct s_io_node	*prev;
+	struct s_io_node	*next;
+}	t_io_node;
 
 typedef struct s_node
 {
-	t_node_type	type;
-	t_node_data	data;
+	t_node_type			type;
+	t_io_node			*io_list;
+	char				*args;
+	char				**expanded_args;
+	struct s_node		*left;
+	struct s_node		*right;
 }	t_node;
+
+typedef struct s_parsing_err
+{
+	t_parsing_err_type	type;
+	char				*str;
+}	t_parsing_err;
 
 #endif
