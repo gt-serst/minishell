@@ -1,22 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   tokenization.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 11:30:26 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/17 13:54:25 by gt-serst         ###   ########.fr       */
+/*   Created: 2023/10/10 11:18:19 by gt-serst          #+#    #+#             */
+/*   Updated: 2023/10/17 14:28:14 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	read_cmd(char *av, char *cmd_line)
-{// read function using readline from stdio library
-}
+#ifndef TOKENIZER_H
+# define TOKENIZER_H
 
-int	minishell(char **av)
-{//core routine for minishell, the following steps will be launched read, lexer, parser, expander and execution
-	//cmd_line = read_cmd(av, cmd_line)
-	//tokenizer(cmd_line);
-	//parser();
-}
+#include "minishell.h"
+
+typedef enum e_token_type
+{
+	T_IDENTIFIER,
+	T_LESS,
+	T_GREAT,
+	T_DLESS,
+	T_DGREAT,
+	T_PIPE,
+	T_LPAREN,
+	T_RPAREN,
+}	t_token_type;
+
+typedef struct s_token
+{
+	t_token_type	type;
+	char			*value;
+	struct s_token	*next;
+	struct s_token	*prev;
+}	t_token;
+
+#endif

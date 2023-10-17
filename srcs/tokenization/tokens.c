@@ -6,11 +6,11 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:41:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/10 15:31:30 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/17 14:29:04 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/tokens.h"
+#include "../../includes/tokenization.h"
 
 void	separator_identifier(char *cmd_line)
 {// retrieve the type of separator and called the separator_handler
