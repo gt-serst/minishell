@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_utils.c                                      :+:      :+:    :+:   */
+/*   parser_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 11:59:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/17 17:03:54 by gt-serst         ###   ########.fr       */
+/*   Created: 2023/10/20 16:24:59 by gt-serst          #+#    #+#             */
+/*   Updated: 2023/10/20 16:35:46 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
-void	token_new(void *content)
-{// create a new node and store the value of the cmd part
+bool	get_io_list(t_io_node **io_list)
+{
 }
 
-void	tokenadd_back(t_token **token, t_token *tk)
-{// add the new node previously created to the linked list token
+bool	join_args(char **args)
+{
+}
+
+t_node	*get_simple_cmd(void)
+{// get the cmd and the cmd args of the simple cmd then create a tree node
 }
