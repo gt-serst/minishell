@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/10/23 14:46:50 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/10/23 18:20:46 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,27 +25,21 @@ EXECUTOR		:=
 
 EXPANDER		:=
 
-PARSING			:=	parsing/parser_clear.c \
-					parsing/parser_cmd.c \
-					parsing/parser_err.c \
-					parsing/parser_nd.c \
-					parsing/parser_utils.c \
-					parsing/parser.c
+PARSING			:=
 
-TOKENIZATION	:=	tokenization/tk_utils.c \
-					tokenization/tokenizer_utils.c \
-					tokenization/tokenizer.c \
+TOKENIZATION	:=	srcs/tokenization/tokenizer.c\
+					srcs/tokenization/tokenizer_utils.c
 
 SRCS			:=	$(BUILTINS)\
 					$(EXECUTOR)\
 					$(EXPANDER)\
 					$(PARSING)\
 					$(TOKENIZATION)\
-					main.c minishell.c
+					srcs/main.c srcs/init.c
 
 OBJS			:=	$(SRCS:.c=.o)
 
-READLINE_PATH	:=	/goinfre/homebrew/opt/readline
+READLINE_PATH	:=	/Users/$(USER)/homebrew/opt/readline
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@ -Iinclude -I$(READLINE_PATH)/include
@@ -56,7 +50,7 @@ $(LIBFT):
 	@make -C $(LIBFT_PATH)
 
 $(NAME): $(LIBFT) $(OBJS)
-	@$(CC) -o $(NAME) $(OBJS) -L$(LIBFT_PATH) -lft -L$(READLINE_PATH)/lib -lreadline
+	@$(CC) -o $(NAME) $(OBJS) -L$(LIBFT_PATH) -lreadline -L$(READLINE_PATH)/lib
 
 clean:
 	@make clean -C $(LIBFT_PATH)

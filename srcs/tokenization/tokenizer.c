@@ -6,19 +6,36 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:37:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/17 17:03:52 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/23 18:09:44 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*skip_spaces(char *cmd_line)
-{// skip white spaces by returning a pointer to the location of the next word in the cmd
+bool	ft_isspace(char	c)
+{
+	if (c == 32 || (c >= 9 && c <= 13))
+		return (1);
+	return (0);
 }
 
-void	tokenizer(char *cmd_line)
+bool	ft_ismetachar(char c)
+{
+	if (c == '<' || c == '>' || c == '|' || c == '(' || c == ')')
+		return (1);
+	return (0);
+}
+
+void	tokenizer(t_minishell *m)
 {// core routine for the tokenizer, scan each part of the cmd line and give to each of them a type of tokens (identifier, separator,...)
-	//skip_spaces(&cmd_line); send the address of the cmd_line char to keep the current location
-	//separator_identifier(&cmd_line);
-	//identifier_handler(&cmd_line);
+	while (*m->cmd_line)
+	{
+		if (ft_isspace(*m->cmd_line))
+			m->cmd_line++;
+		else if (ft_ismetachar(*m->cmd_line))
+			separator_type(m);
+		else
+			identifier_handler(m);
+		m->cmd_line++;
+	}
 }
