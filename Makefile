@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/10/23 12:22:44 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/10/23 14:46:50 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,10 @@ EXECUTOR		:=
 
 EXPANDER		:=
 
-PARSING			:=	parsing/ast_nd.c \
-					parsing/ast_ndclear.c \
-					parsing/nd_utils.c \
+PARSING			:=	parsing/parser_clear.c \
+					parsing/parser_cmd.c \
 					parsing/parser_err.c \
+					parsing/parser_nd.c \
 					parsing/parser_utils.c \
 					parsing/parser.c
 

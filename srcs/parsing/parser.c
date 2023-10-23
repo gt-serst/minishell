@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:56:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/20 16:23:15 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/23 14:44:23 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_node	*compute_atom(void)
 	// Else return get_simple_cmd()
 }
 
-t_node	*recursive_ast(int min_prec)
+t_node	*precedence_climbing(int min_prec)
 {//give the priority for each elements in the ast according to a precedence climbing algorithm
 	//atom_lhs = compute_atom() gets the left atom
 	//while (is_op() && precedence >= min_prec)
