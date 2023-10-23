@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_cmds.c                                      :+:      :+:    :+:   */
+/*   ast_ndclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 16:24:59 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/20 16:35:46 by gt-serst         ###   ########.fr       */
+/*   Created: 2023/10/17 14:33:23 by gt-serst          #+#    #+#             */
+/*   Updated: 2023/10/23 12:19:45 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
-bool	get_io_list(t_io_node **io_list)
+void	clear_io_list(t_io_node **lst)
 {
 }
 
-bool	join_args(char **args)
+void	clear_cmd_node(t_node *node)
 {
 }
 
-t_node	*get_simple_cmd(void)
-{// get the cmd and the cmd args of the simple cmd then create a tree node
+void	resursive_clear_ast(t_node *node)
+{
+}
+
+void	clear_ast(t_node **ast)
+{
 }

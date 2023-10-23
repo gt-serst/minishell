@@ -6,12 +6,12 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:18:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/17 17:03:16 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/23 12:23:47 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKENIZER_H
-# define TOKENIZER_H
+#ifndef TOKENIZATION_H
+# define TOKENIZATION_H
 
 typedef enum e_token_type
 {
