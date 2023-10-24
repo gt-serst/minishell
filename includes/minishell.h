@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/24 12:03:15 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/24 12:28:46 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ typedef struct s_minishell
 
 void	init_env(char **envp);
 void	tokenizer(t_minishell *m);
-void	separator_type(char c);
-void	identifier_handler(char c);
+void	separator_type(char	*cmd_line)
+void	identifier_handler(char *cmd_line);
 void	ft_exit_message(char *s);
+bool	ft_isspace(char	c);
 
 #endif
