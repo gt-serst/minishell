@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/24 09:50:27 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/24 14:47:42 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv, char **envp)
 	init_env(envp);
 	while (1)
 	{
-		m.cmd_line = readline("minishell$ ");
+		m.cmd_line = readline("~>"); //malloc allocation in cmd_line
 		if (!m.cmd_line)
 			ft_exit_message("Error: Command line not found\n");
 		add_history(m.cmd_line);
