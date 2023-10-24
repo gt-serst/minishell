@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/10/23 18:20:46 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/10/24 09:54:38 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRCS			:=	$(BUILTINS)\
 					$(EXPANDER)\
 					$(PARSING)\
 					$(TOKENIZATION)\
-					srcs/main.c srcs/init.c
+					srcs/main.c srcs/init.c srcs/errors.c
 
 OBJS			:=	$(SRCS:.c=.o)
 
@@ -50,7 +50,7 @@ $(LIBFT):
 	@make -C $(LIBFT_PATH)
 
 $(NAME): $(LIBFT) $(OBJS)
-	@$(CC) -o $(NAME) $(OBJS) -L$(LIBFT_PATH) -lreadline -L$(READLINE_PATH)/lib
+	@$(CC) -o $(NAME) $(OBJS) $(LIBFT_PATH)/$(LIBFT) -L$(LIBFT_PATH) -lreadline -L$(READLINE_PATH)/lib
 
 clean:
 	@make clean -C $(LIBFT_PATH)
