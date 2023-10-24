@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:59:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/24 14:34:49 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:55:58 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,8 @@ void	tkadd_back(t_token **t, t_token *new)
 	}
 	else
 		*t = new;
+}
+
+void	tkclear(t_token **token)
+{
 }

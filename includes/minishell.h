@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/24 14:44:56 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:16:17 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ typedef struct s_minishell
 //INIT
 void	init_env(char **envp);
 
-//EXIT
+//ERR
 void	ft_exit_message(char *s);
+void	quotes_err_message(char c);
 
 //UTILS
 void	ft_printlst(t_minishell *m);
@@ -43,11 +44,18 @@ void	ft_printlst_reverse(t_minishell *m);
 
 //TOKENIZATION
 void	tokenizer(t_minishell *m);
-void	separator_type(t_minishell *m, char	*cmd_line);
+void	separator_recognizer(t_minishell *m, char	*cmd_line);
 void	identifier_handler(t_minishell *m, char *cmd_line);
+
+//TOKENIZER UTILS
 bool	ft_isspace(char	c);
+bool	ft_ismetachar(char c);
+bool	ft_isquotes(char c);
+char	*skip_quotes(char *cmd_line);
+
+//TK UTILS
 t_token	*new_tk(void *content, t_token_type type);
 void	tkadd_back(t_token **t, t_token *new);
-
+void	tkclear(t_token **token);
 
 #endif

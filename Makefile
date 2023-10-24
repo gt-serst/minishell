@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/10/24 14:40:20 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/10/24 15:58:10 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ PARSING			:=
 
 TOKENIZATION	:=	srcs/tokenization/tokenizer.c\
 					srcs/tokenization/tokenizer_utils.c\
-					srcs/tokenization/tk_utils.c
+					srcs/tokenization/tk_utils.c\
+					srcs/tokenization/tokenizer_handler.c
 
 SRCS			:=	$(BUILTINS)\
 					$(EXECUTOR)\
