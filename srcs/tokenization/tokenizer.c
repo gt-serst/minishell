@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:37:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/24 15:59:05 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:29:55 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	tokenizer(t_minishell *m)
 		while (*(m->cmd_line) && !ft_isspace(*(m->cmd_line)))
 			(m->cmd_line)++;
 	}
-	free(m->cmd_line);
+	//free(m->cmd_line); //
 	//ft_printlst(m);
 	//ft_printlst_reverse(m);
 }

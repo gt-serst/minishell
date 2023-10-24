@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:56:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/23 14:44:23 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:25:04 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_node	*precedence_climbing(int min_prec)
 	//return atom_lhs
 }
 
-t_node	*parser(void)
+t_node	*parser(t_minishell *m)
 {
 	//get first token from tokens list
 	//recursive_ast();

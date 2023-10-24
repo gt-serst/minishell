@@ -6,11 +6,11 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:58:21 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/24 16:09:15 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:21:35 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 bool	ft_isspace(char	c)
 {
@@ -28,8 +28,11 @@ bool	ft_ismetachar(char c)
 
 bool	ft_isquotes(char c)
 {
+	(void)c;
+	return (true);
 }
 
 char	*skip_quotes(char *cmd_line)
 {
+	return (cmd_line);
 }
