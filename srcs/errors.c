@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 09:48:53 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/24 16:25:48 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/25 11:40:56 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@ void	ft_exit_message(char *s)
 
 void	quotes_err_message(char c)
 {
-	(void)c;
+	ft_putstr_fd("minishell: unexpected EOF while looking for matching '", 2);
+	ft_putchar_fd(c, 2);
+	ft_putstr_fd("'\n", 2);
 }

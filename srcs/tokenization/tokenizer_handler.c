@@ -1,74 +1,98 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer_utils.c                                  :+:      :+:    :+:   */
+/*   tokenizer_handler.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:41:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/24 15:49:15 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:28:38 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	separator_handler(t_minishell *m, char *sep, t_token_type type)
+int	separator_handler(t_token **t, char *substr, t_token_type type)
 {//create a tk and add it to the linkded list and then allocate a type of token to the cmd part
-	t_token	*tk;
+	t_token	*token;
 
-	tk = new_tk(sep, type); //malloc allocation in tk
-	free(sep);
-	if (!tk)
-		ft_exit_message("Error: token elem not created");
-	tkadd_back(&m->tokens, tk);
+	token = new_tk(substr, type); //malloc allocation in tk
+	if (!token)
+		return (0);
+	tkadd_back(t, token);
+	return (1);
 }
 
-void	separator_recognizer(t_minishell *m, char	*cmd_line)
+int	separator_recognizer(t_token **t, char	**cmd_line)
 {// retrieve the type of separator and called the separator_handler
-	int		count;
+	int		i;
 	char	*substr;
 	char	*tmp;
 
-	count = 0;
-	tmp = cmd_line;
-	while (*tmp && !ft_isspace(*tmp++))
-		count++;
-	substr = ft_substr(cmd_line, 0, count); //malloc allocation in substr
-	//printf("%s\n", substr);
+	i = 0;
+	tmp = *cmd_line;
+	while (tmp[i] && !ft_isspace(tmp[i]))
+		i++;
+	substr = ft_substr(tmp, 0, i); //malloc allocation in substr
+	if (!substr)
+		return (0);
+	*cmd_line += i;
 	if (ft_strncmp(substr, "<", ft_strlen(substr)) == 0)
-		separator_handler(m, substr, T_LESS);
+		return (separator_handler(t, substr, T_LESS));
 	else if (ft_strncmp(substr, ">", ft_strlen(substr)) == 0)
-		separator_handler(m, substr, T_GREAT);
+		return (separator_handler(t, substr, T_GREAT));
 	else if (ft_strncmp(substr, "<<", ft_strlen(substr)) == 0)
-		separator_handler(m, substr, T_DLESS);
+		return (separator_handler(t, substr, T_DLESS));
 	else if (ft_strncmp(substr, ">>", ft_strlen(substr)) == 0)
-		separator_handler(m, substr, T_DGREAT);
+		return (separator_handler(t, substr, T_DGREAT));
 	else if (ft_strncmp(substr, "|", ft_strlen(substr)) == 0)
-		separator_handler(m, substr, T_PIPE);
+		return (separator_handler(t, substr, T_PIPE));
 	else if (ft_strncmp(substr, "(", ft_strlen(substr)) == 0)
-		separator_handler(m, substr, T_LPAREN);
+		return (separator_handler(t, substr, T_LPAREN));
 	else if (ft_strncmp(substr, ")", ft_strlen(substr)) == 0)
-		separator_handler(m, substr, T_RPAREN);
+		return (separator_handler(t, substr, T_RPAREN));
 	else
-		return (ft_exit_message("Error: type of separator not found"));
+		return (0);
 }
 
-void	identifier_handler(t_minishell *m, char *cmd_line)
+int	identifier_handler(t_token **t, char **cmd_line)
 {// create a tk and add it to the linkded list and then allocate a type of token to the cmd part
-	int		count;
+	size_t	i;
 	char	*substr;
 	char	*tmp;
-	t_token	*tk;
+	t_token	*token;
+	char	quote;
 
-	count = 0;
-	tmp = cmd_line;
-	while (*tmp && !ft_isspace(*tmp++))
-		count++;
-	substr = ft_substr(cmd_line, 0, count); //malloc allocation in substr
-	//printf("%s\n", substr);
-	tk = new_tk(substr, T_IDENTIFIER); //malloc allocation in tk
-	free(substr);
-	if (!tk)
-		ft_exit_message("Error: token elem not created");
-	tkadd_back(&m->tokens, tk);
+	i = 0;
+	tmp = *cmd_line;
+	if (ft_isquotes(tmp[i]))
+	{
+		quote = tmp[i];
+		i++;
+		while (tmp[i] && tmp[i] != quote)
+			i++;
+		if (tmp[i] == quote)
+		{
+			i++;
+			substr = ft_substr(tmp, 1, i - 2);
+			if (!substr)
+				return (0);
+		}
+		else
+			return (quotes_err_message(quote), 0);
+	}
+	else
+	{
+		while (tmp[i] && !ft_isspace(tmp[i]))
+			i++;
+		substr = ft_substr(*cmd_line, 0, i); //malloc allocation in substr
+		if (!substr)
+			return (0);
+	}
+	token = new_tk(substr, T_IDENTIFIER); //malloc allocation in tk
+	if (!token)
+		return (0);
+	tkadd_back(t, token);
+	*cmd_line += i;
+	return (1);
 }

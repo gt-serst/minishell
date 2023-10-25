@@ -6,26 +6,34 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:37:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/24 16:29:55 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:29:47 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	tokenizer(t_minishell *m)
+t_token	*tokenizer(void)
 {// core routine for the tokenizer, scan each part of the cmd line and give to each of them a type of tokens (identifier, separator,...)
-	while (*(m->cmd_line))
+	t_token	*t;
+	char	*cmd_line;
+	int		err;
+
+	t = NULL;
+	cmd_line = g_minishell.cmd_line;
+	err = 1;
+	while (*(cmd_line))
 	{
-		while (*(m->cmd_line) && ft_isspace(*(m->cmd_line)))
-			(m->cmd_line)++;
-		if (*(m->cmd_line) && ft_ismetachar(*(m->cmd_line)))
-			separator_recognizer(m, m->cmd_line); //get the right index in the line we are
-		else if (*(m->cmd_line))
-			identifier_handler(m, m->cmd_line); //get the right index in the line we are
-		while (*(m->cmd_line) && !ft_isspace(*(m->cmd_line)))
-			(m->cmd_line)++;
+		if (!err)
+			return (tkclear(&t), NULL);
+		if (ft_isspace(*cmd_line))
+			skip_spaces(&cmd_line);
+		else if (*(cmd_line) && ft_ismetachar(*(cmd_line)))
+			err = separator_recognizer(&t, &cmd_line); //get the right index in the line we are
+		else
+			err = identifier_handler(&t, &cmd_line); //get the right index in the line we are
 	}
-	//free(m->cmd_line); //
-	//ft_printlst(m);
-	//ft_printlst_reverse(m);
+	free(cmd_line);
+	g_minishell.cmd_line = NULL;
+	ft_printlst(&t);
+	return (t);
 }

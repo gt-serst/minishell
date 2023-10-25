@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:59:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/24 16:21:51 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:34:53 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,20 @@ void	tkadd_back(t_token **t, t_token *new)
 		*t = new;
 }
 
-void	tkclear(t_token **token)
+void	tkclear(t_token **t)
 {
-	(void)token;
+	t_token	*current;
+	t_token	*next;
+
+	if (!t)
+		return ;
+	current = *t;
+	while (current != NULL)
+	{
+		next = current->next;
+		free(current->value);
+		current = next;
+		free(current);
+	}
+	*t = NULL;
 }

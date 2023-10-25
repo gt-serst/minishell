@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/24 16:27:51 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/25 14:25:32 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_minishell
 	char	*cmd_line;
 }		t_minishell;
 
+extern t_minishell	g_minishell;
+
 //INIT
 void	init_env(char **envp);
 
@@ -39,19 +41,20 @@ void	ft_exit_message(char *s);
 void	quotes_err_message(char c);
 
 //UTILS
-void	ft_printlst(t_minishell *m);
-void	ft_printlst_reverse(t_minishell *m);
+void	ft_printlst(t_token **t);
+void	ft_printlst_reverse(t_token **t);
 
 //TOKENIZATION
-void	tokenizer(t_minishell *m);
-void	separator_recognizer(t_minishell *m, char	*cmd_line);
-void	identifier_handler(t_minishell *m, char *cmd_line);
+t_token	*tokenizer(void);
+int	separator_recognizer(t_token **t, char	**cmd_line);
+int	identifier_handler(t_token **t, char **cmd_line);
 
 //TOKENIZER UTILS
 bool	ft_isspace(char	c);
 bool	ft_ismetachar(char c);
 bool	ft_isquotes(char c);
-char	*skip_quotes(char *cmd_line);
+void	skip_spaces(char **cmd_line);
+bool	skip_quotes(char **cmd_line);
 
 //TK UTILS
 t_token	*new_tk(void *content, t_token_type type);
