@@ -9,5 +9,5 @@
 #### By passing over each token two possible scenarios: if it is an identifier token then its value is returned. If it's an operator token and the value of its precedence is greater than or equal to that of the previous element, then we enter a recursive with the same condition previously checked as the stop condition. In the while loop, we move on to the next token, increment the min precedence and call the recursive function again until the stop condition is no longer valid. At this point, the operator with the highest precedence has been found. The recursive function returns the value of the right command to be executed with the left command.
 ## expander
 ## executor
-## built ins
+## built-ins
 ## signals

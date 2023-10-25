@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/25 14:25:32 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:03:55 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_minishell
 {
 	t_node	*ast;
 	t_token	*tokens;
+	t_token	*curr_token;
 	char	*cmd_line;
 }		t_minishell;
 

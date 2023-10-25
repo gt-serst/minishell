@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:37:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/25 15:29:47 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:24:19 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_token	*tokenizer(void)
 		else
 			err = identifier_handler(&t, &cmd_line); //get the right index in the line we are
 	}
-	free(cmd_line);
+	//free(cmd_line);
 	g_minishell.cmd_line = NULL;
 	ft_printlst(&t);
 	return (t);

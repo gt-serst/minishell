@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/25 10:45:54 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:23:16 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ int	main(int argc, char **argv, char **envp)
 		{
 			continue ;
 		}
-		//parser(&m);
+		// g_minishell.ast = parser();
+		// if (!g_minishell.ast)
+		// {
+		// 	continue ;
+		// }
 	}
 }
