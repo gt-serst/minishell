@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/24 12:03:15 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/26 12:17:12 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include "../libraries/libft/libft.h"
 #include "tokenization.h"
 #include "parsing.h"
+#include "execution.h"
 
 typedef struct s_minishell
 {

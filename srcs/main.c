@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/24 09:50:27 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/26 12:02:22 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int	main(int argc, char **argv, char **envp)
 		add_history(m.cmd_line);
 		tokenizer(&m);
 		//parser();
+		//ft_exec()
 	}
 }
