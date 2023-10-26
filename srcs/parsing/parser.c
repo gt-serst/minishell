@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:56:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/25 17:23:03 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/26 11:08:46 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,18 @@
 
 t_node	*compute_operator(t_token_type op, t_node *left, t_node *right)
 {// get the left and right children of the parent node
-	// create a new operator node
-	// to this operator node link the left and right simple cmds nodes to it
+	t_node	*new;
+
+	new = new_node(op);
+	if (!new)
+		return (NULL);
+	new->left = left;
+	new->right = right;
+	return (new);
 }
 
 t_node	*compute_atom(void)
 {// It handles true atoms (commands in our case), as well as parenthesized sub-expressions
-	// If parenthesis then move token and launch recursive ast until the close parenthesis was found, if not error else get_next_token and return
-	// Else return get_simple_cmd()
 	if (g_minishell.curr_token->type == T_LPAREN)
 	{
 		get_next_token();
@@ -42,17 +46,23 @@ t_node	*compute_atom(void)
 
 t_node	*precedence_climbing(int min_prec)
 {//give the priority for each elements in the ast according to a precedence climbing algorithm
-	t_node	*atom_lhs;
-	t_node	*atom_rhs;
+	t_node			*atom_lhs;
+	t_node			*atom_rhs;
+	t_token_type	op;
+	int				next_min_prec;
 
 	atom_lhs = compute_atom(); //gets the left atom
-	//while (is_op() && precedence >= min_prec)
-	//	op = curr_token->type;
-	//	get_next_token()
-	//	next_min_prec = prec + 1
-	//	atom_rhs = recursive_ast(next_min_prec)
-	//	atom_lhs = compute_operator(op, atom_lhs, atom_rhs) performs the arithmetic computation
-	//return atom_lhs
+	while (is_op() && curr_token_prec() >= min_prec)
+	{
+		op = g_minishell.curr_token->type;
+		get_next_token();
+		next_min_prec = min_prec + curr_token_prec();
+		atom_rhs = precedence_climbing(next_min_prec);
+		if (!atom_rhs)
+			return (NULL);
+		atom_lhs = compute_operator(op, atom_lhs, atom_rhs);
+	}
+	return (atom_lhs);
 }
 
 t_node	*parser()
@@ -60,7 +70,4 @@ t_node	*parser()
 	g_minishell.curr_token = g_minishell.tokens;
 	g_minishell.ast = precedence_climbing(0);
 	return (g_minishell.ast);
-	//get first token from tokens list
-	//recursive_ast();
-	//return ast or parser error
 }
