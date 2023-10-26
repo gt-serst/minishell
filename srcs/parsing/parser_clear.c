@@ -6,13 +6,13 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:33:23 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/26 11:48:23 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/26 14:54:05 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	clear_io_list(t_io_node **lst)
+static void	clear_io_list(t_io_node **lst)
 {
 	t_io_node	*current;
 	t_io_node	*next;
@@ -33,7 +33,7 @@ void	clear_io_list(t_io_node **lst)
 	*lst = NULL;
 }
 
-void	clear_cmd_node(t_node *node)
+static void	clear_cmd_node(t_node *node)
 {
 	free(node->args);
 	while ((*node->expanded_args)++)
@@ -41,14 +41,14 @@ void	clear_cmd_node(t_node *node)
 	free(node->expanded_args);
 }
 
-void	resursive_clear_ast(t_node *node)
+static void	recursive_clear_ast(t_node *node)
 {
 	if (!node)
 		return ;
 	if (node->type == N_CMD)
 		clear_cmd_node(node);
 	else if (node->io_list)
-		clear_io_list(node->io_list);
+		clear_io_list(&node->io_list);
 	recursive_clear_ast(node->left);
 	recursive_clear_ast(node->right);
 	free(node);

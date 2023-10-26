@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:10:49 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/26 10:22:56 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/26 15:04:27 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@ bool	is_op(void)
 
 bool	is_redir(t_token_type type)
 {// if is a redirection return 1 else 0
-	if (g_minishell.curr_token->type == T_LESS
-		|| g_minishell.curr_token->type == T_GREAT
-		|| g_minishell.curr_token->type == T_DLESS
-		|| g_minishell.curr_token->type == T_DGREAT)
+	if (type == T_LESS || type == T_GREAT || type == T_DLESS || type == T_DGREAT)
 		return (true);
 	return (false);
 }

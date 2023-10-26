@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/10/24 16:27:45 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/10/26 15:27:48 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,12 +25,17 @@ EXECUTOR		:=
 
 EXPANDER		:=
 
-PARSING			:=
+PARSING			:=	srcs/parsing/parser_clear.c\
+					srcs/parsing/parser_cmd.c\
+					srcs/parsing/parser_err.c\
+					srcs/parsing/parser_node.c\
+					srcs/parsing/parser_utils.c\
+					srcs/parsing/parser.c\
 
-TOKENIZATION	:=	srcs/tokenization/tokenizer.c\
+TOKENIZATION	:=	srcs/tokenization/tk_utils.c\
+					srcs/tokenization/tokenizer_handler.c\
 					srcs/tokenization/tokenizer_utils.c\
-					srcs/tokenization/tk_utils.c\
-					srcs/tokenization/tokenizer_handler.c
+					srcs/tokenization/tokenizer.c\
 
 SRCS			:=	$(BUILTINS)\
 					$(EXECUTOR)\

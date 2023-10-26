@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_nd.c                                        :+:      :+:    :+:   */
+/*   parser_node.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:26:47 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/26 11:07:59 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/26 15:27:42 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ t_io_type	get_io_type(t_token_type type)
 		return (IO_OUT);
 	else if (type == T_DLESS)
 		return (IO_HEREDOC);
-	else if (type == T_DGREAT)
-		return (IO_APPEND);
+	return (IO_APPEND);
 }
 
 t_node	*new_node(t_node_type type)
@@ -42,7 +41,7 @@ t_node	*new_node(t_node_type type)
 	return (elem);
 }
 
-t_io_node	*new_io_node(t_token_type type, char *value)
+t_io_node	*new_io_node(t_io_type type, char *value)
 {
 	t_io_node	*elem;
 

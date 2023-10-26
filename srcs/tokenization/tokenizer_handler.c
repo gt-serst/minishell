@@ -6,13 +6,13 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:41:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/25 15:28:38 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/26 14:29:44 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	separator_handler(t_token **t, char *substr, t_token_type type)
+static int	separator_handler(t_token **t, char *substr, t_token_type type)
 {//create a tk and add it to the linkded list and then allocate a type of token to the cmd part
 	t_token	*token;
 
