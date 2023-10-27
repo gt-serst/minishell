@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:45:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/26 15:33:59 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:09:43 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void		addback_io_node(t_io_node **lst, t_io_node *new);
 
 //PARSING ERR
 void		set_parsing_err(t_parsing_err_type type);
-t_node		*parsing_err(void);
+t_node		*parsing_err_handler(void);
 
 //CLEAR AST
 void		clear_ast(t_node **ast);

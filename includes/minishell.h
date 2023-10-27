@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/26 15:26:40 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:55:15 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_minishell
 	t_node			*ast;
 	t_token			*tokens;
 	t_token			*curr_token;
-	t_parsing_err	*parsing_err;
+	t_parsing_err	parsing_err;
 	char			*cmd_line;
 	int				err_code;
 }		t_minishell;
@@ -44,7 +44,10 @@ void	ft_exit_message(char *s);
 void	quotes_err_message(char c);
 
 //UTILS
-void	ft_printlst(t_token **t);
-void	ft_printlst_reverse(t_token **t);
+void	ft_print_token(t_token **t);
+void	ft_print_token_reverse(t_token **t);
+void	ft_print_left_side(t_node *node);
+void	ft_print_right_side(t_node *node);
+char	*join_with_char(char *s1, char *s2, char c);
 
 #endif
