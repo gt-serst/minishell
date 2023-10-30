@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/30 13:59:19 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:04:07 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int	main(int argc, char **argv, char **envp)
 			parsing_err_handler();
 		 	continue ;
 		 }
-	}
+	}g
 	return (EXIT_SUCCESS);
 }
