@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/27 15:55:15 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:58:15 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include "../libraries/libft/libft.h"
 #include "tokenization.h"
 #include "parsing.h"
+#include "execution.h"
 
 typedef struct s_minishell
 {
