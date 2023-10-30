@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand_args.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:33:32 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/10/30 13:45:47 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/10/30 16:13:02 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ char	*ft_cmd_pre_expander(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '\'')
-			ret = ft_strjoin_f(ret, ft_handle_squotes(str, &i));
-		else if (str[i] == '"')
-			ret = ft_strjoin_f(ret, ft_handle_dquotes(str, &i));
+		// if (str[i] == '\'')
+		// 	ret = ft_strjoin_f(ret, ft_handle_squotes(str, &i));
+		// else if (str[i] == '"')
+		// 	ret = ft_strjoin_f(ret, ft_handle_dquotes(str, &i));
 		else if (str[i] == '$')
 			ret = ft_strjoin_f(ret, ft_handle_dollar(str, &i));
 		else
