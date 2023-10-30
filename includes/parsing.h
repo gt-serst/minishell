@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:45:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/27 15:09:43 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:06:17 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,13 @@ typedef struct s_parsing_err
 
 //PARSER
 t_node		*parser();
-t_node		*precedence_climbing(int min_prec);
+t_node		*prec_climbing();
 t_node		*get_simple_cmd(void);
 
 //PARSER UTILS
 void		get_next_token(void);
 bool		is_op(void);
 bool		is_redir(t_token_type type);
-int			curr_token_prec(void);
 
 //ND UTILS
 t_node_type	get_node_type(t_token_type type);

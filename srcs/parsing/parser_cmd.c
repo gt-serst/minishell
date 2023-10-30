@@ -6,11 +6,17 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:24:59 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/27 15:55:46 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:47:39 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static t_io_node	*init_lst(t_io_node **io_list)
+{
+	*io_list = malloc(sizeof(t_io_node));
+	return(*io_list);
+}
 
 static bool	get_io_list(t_io_node **io_list)
 {
@@ -21,6 +27,9 @@ static bool	get_io_list(t_io_node **io_list)
 		return (false);
 	if (!io_list)
 		return (false);
+	*io_list = NULL;
+	if (!*io_list)
+		*io_list = init_lst(io_list);
 	redir_type = get_io_type(g_minishell.curr_token->type);
 	while (g_minishell.curr_token && (g_minishell.curr_token->type))
 	{
@@ -43,6 +52,7 @@ static bool	join_args(char **args)
 		return (false);
 	if (!args)
 		return (set_parsing_err(E_MEM), false);
+	*args = NULL;
 	if (!*args)
 		*args = ft_strdup("");
 	if (!*args)

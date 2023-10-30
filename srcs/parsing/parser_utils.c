@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:10:49 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/27 15:16:33 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:05:25 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,5 @@ bool	is_redir(t_token_type type)
 	if (type == T_LESS || type == T_GREAT || type == T_DLESS || type == T_DGREAT)
 		return (true);
 	return (false);
-}
-
-int	curr_token_prec(void)
-{
-	return (1);
 }
 
