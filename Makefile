@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/10/27 12:49:58 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/10/30 15:51:40 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,9 @@ EXECUTOR		:=
 
 EXPANDER		:=
 
-PARSING			:=	srcs/parsing/parser_clear.c\
-					srcs/parsing/parser_cmd.c\
-					srcs/parsing/parser_err.c\
-					srcs/parsing/parser_node.c\
+PARSING			:=	srcs/parsing/cmd.c\
+					srcs/parsing/nd_utils.c\
+					srcs/parsing/parser_clear.c\
 					srcs/parsing/parser_utils.c\
 					srcs/parsing/parser.c\
 
@@ -58,7 +57,7 @@ $(LIBFT):
 	@make -C $(LIBFT_PATH)
 
 $(NAME): $(LIBFT) $(OBJS)
-	@$(CC) -o $(NAME) $(OBJS) $(LIBFT_PATH)/$(LIBFT) -L$(LIBFT_PATH) -lreadline -L$(READLINE_PATH)/lib -g3 -fsanitize=address
+	@$(CC) -o $(NAME) $(OBJS) $(LIBFT_PATH)/$(LIBFT) -L$(LIBFT_PATH) -lreadline -L$(READLINE_PATH)/lib
 
 clean:
 	@make clean -C $(LIBFT_PATH)

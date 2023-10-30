@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:36:34 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/30 13:17:03 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:41:12 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_print_left_side(t_node *node)
 	head = node;
 	if (head->type == N_PIPE)
 		ft_print_left_side(head->left);
-	else
+	else if (head->args)
 		printf("Curr Node %s\n", head->args);
 }
 
@@ -60,8 +60,20 @@ void	ft_print_right_side(t_node *node)
 	head = node;
 	if (head->type == N_PIPE)
 		ft_print_right_side(head->right);
-	else
+	else if (head->args)
 		printf("Curr Node %s\n", head->args);
+}
+
+void	ft_print_io_list(t_io_node **io_lst)
+{
+	t_io_node	*head;
+
+	head = *io_lst;
+	while(head)
+	{
+		printf("Value %s\n", head->value);
+		head = head->next;
+	}
 }
 
 char	*join_with_char(char *s1, char *s2, char c)

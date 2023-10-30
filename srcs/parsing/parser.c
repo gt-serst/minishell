@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:56:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/30 13:38:14 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:44:27 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_node	*compute_op(t_token_type op, t_node *left, t_node *right)
 
 	if (g_minishell.parsing_err.type)
 		return (NULL);
-	new = new_node(get_node_type(op));
+	new = new_nd(get_nd_type(op));
 	if (!new)
 		return (set_parsing_err(E_MEM), NULL);
 	new->left = left;
@@ -35,19 +35,17 @@ t_node	*prec_climbing()
 	t_node			*left_atom;
 	t_node			*right_atom;
 	t_token_type	op;
-	//int				next_min_prec;
 
 	if (g_minishell.parsing_err.type || !g_minishell.curr_token)
 		return (NULL);
 	left_atom = get_simple_cmd(); //gets the left atom
 	if (!left_atom)
 		return (NULL);
-	while (is_op())
+	while (is_pipe())
 	{
 		printf("Curr Token %s\n", g_minishell.curr_token->value);
 		op = g_minishell.curr_token->type;
 		get_next_token();
-		//next_min_prec = min_prec + curr_token_prec();
 		right_atom = prec_climbing(); //get the right atom
 		if (!right_atom)
 			return (left_atom);
@@ -68,5 +66,7 @@ t_node	*parser()
 	ft_print_left_side(g_minishell.ast);
 	printf("Print right side:\n");
 	ft_print_right_side(g_minishell.ast);
+	printf("Print io list:\n");
+	ft_print_io_list(&(g_minishell.ast->io_list));
 	return (g_minishell.ast);
 }

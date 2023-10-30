@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_node.c                                      :+:      :+:    :+:   */
+/*   nd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:26:47 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/30 13:33:09 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:28:16 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_node_type get_node_type(t_token_type type)
+t_node_type get_nd_type(t_token_type type)
 {
 	if (type == T_PIPE)
 		return (N_PIPE);
@@ -30,7 +30,7 @@ t_io_type	get_io_type(t_token_type type)
 	return (IO_APPEND);
 }
 
-t_node	*new_node(t_node_type type)
+t_node	*new_nd(t_node_type type)
 {// create a new node
 	t_node	*elem;
 
@@ -41,7 +41,7 @@ t_node	*new_node(t_node_type type)
 	return (elem);
 }
 
-t_io_node	*new_io_node(t_io_type type, char *value)
+t_io_node	*new_io_nd(t_io_type type, char *value)
 {
 	t_io_node	*elem;
 
@@ -55,7 +55,7 @@ t_io_node	*new_io_node(t_io_type type, char *value)
 	return (elem);
 }
 
-void	addback_io_node(t_io_node **lst, t_io_node *new)
+void	addback_io_nd(t_io_node **lst, t_io_node *new)
 {
 	t_io_node	*tmp;
 

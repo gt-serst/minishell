@@ -1,44 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_cmd.c                                       :+:      :+:    :+:   */
+/*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:24:59 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/30 13:47:39 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:51:06 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static t_io_node	*init_lst(t_io_node **io_list)
-{
-	*io_list = malloc(sizeof(t_io_node));
-	return(*io_list);
-}
-
 static bool	get_io_list(t_io_node **io_list)
 {
-	t_io_node		*tmp_io_node;
+	t_io_node	*tmp_io_node;
 	t_io_type	redir_type;
 
 	if (g_minishell.parsing_err.type)
 		return (false);
-	if (!io_list)
-		return (false);
-	*io_list = NULL;
-	if (!*io_list)
-		*io_list = init_lst(io_list);
 	redir_type = get_io_type(g_minishell.curr_token->type);
 	while (g_minishell.curr_token && (g_minishell.curr_token->type))
 	{
 		redir_type = get_io_type(g_minishell.curr_token->type);
-		tmp_io_node = new_io_node(redir_type, g_minishell.curr_token->value);
+		tmp_io_node = new_io_nd(redir_type, g_minishell.curr_token->value);
 		if (!tmp_io_node)
 			return (false);
 		printf("Io node %s\n", tmp_io_node->value);
-		addback_io_node(io_list, tmp_io_node);
+		addback_io_nd(io_list, tmp_io_node);
 		get_next_token();
 	}
 	return (true);
@@ -52,7 +41,7 @@ static bool	join_args(char **args)
 		return (false);
 	if (!args)
 		return (set_parsing_err(E_MEM), false);
-	*args = NULL;
+	//*args = NULL;
 	if (!*args)
 		*args = ft_strdup("");
 	if (!*args)
@@ -75,7 +64,7 @@ t_node	*get_simple_cmd(void)
 
 	if (g_minishell.parsing_err.type)
 		return (NULL);
-	new = new_node(N_CMD);
+	new = new_nd(N_CMD);
 	if (!new)
 		return (set_parsing_err(E_MEM), NULL);
 	while (g_minishell.curr_token && (g_minishell.curr_token->type == T_IDENTIFIER
