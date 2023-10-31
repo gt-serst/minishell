@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:58:21 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/25 14:16:16 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/31 12:48:34 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,19 @@ void	skip_spaces(char **cmd_line)
 		(*cmd_line)++;
 }
 
-bool	skip_quotes(char **cmd_line)
+bool	skip_quotes(char *cmd_line, size_t *i)
 {
 	char	quote;
 
-	quote = **cmd_line;
-	while (**cmd_line && !ft_isquotes(**cmd_line))
-		(*cmd_line)++;
-	if (**cmd_line == quote)
+	quote = cmd_line[*i];
+	(*i)++;
+	while (cmd_line[*i] && cmd_line[*i] != quote)
+		(*i)++;
+	if (cmd_line[*i] == quote)
 	{
-		(*cmd_line)++;
+		(*i)++;
 		return (true);
 	}
 	else
-		return (false);
+		return (quotes_err_message(quote), false);
 }

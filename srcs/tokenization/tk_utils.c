@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:59:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/25 13:34:53 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/31 14:56:14 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,22 @@ t_token	*new_tk(void *content, t_token_type type)
 	return (elem);
 }
 
-void	tkadd_back(t_token **t, t_token *new)
+void	tkadd_back(t_token **t, t_token *elem)
 {// add the new node previously created to the linked list token
 	t_token	*tmp;
 
-	if (!t || !new)
+	if (!t || !elem)
 		return ;
 	tmp = *t;
 	if (tmp)
 	{
 		while (tmp->next)
 			tmp = tmp->next;
-		tmp->next = &*new;
-		new->prev = tmp;
+		tmp->next = &*elem;
+		elem->prev = tmp;
 	}
 	else
-		*t = new;
+		*t = elem;
 }
 
 void	tkclear(t_token **t)
