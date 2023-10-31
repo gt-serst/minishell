@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/30 15:48:34 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/31 09:52:48 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ t_node		*parsing_err_handler(void);
 //UTILS
 void	ft_print_token(t_token **t);
 void	ft_print_token_reverse(t_token **t);
-void	ft_print_left_side(t_node *node);
-void	ft_print_right_side(t_node *node);
+void	ft_print_ast(t_node *node);
 char	*join_with_char(char *s1, char *s2, char c);
 void	ft_print_io_list(t_io_node **io_lst);
 

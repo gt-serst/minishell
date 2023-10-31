@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:45:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/30 15:48:14 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/31 08:57:09 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_parsing_err
 
 //PARSER
 t_node		*parser();
-t_node		*prec_climbing();
+t_node		*ast_builder();
 t_node		*get_simple_cmd(void);
 
 //PARSER UTILS
@@ -76,7 +76,7 @@ t_node		*new_nd(t_node_type type);
 t_io_node	*new_io_nd(t_io_type type, char *value);
 void		addback_io_nd(t_io_node **lst, t_io_node *new);
 
-//CLEAR AST
-void		clear_ast(t_node **ast);
+//AST CLEANER
+void		ast_cleaner(t_node **ast);
 
 #endif

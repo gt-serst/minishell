@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:37:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/27 13:11:06 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/31 09:31:52 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ t_token	*tokenizer(void)
 	}
 	//free(cmd_line);
 	g_minishell.cmd_line = NULL;
-	ft_print_token(&t);
+	//ft_print_token(&t);
 	return (t);
 }

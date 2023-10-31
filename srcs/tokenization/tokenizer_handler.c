@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:41:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/26 14:29:44 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/31 08:53:24 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,6 @@ int	separator_recognizer(t_token **t, char	**cmd_line)
 		return (separator_handler(t, substr, T_DGREAT));
 	else if (ft_strncmp(substr, "|", ft_strlen(substr)) == 0)
 		return (separator_handler(t, substr, T_PIPE));
-	else if (ft_strncmp(substr, "(", ft_strlen(substr)) == 0)
-		return (separator_handler(t, substr, T_LPAREN));
-	else if (ft_strncmp(substr, ")", ft_strlen(substr)) == 0)
-		return (separator_handler(t, substr, T_RPAREN));
 	else
 		return (0);
 }

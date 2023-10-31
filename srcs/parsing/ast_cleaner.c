@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_ast.c                                        :+:      :+:    :+:   */
+/*   ast_cleaner.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:33:23 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/30 16:19:17 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/31 08:59:58 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	clear_io_list(t_io_node **lst)
+static void	io_list_cleaner(t_io_node **lst)
 {
 	t_io_node	*current;
 	t_io_node	*next;
@@ -36,11 +36,11 @@ static void	clear_io_list(t_io_node **lst)
 	*lst = NULL;
 }
 
-static void	clear_cmd_node(t_node *node)
+static void	cmd_node_cleaner(t_node *node)
 {
 	if (!node)
 		return ;
-	clear_io_list(&(node->io_list));
+	io_list_cleaner(&(node->io_list));
 	free(node->args);
 	if (node->expanded_args)
 	{
@@ -50,27 +50,27 @@ static void	clear_cmd_node(t_node *node)
 	}
 }
 
-static void	recursive_clear_ast(t_node *node)
+static void	recursive_ast_cleaner(t_node *node)
 {
 	if (!node)
 		return ;
 	if (node->type == N_CMD)
-		clear_cmd_node(node);
+		cmd_node_cleaner(node);
 	else
 	{
 		if (node->left)
-			recursive_clear_ast(node->left);
+			recursive_ast_cleaner(node->left);
 		if (node->right)
-			recursive_clear_ast(node->right);
+			recursive_ast_cleaner(node->right);
 	}
 	free(node);
 }
 
-void	clear_ast(t_node **ast)
+void	ast_cleaner(t_node **ast)
 {
 	if (*ast)
 		return ;
-	recursive_clear_ast(*ast);
+	recursive_ast_cleaner(*ast);
 	*ast = NULL;
 	tkclear(&g_minishell.tokens);
 }

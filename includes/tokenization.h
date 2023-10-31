@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:18:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/26 15:33:23 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/10/31 08:53:38 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ typedef enum e_token_type
 	T_DLESS,
 	T_DGREAT,
 	T_PIPE,
-	T_LPAREN,
-	T_RPAREN,
 }	t_token_type;
 
 typedef struct s_token

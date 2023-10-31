@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/10/30 16:19:27 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/10/31 09:51:25 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,10 @@ EXECUTOR		:=
 
 EXPANDER		:=
 
-PARSING			:=	srcs/parsing/cmd.c\
+PARSING			:=	srcs/parsing/ast_builder.c\
+					srcs/parsing/ast_cleaner.c\
 					srcs/parsing/nd_utils.c\
-					srcs/parsing/clear_ast.c\
+					srcs/parsing/parser_handler.c\
 					srcs/parsing/parser_utils.c\
 					srcs/parsing/parser.c\
 
