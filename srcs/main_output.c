@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   main_output.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 11:24:26 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/10/31 16:12:39 by mde-plae         ###   ########.fr       */
+/*   Created: 2023/10/31 16:43:58 by mde-plae          #+#    #+#             */
+/*   Updated: 2023/10/31 16:44:17 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-// cherche une env_var similaire, et remplace sa valeur
-
-void	ft_get_envlst_val(char *var)
+void	ft_sigquit_handler(int num)
 {
-	t_env	*envlst;
-
-	envlst = t_minishell.envlst;
-	while (envlst)
-	{
-		if (!ft_strcmp(key, envlst->key))
-			return (envlst->value);
-		envlst = envlst->next;
-	}
-	return (NULL);
+	(void)num;
+	ft_putstr_fd("Quit\n", 1);
 }
