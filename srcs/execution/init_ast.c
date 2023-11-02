@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:09:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/10/31 17:04:45 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:52:42 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_leaf_init(t_node *node)
 		}
 		else
 			io->expanded_value = ft_expand_args(io->value);
+		io = io->next;
 	}
 }
 

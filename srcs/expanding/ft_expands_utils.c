@@ -6,13 +6,13 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:04:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/10/30 11:22:24 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:57:10 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*ft_handle_dquote_str(char *str, size_t *i)
+char	*ft_dquote_str(char *str, size_t *i)
 {
 	size_t	start;
 
@@ -24,7 +24,7 @@ char	*ft_handle_dquote_str(char *str, size_t *i)
 	return (ft_substr(str, start, *i - start));
 }
 
-char	*ft_handle_squotes(char *str, size_t *i)
+char	*ft_squotes(char *str, size_t *i)
 {
 	size_t	start;
 
@@ -36,7 +36,7 @@ char	*ft_handle_squotes(char *str, size_t *i)
 	return (ft_substr(str, start, *i - start));
 }
 
-char	*ft_handle_normal_str(char *str, size_t *i)
+char	*ft_normal_str(char *str, size_t *i)
 {
 	size_t	start;
 

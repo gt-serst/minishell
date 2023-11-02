@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:24:26 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/10/31 16:12:39 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:42:25 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // cherche une env_var similaire, et remplace sa valeur
 
-void	ft_get_envlst_val(char *var)
+void	ft_envlst_val(char *var)
 {
 	t_env	*envlst;
 

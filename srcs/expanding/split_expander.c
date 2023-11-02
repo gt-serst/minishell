@@ -6,13 +6,15 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:52:36 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/10/31 17:00:00 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:38:58 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static	void	ft_skip_word(char const *s, size_t	*i)
+// split amelioré avec \ et "
+
+void	ft_skip_word(char const *s, size_t	*i)
 {
 	char	quotes;
 
@@ -30,7 +32,7 @@ static	void	ft_skip_word(char const *s, size_t	*i)
 	}
 }
 
-static char	**ft_allocater(char const *s, char **strs)
+char	**ft_allocater(char const *s, char **strs)
 {
 	size_t	start;
 	size_t	i;
@@ -44,7 +46,7 @@ static char	**ft_allocater(char const *s, char **strs)
 		{
 			start = i;
 			ft_skip_word(s, &i);
-			strs[j] = ft_calloc(i - start + 1, sizeof(char));
+			strs[j] = malloc((i - start + 1) * sizeof(char));
 			if (!strs[j])
 				return (NULL);
 			j++;
@@ -55,7 +57,7 @@ static char	**ft_allocater(char const *s, char **strs)
 	return (strs);
 }
 
-static void	ft_words_filler(const char *s, char **strs, size_t *i, size_t j)
+void	ft_words_filler(const char *s, char **strs, size_t *i, size_t j)
 {
 	char	quotes;
 	size_t	k;
@@ -76,7 +78,7 @@ static void	ft_words_filler(const char *s, char **strs, size_t *i, size_t j)
 	}
 }
 
-static char	**ft_filler(char const *s, char **strs)
+char	**ft_filler(char const *s, char **strs)
 {
 	size_t	i;
 	size_t	j;
@@ -96,7 +98,7 @@ static char	**ft_filler(char const *s, char **strs)
 	return (strs);
 }
 
-char	**ft_expander_split(char const *s)
+char	**ft_split_expander(char const *s)
 {
 	size_t		count;
 	char		**strs;
@@ -114,7 +116,7 @@ char	**ft_expander_split(char const *s)
 		while (s[i] && s[i] == ' ')
 			i++;
 	}
-	strs = ft_calloc(count + 1, sizeof(char *));
+	strs = malloc((count + 1) * sizeof(char *));
 	tofree = strs;
 	strs = ft_allocater(s, strs);
 	if (!strs || !count)
