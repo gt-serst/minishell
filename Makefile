@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/10/31 12:28:33 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/11/03 14:14:23 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,10 @@ CFLAGS			:= -Wall -Wextra -Werror
 
 BUILTINS		:=
 
-EXECUTOR		:=
+EXECUTION		:=
 
-EXPANDER		:=
+EXPANDING		:=	srcs/expanding/redir.c srcs/expanding/input_redir.c\
+					srcs/expanding/heredoc_redir.c\
 
 PARSING			:=	srcs/parsing/ast_builder.c\
 					srcs/parsing/ast_cleaner.c\
@@ -38,8 +39,8 @@ TOKENIZATION	:=	srcs/tokenization/tk_utils.c\
 					srcs/tokenization/tokenizer.c\
 
 SRCS			:=	$(BUILTINS)\
-					$(EXECUTOR)\
-					$(EXPANDER)\
+					$(EXECUTION)\
+					$(EXPANDING)\
 					$(PARSING)\
 					$(TOKENIZATION)\
 					srcs/main.c srcs/init.c srcs/errors.c\

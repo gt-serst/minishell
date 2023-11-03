@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nd_utils.c                                         :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 14:26:47 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/02 13:29:39 by gt-serst         ###   ########.fr       */
+/*   Created: 2023/11/03 11:24:55 by gt-serst          #+#    #+#             */
+/*   Updated: 2023/11/03 12:05:47 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
-t_node_type get_nd_type(t_token_type type)
+void	pre_exec(t_node *node)
 {
-	if (type == T_PIPE)
-		return (N_PIPE);
-	return (N_CMD);
+	if (!node)
+		return ;
+	if (recursive_expander() == true)
+	{
+		if (recursive_redir(node) == true)
+		{
+			if (node->type == N_CMD)
+			{
+				exec_simple_cmd();
+			}
+			else
+				exec_pipe();
+		}
+	}
 }
 
-t_node	*new_nd(t_node_type type)
-{// create a new node
-	t_node	*elem;
-
-	elem = malloc(sizeof(t_node));
-	if (!elem)
-		return (NULL);
-	ft_bzero(elem, sizeof(t_node));
-	elem->type = type;
-	return (elem);
+void	exec_ast(t_node *node)
+{
+	pre_exec(node);
 }

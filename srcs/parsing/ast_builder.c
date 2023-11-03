@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 08:50:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/31 09:49:22 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:23:59 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 static t_node	*get_children(t_token_type op, t_node *left, t_node *right)
 {// get the left and right children of the parent node
-	t_node	*new;
+	t_node	*pipe;
 
 	if (g_minishell.parsing_err.type)
 		return (NULL);
-	new = new_nd(get_nd_type(op));
-	if (!new)
-		return (set_parsing_err(E_MEM), NULL);
+	pipe = new_nd(get_nd_type(op));
+	if (!pipe)
+		return (set_parsing_err(PE_MEM), NULL);
 	//printf("Pipe\n");
 	//printf("Elem left %d\n", left->type);
 	//printf("Elem right %d\n", right->type);
-	new->left = left;
-	new->right = right;
-	return (new);
+	pipe->data.pipe.left = left;
+	pipe->data.pipe.right = right;
+	return (pipe);
 }
 
 t_node	*ast_builder()

@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:56:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/31 09:48:50 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:24:29 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_node	*parser()
 	g_minishell.curr_token = g_minishell.tokens;
 	g_minishell.ast = ast_builder();
 	if (g_minishell.curr_token)
-		return (set_parsing_err(E_SYNTAX), g_minishell.ast);
+		return (set_parsing_err(PE_SYNTAX), g_minishell.ast);
 	//printf("Print left side:\n");
 	//ft_print_left_side(g_minishell.ast);
 	//printf("Print right side:\n");

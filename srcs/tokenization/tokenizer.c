@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:37:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/31 15:20:10 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:18:50 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_token	*tokenizer()
 			return (tkclear(&t), NULL);
 		else
 		{
-			printf("Token: %s\n", token->value);
+			//printf("Token %s\n", token->value);
 			tkadd_back(&t, token);
 		}
 	}

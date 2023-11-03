@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:41:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/31 15:01:33 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/03 14:55:55 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ t_token	*separator_handler(char	**cmd_line)
 	if (!substr)
 		return (NULL);
 	*cmd_line += i;
-	if (ft_strncmp(substr, "<", ft_strlen(substr)) == 0)
-		return (new_tk(substr, T_LESS));
-	else if (ft_strncmp(substr, ">", ft_strlen(substr)) == 0)
-		return (new_tk(substr, T_GREAT));
-	else if (ft_strncmp(substr, "<<", ft_strlen(substr)) == 0)
-		return (new_tk(substr, T_DLESS));
-	else if (ft_strncmp(substr, ">>", ft_strlen(substr)) == 0)
-		return (new_tk(substr, T_DGREAT));
+	if (ft_strcmp(substr, "<") == 0)
+		return (new_tk(substr, T_INPUT));
+	else if (ft_strcmp(substr, ">") == 0)
+		return (new_tk(substr, T_OUTPUT));
+	else if (ft_strcmp(substr, "<<") == 0)
+		return (new_tk(substr, T_HEREDOC));
+	else if (ft_strcmp(substr, ">>") == 0)
+		return (new_tk(substr, T_APPEND));
 	else
 		return (new_tk(substr, T_PIPE)); //malloc allocation in token
 }

@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:10:49 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/30 15:33:22 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/02 12:45:16 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	is_pipe(void)
 
 bool	is_redir(t_token_type type)
 {// if is a redirection return 1 else 0
-	if (type == T_LESS || type == T_GREAT || type == T_DLESS || type == T_DGREAT)
+	if (type == T_INPUT || type == T_OUTPUT || type == T_HEREDOC || type == T_APPEND)
 		return (true);
 	return (false);
 }

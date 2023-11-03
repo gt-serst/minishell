@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/31 15:20:16 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/03 16:37:39 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ int	main(int argc, char **argv, char **envp)
 		if (!g_minishell.tokens)
 			continue ;
 		g_minishell.ast = parser();
-		 if (g_minishell.parsing_err.type)
-		 {
+		if (g_minishell.parsing_err.type)
+		{
 			parsing_err_handler();
-		 	continue ;
-		 }
+			continue ;
+		}
+		recursive_redir(g_minishell.ast);
+		ast_cleaner(&g_minishell.ast);
 	}
 	return (EXIT_SUCCESS);
 }

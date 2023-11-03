@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:18:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/31 15:02:20 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/02 12:38:29 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 typedef enum e_token_type
 {
 	T_IDENTIFIER,
-	T_LESS,
-	T_GREAT,
-	T_DLESS,
-	T_DGREAT,
+	T_INPUT,
+	T_OUTPUT,
+	T_HEREDOC,
+	T_APPEND,
 	T_PIPE,
 }	t_token_type;
 
