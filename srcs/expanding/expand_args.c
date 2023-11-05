@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_expand_args.c                                   :+:      :+:    :+:   */
+/*   expand_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:33:32 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/10/30 16:13:02 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/05 19:15:07 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*ft_handle_dollar(char *str, size_t *i)
+char	*handle_dollar(char *str, size_t *i)
 {
 	size_t	start;
 	char	*var;
@@ -27,21 +27,21 @@ char	*ft_handle_dollar(char *str, size_t *i)
 	else if (str[*i] == '?')
 	{
 		(*i)++;
-		return (ft_itoa(g_minishell.exit_s));
+		return (ft_itoa(g_minishell.err_code));
 	}
-	else if (!ft_is_valid_var_char(str[*i]))
+	else if (!is_valid_var_char(str[*i]))
 		return (ft_strdup("$"));
 	start = *i;
-	while (ft_is_valid_var_char(str[*i]))
+	while (is_valid_var_char(str[*i]))
 		(*i)++;
 	var = ft_substr(str, start, *i - start);
-	env_val = ft_get_envlst_val(var);
+	env_val = get_envlst_val(var);
 	if (!env_val)
 		return (free(var), ft_strdup(""));
 	return (free(var), ft_strdup(env_val));
 }
 
-char	*ft_cmd_pre_expander(char *str)
+char	*cmd_pre_expander(char *str)
 {
 	char	*ret;
 	size_t	i;
@@ -50,42 +50,31 @@ char	*ft_cmd_pre_expander(char *str)
 	i = 0;
 	while (str[i])
 	{
-		// if (str[i] == '\'')
-		// 	ret = ft_strjoin_f(ret, ft_handle_squotes(str, &i));
-		// else if (str[i] == '"')
-		// 	ret = ft_strjoin_f(ret, ft_handle_dquotes(str, &i));
+		if (str[i] == '\'')
+			ret = ft_strjoin_f(ret, handle_squotes(str, &i));
+		else if (str[i] == '"')
+			ret = ft_strjoin_f(ret, handle_dquotes(str, &i));
 		else if (str[i] == '$')
-			ret = ft_strjoin_f(ret, ft_handle_dollar(str, &i));
+			ret = ft_strjoin_f(ret, handle_dollar(str, &i));
 		else
-			ret = ft_strjoin_f(ret, ft_handle_normal_str(str, &i));
+			ret = ft_strjoin_f(ret, handle_normal_str(str, &i));
 	}
 	return (ret);
 }
 
-char	**ft_expand_args(char *str)
+char	**expand_args(char *str)
 {
 	char	**expanded;
-	char	**globbed;
 	size_t	i;
 
-	str = ft_cmd_pre_expander(str);
+	str = cmd_pre_expander(str);
 	if (!str)
 		return (NULL);
-	str = ft_clean_empty_strs(str);
+	str = clean_empty_strs(str);
 	if (!str)
 		return (NULL);
-	expanded = ft_expander_split(str);
+	expanded = expander_split(str);
 	free(str);
 	if (!expanded)
 		return (NULL);
-	// globbed = ft_globber(expanded);
-	// if (!globbed)
-	// 	return (NULL);
-	// i = 0;
-	// while (globbed[i])
-	// {
-	// 	globbed[i] = ft_strip_quotes(globbed[i]);
-	// 	i++;
-	// }
-	// return (globbed);
 }

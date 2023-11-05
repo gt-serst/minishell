@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:38:20 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/03 16:38:58 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/05 16:25:46 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ bool	recursive_redir(t_node *node)
 	else
 	{
 		if (node->data.pipe.left != NULL)
-			recursive_redir(node->data.pipe.left);
+			if (!recursive_redir(node->data.pipe.left))
+				return (false);
 		if (node->data.pipe.right != NULL)
-			recursive_redir(node->data.pipe.right);
+			if (!recursive_redir(node->data.pipe.right))
+				return (false);
 	}
 	return (true);
 }
