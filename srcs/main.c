@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/03 16:37:39 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:16:32 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ int	main(int argc, char **argv, char **envp)
 			parsing_err_handler();
 			continue ;
 		}
+		recursive_expander(g_minishell.ast);
 		recursive_redir(g_minishell.ast);
 		ast_cleaner(&g_minishell.ast);
+		//system("leaks minishell");
 	}
 	return (EXIT_SUCCESS);
 }

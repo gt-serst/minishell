@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:01:08 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/03 17:16:41 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/07 09:45:08 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ bool	is_end_of_file(char *end_of_file, char *cmd_line)
 {//check if the EOF writing by the user is correct, remove pairs of quotes before compare, if a pair of quotes is missing the heredoc cannot quit by writing the EOF
 	char	*eof_trim;
 
-	printf("Eof %s\n", end_of_file);
+	//printf("Eof %s\n", end_of_file);
 	eof_trim = ft_strtrim(end_of_file, "\"");
 	eof_trim = ft_strtrim(eof_trim, "\'");
-	printf("Eof trim %s\n", eof_trim);
+	//printf("Eof trim %s\n", eof_trim);
 	if (ft_strcmp(eof_trim, cmd_line) == 0)
 		return (true);
 	else
@@ -49,7 +49,7 @@ void	heredoc_redir(t_node *node)
 		cmd_line = readline("> ");
 		if (!cmd_line)
 			break ;
-		if (ft_is_delimiter(node->data.simple_cmd.args[2], cmd_line))
+		if (is_end_of_file(node->data.simple_cmd.args[2], cmd_line))
 			break ;
 		else
 		{

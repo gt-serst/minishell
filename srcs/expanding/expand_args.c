@@ -6,39 +6,27 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:33:32 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/05 19:15:07 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:00:41 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*handle_dollar(char *str, size_t *i)
+char	*heredoc_expander(char *str)
 {
-	size_t	start;
-	char	*var;
-	char	*env_val;
+	char	*ret;
+	size_t	i;
 
-	(*i)++;
-	if (ft_isdigit(str[*i]) || str[*i] == '@')
+	ret = ft_strdup("");
+	i = 0;
+	while (str[i])
 	{
-		(*i)++;
-		return (ft_strdup(""));
+		if (str[i] == '$')
+			ret = ft_strjoin_mod2(ret, handle_dollar(str, &i));
+		else
+			ret = ft_strjoin_mod2(ret, handle_normal_str(str, &i));
 	}
-	else if (str[*i] == '?')
-	{
-		(*i)++;
-		return (ft_itoa(g_minishell.err_code));
-	}
-	else if (!is_valid_var_char(str[*i]))
-		return (ft_strdup("$"));
-	start = *i;
-	while (is_valid_var_char(str[*i]))
-		(*i)++;
-	var = ft_substr(str, start, *i - start);
-	env_val = get_envlst_val(var);
-	if (!env_val)
-		return (free(var), ft_strdup(""));
-	return (free(var), ft_strdup(env_val));
+	return (ret);
 }
 
 char	*cmd_pre_expander(char *str)
@@ -51,30 +39,65 @@ char	*cmd_pre_expander(char *str)
 	while (str[i])
 	{
 		if (str[i] == '\'')
-			ret = ft_strjoin_f(ret, handle_squotes(str, &i));
+			ret = ft_strjoin_mod2(ret, handle_squotes(str, &i));
 		else if (str[i] == '"')
-			ret = ft_strjoin_f(ret, handle_dquotes(str, &i));
+			ret = ft_strjoin_mod2(ret, handle_dquotes(str, &i));
 		else if (str[i] == '$')
-			ret = ft_strjoin_f(ret, handle_dollar(str, &i));
+			ret = ft_strjoin_mod2(ret, handle_dollar(str, &i));
 		else
-			ret = ft_strjoin_f(ret, handle_normal_str(str, &i));
+			ret = ft_strjoin_mod2(ret, handle_normal_str(str, &i));
 	}
+	printf("Ret return in cmd pre expander %s\n", ret);
 	return (ret);
 }
 
-char	**expand_args(char *str)
+static int	get_rows(char **str)
 {
-	char	**expanded;
 	size_t	i;
 
-	str = cmd_pre_expander(str);
-	if (!str)
-		return (NULL);
-	str = clean_empty_strs(str);
-	if (!str)
-		return (NULL);
-	expanded = expander_split(str);
-	free(str);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+bool	expand_args(t_node *node)
+{
+	size_t	i;
+	char	**expanded;
+
+	i = 0;
+	expanded = malloc(sizeof (char *) * get_rows(node->data.simple_cmd.args));
 	if (!expanded)
-		return (NULL);
+		return (false);
+	while (node->data.simple_cmd.args[i])
+	{
+		if (ft_strchr(node->data.simple_cmd.args[i], '$') != NULL && !(i > 0)
+				&& ft_strcmp(node->data.simple_cmd.args[i - 1], "<<") == 0)
+		{
+			expanded[i] = heredoc_expander(node->data.simple_cmd.args[i]);
+			if (!expanded[i])
+				return (false);
+		}
+		else
+		{
+			expanded[i] = cmd_pre_expander(node->data.simple_cmd.args[i]);
+			if (!expanded[i])
+				return (false);
+		}
+		i++;
+	}
+	i = 0;
+	node->data.simple_cmd.expanded_args = malloc(sizeof(char *) * get_rows(node->data.simple_cmd.args) + 1);
+	if (!node->data.simple_cmd.expanded_args)
+		return (false);
+	ft_bzero(node->data.simple_cmd.expanded_args, sizeof(char *));
+	while (expanded[i])
+	{
+		node->data.simple_cmd.expanded_args[i] = ft_strdup(expanded[i]);
+		printf("Expanded value %s\n", node->data.simple_cmd.expanded_args[i]);
+		i++;
+	}
+	node->data.simple_cmd.expanded_args[i] = NULL;
+	return (true);
 }

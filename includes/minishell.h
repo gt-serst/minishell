@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/05 19:14:13 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/07 14:22:54 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include "../libraries/libft/libft.h"
 #include "tokenization.h"
 #include "parsing.h"
+#include "expanding.h"
 #include "execution.h"
 
 typedef struct s_minishell
@@ -54,5 +55,6 @@ void		set_expand_err(t_expand_err_type type);
 
 //UTILS
 void	ft_print_ast(t_node *node);
+char	*ft_strjoin_mod2(char *s1, char *s2);
 
 #endif

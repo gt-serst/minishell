@@ -6,23 +6,18 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:23:17 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/05 16:26:43 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:58:27 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-bool	launch_expander(t_node *node)
-{
-
-}
-
-
 bool	recursive_expander(t_node *node)
 {
 	if (node->type == N_CMD)
 	{
-		if (!launch_expander(node))
+		printf("Command enter in expander %s\n", node->data.simple_cmd.args[0]);
+		if (!expand_args(node))
 			return (false);
 	}
 	else
