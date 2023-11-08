@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:26:14 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/08 12:21:25 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:52:12 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ void	*envlst_handler(void *ptr, bool clean)
 {
 	static t_list	*list;
 
-	// if (clean)
-	// {
-	// 	ft_lstclear(&list, ft_del);
-	// 	return (NULL);
-	// }
+	if (clean)
+	{
+		ft_lstclear(&list, ft_del);
+		return (NULL);
+	}
 	else
 	{
 		ft_lstadd_back(&list, ft_lstnew(ptr));
@@ -78,7 +78,12 @@ void	update_envlst(char *key, char *value, bool create)
 	envlst = g_minishell.envlst;
 	while (envlst)
 	{
-		
+		if (!ft_strcmp(key, envlst->key))
+		{
+			if (value)
+				envlst->value = envlst_handler(ft_strdup(value), false);
+			return ;
+		}
 	}
 	if (create)
 		envlst_back(new_envlst(key, value));

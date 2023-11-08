@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:24:26 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/08 12:21:55 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:59:37 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,37 @@ char	*env_key(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] == '=')
+	while (str[i])
+	{	
+		if(str[i] == envlst_handler(ft_substr(str, 0, i), false));
+		i++;
+	}
+	return (ft_strdup(str));
+}
+
+char	*env_value(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '=')
+		{
+			i++;
+			return (envlst_handler(
+					ft_substr(str, i, ft_strlen(str) - i), false));
+		}
+		i++;
+	}
 }
 
 void	envlst_init(void)
 {
 	char	**envlst;
+	char	*key;
+	char	*value;
+	int		i;
 
 	i = 0;
 	envlst = t_minishell.environ;
@@ -35,4 +60,18 @@ void	envlst_init(void)
 		update_envlst(key, value, true);
 		i++;
 	}
+}
+
+int	ft_env(void)
+{
+	t_env	*list;
+
+	list = g_minishell.envlst;
+	while (list)
+	{
+		if (list->value != NULL)
+			ft_printf("%s=%s\n", list->key, list->value);
+		list = list->next;
+	}
+	return (0);
 }

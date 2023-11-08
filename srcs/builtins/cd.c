@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:59:51 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/07 16:28:01 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:34:28 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,6 @@ static int	new_pwd(void)
 	if (!cwd)
 		return (1);
 	return (update_envlst("PWD", cwd, false), 0);
-}
-
-static int	ft_cd(char *path)
-{
-	if (!path || strcmp(path, "~") == 0)
-		return (cd_home_user());
-	if (chdir(path) != 0)
-		return (ft_cd_err_msg(path));
-	update_envlst("OLDPWD", envlst_val("PWD"), false);
-	return (new_pwd());
 }
 
 static int	cd_home_user(void)
@@ -49,4 +39,14 @@ static int	cd_home_user(void)
 		return (0);
 	}
 	return (1);
+}
+
+static int	ft_cd(char *path)
+{
+	if (!path || strcmp(path, "~") == 0)
+		return (cd_home_user());
+	if (chdir(path) != 0)
+		return (ft_cd_err_msg(path));
+	update_envlst("OLDPWD", envlst_val("PWD"), false);
+	return (new_pwd());
 }
