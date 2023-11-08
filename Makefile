@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/11/08 11:18:13 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/11/08 12:46:21 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ EXPANDING		:=	srcs/expanding/expand_args.c\
 					srcs/expanding/expand_utils.c\
 					srcs/expanding/expand.c\
 					srcs/expanding/heredoc_redir.c\
-					srcs/expanding/input_redir.c\
+					srcs/expanding/other_redir.c\
 					srcs/expanding/redir.c
 
 PARSING			:=	srcs/parsing/ast_builder.c\
