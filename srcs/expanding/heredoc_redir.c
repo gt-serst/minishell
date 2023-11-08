@@ -6,13 +6,13 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:01:08 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/07 09:45:08 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:46:55 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	ft_heredoc_sigint_handler(int signum)
+static void	heredoc_sigint_handler(int signum)
 {//catch the sigint signal and exit
 	(void)signum;
 	ast_cleaner(&g_minishell.ast);
@@ -40,7 +40,7 @@ void	heredoc_redir(t_node *node)
 
 	if (!node->data.simple_cmd.args || g_minishell.expand_err.type)
 		return ;
-	signal(SIGINT, ft_heredoc_sigint_handler);
+	signal(SIGINT, heredoc_sigint_handler);
 	quotes = node->data.simple_cmd.args[2];
 	while (*quotes && *quotes == '"' && *quotes == '\'')
 		quotes++;
