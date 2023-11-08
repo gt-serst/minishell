@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 11:24:26 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/08 10:26:04 by mde-plae         ###   ########.fr       */
+/*   Created: 2023/11/06 10:38:07 by mde-plae          #+#    #+#             */
+/*   Updated: 2023/11/06 10:38:52 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#ifndef BUILTINS_H
+# define BUILTINS_H
 
-void	envlst_init(void)
-{
-	char	**envlst;
-}
+# include "../../minishell.h"
+
+int		env();
+// int		export();
+int		echo();
+int		unset();
+int		pwd(void);
+int		cd();
+
+void	exit_minishell();
+
+// char	**alloc_and_assign_new_env(char **original_env, char *cmd);
+// int		set_env_condition(char *cmd, char *env);
+
+#endif
