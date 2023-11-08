@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 09:48:53 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/03 12:25:33 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:37:29 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,23 @@ void	set_expand_err(t_expand_err_type type)
 	g_minishell.expand_err.type = type;
 }
 
-t_node	*parsing_err_handler(void)
+void	parsing_err_handler(void)
 {// determine the reason of the error and return the correct err code to parser function
 	if (g_minishell.parsing_err.type == PE_MEM)
 		g_minishell.err_code = 12;
 	else if (g_minishell.parsing_err.type == PE_SYNTAX)
 		g_minishell.err_code = 258;
-	return (NULL);
+	ft_bzero(&g_minishell.parsing_err, sizeof(t_parsing_err));
+}
+
+void	expanding_err_handler(void)
+{
+	if (g_minishell.expand_err.type == EE_MEM)
+		g_minishell.err_code = 12;
+	else if (g_minishell.expand_err.type == EE_OPEN)
+	{
+		ft_putstr_fd("zsh: no such file or directory\n", 1);
+		g_minishell.err_code = 2;
+	}
+	ft_bzero(&g_minishell.expand_err, sizeof(t_expand_err));
 }

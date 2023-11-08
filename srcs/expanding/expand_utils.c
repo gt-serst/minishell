@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:04:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/07 14:51:14 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/08 11:46:35 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,48 @@ char	*handle_dollar(char *str, size_t *i)
 	return (free(var), ft_strdup(env_val));
 }
 
-char	*handle_dquotes(char *str, size_t *i)
+static char	*handle_normal_dquotes(char *str, size_t *i)
 {// only pass through double quotes and still get the $ to enter in handle_dollar in the next while loop
 	size_t	start;
 
 	start = *i;
 	while (str[*i] != '"' && str[*i] != '$')
-	{
 		(*i)++;
-	}
 	return (ft_substr(str, start, *i - start));
 }
 
 char	*handle_squotes(char *str, size_t *i)
 {// pass through simple quotes and also $ to avoid enter in handle_dollar and do not display the envar
+	char	*substr;
 	size_t	start;
 
-	start = *i;
 	(*i)++;
+	start = *i;
 	while (str[*i] != '\'')
 		(*i)++;
+	substr = ft_substr(str, start, *i - start);
+	if (!substr)
+		return (NULL);
 	(*i)++;
-	return (ft_substr(str, start, *i - start));
+	return (substr);
+}
+
+char	*handle_dquotes(char *str, size_t *i)
+{
+	char	*ret;
+
+	ret = ft_strdup("");
+	(*i)++;
+	while (str[*i] != '"')
+	{
+		if (str[*i] == '$')
+			ret = ft_strjoin_free(ret, handle_dollar(str, i));
+		else
+			ret = ft_strjoin_free(ret, handle_normal_dquotes(str, i));
+	}
+	(*i)++;
+	printf("Ret %s\n", ret);
+	return (ft_strjoin_free(ret, ft_strdup("")));
 }
 
 char	*handle_normal_str(char *str, size_t *i)
@@ -72,7 +92,7 @@ char	*handle_normal_str(char *str, size_t *i)
 	start = *i;
 	while (str[*i] && str[*i] != '\'' && str[*i] != '"' && str[*i] != '$')
 		(*i)++;
-	printf("Substr return in handle normal str %s\n", ft_substr(str, start, *i - start));
+	printf("Substr return in handle normal str |%s|\n", ft_substr(str, start, *i - start));
 	return (ft_substr(str, start, *i - start));
 }
 

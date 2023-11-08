@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:36:34 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/07 14:22:19 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/08 10:31:44 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_print_ast(t_node *node)
 	}
 }
 
-char	*ft_strjoin_mod2(char *s1, char *s2)
+char	*ft_strjoin_free(char *s1, char *s2)
 {
 	char	*str;
 	size_t	size;
@@ -54,8 +54,7 @@ char	*ft_strjoin_mod2(char *s1, char *s2)
 	while (s2[i])
 		str[j++] = s2[i++];
 	str[j] = '\0';
-	free(s1);
-	return (str);
+	return (free(s1), free(s2), str);
 }
 
 

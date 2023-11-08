@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:37:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/02 13:18:50 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:32:58 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ t_token	*tokenizer()
 
 	t = g_minishell.tokens;
 	cmd_line = g_minishell.cmd_line;
+	while (ft_isspace(*cmd_line))
+		cmd_line++;
 	while (*(cmd_line))
 	{
-		if (ft_isspace(*cmd_line))
-			cmd_line++;
 		if (check_unexpected_token(cmd_line))
 			 return (tkclear(&t), NULL);
 		else if (ft_ismetachar(*(cmd_line)))
@@ -44,9 +44,11 @@ t_token	*tokenizer()
 			return (tkclear(&t), NULL);
 		else
 		{
-			//printf("Token %s\n", token->value);
+			printf("Token %s\n", token->value);
 			tkadd_back(&t, token);
 		}
+		while (ft_isspace(*cmd_line))
+			cmd_line++;
 	}
 	free(g_minishell.cmd_line);
 	g_minishell.cmd_line = NULL;

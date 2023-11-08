@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:24:59 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/03 12:24:19 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/08 10:42:29 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static bool	token_into_args(t_node* simple_cmd)
 		return (set_parsing_err(PE_MEM), false);
 	ft_bzero(simple_cmd->data.simple_cmd.args, sizeof(char *));
 	while (g_minishell.curr_token && (g_minishell.curr_token->type == T_IDENTIFIER
-			|| is_redir(g_minishell.curr_token->type)))
+		|| is_redir(g_minishell.curr_token->type)))
 	{
 		simple_cmd->data.simple_cmd.args[++i] = ft_strdup(g_minishell.curr_token->value);
 		get_next_token();
