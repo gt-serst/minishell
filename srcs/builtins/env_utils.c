@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:26:14 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/07 16:29:47 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:21:25 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,62 @@ char	*envlst_val(char *key)
 		envlst = envlst->next;
 	}
 	return (NULL);
+}
+
+static t_env	*new_envlst(char *key, char *value)
+{
+	t_env	new;
+
+	new = (t_env *)malloc(sizeof(t_env));
+	if (!new)
+		return (NULL);
+	new->key = envlst_handler(ft_strdup(key), false);
+	if (value)
+		new->value = envlst_handler(ft_strdup(value), false);
+	new->next = NULL;
+	return (new);
+}
+
+void	*envlst_handler(void *ptr, bool clean)
+{
+	static t_list	*list;
+
+	// if (clean)
+	// {
+	// 	ft_lstclear(&list, ft_del);
+	// 	return (NULL);
+	// }
+	else
+	{
+		ft_lstadd_back(&list, ft_lstnew(ptr));
+		return (ptr);
+	}
+}
+
+void	envlst_back(t_env *new)
+{
+	t_env	*curr;
+
+	if (!g_minishell.envlst)
+	{
+		g_minishell.envlst = new;
+		return ;
+	}
+	curr = g_minishell.envlst;
+	while (curr && curr->next)
+		curr = curr->next;
+	curr->next = new;
+}
+
+void	update_envlst(char *key, char *value, bool create)
+{
+	t_env	*envlst;
+
+	envlst = g_minishell.envlst;
+	while (envlst)
+	{
+		
+	}
+	if (create)
+		envlst_back(new_envlst(key, value));
 }
