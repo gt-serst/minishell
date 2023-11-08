@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/31 16:58:18 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:27:24 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,28 @@ typedef struct s_env
 
 typedef struct s_minishell
 {
-	char			*cmd_line;
-	t_token			*tokens;
-	t_token			*curr_token;
-	t_node			*ast;
-	int				exit_s;
-	//bool			signint_child;
-	int				stdin;
-	int				stdout;
-	char			**environ;
-	t_env			*envlst;
-	struct termios	original_term;
+	t_node	*ast;
+	t_token	*tokens;
+	char	*cmd_line;
 }		t_minishell;
 
+extern t_minishell	g_minishell;
+
+//INIT
 void	init_env(char **envp);
-void	tokenizer(t_minishell *m);
-void	separator_type(char c);
-void	identifier_handler(char c);
+
+//ERR
 void	ft_exit_message(char *s);
+
+//TOKENIZATION ERR
+void	quotes_err_message(char c);
+
+//PARSING ERR
+void		set_parsing_err(t_parsing_err_type type);
+t_node		*parsing_err_handler(void);
+void	set_expand_err(t_expand_err_type type);
+
+//UTILS
+void	ft_print_ast(t_node *node);
 
 #endif

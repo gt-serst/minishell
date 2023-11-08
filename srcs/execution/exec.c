@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_nd.c                                        :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 14:26:47 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/23 14:47:10 by gt-serst         ###   ########.fr       */
+/*   Created: 2023/11/03 11:24:55 by gt-serst          #+#    #+#             */
+/*   Updated: 2023/11/03 12:05:47 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
-t_node_type get_node_type(t_token_type type)
+void	pre_exec(t_node *node)
 {
+	if (!node)
+		return ;
+	if (recursive_expander() == true)
+	{
+		if (recursive_redir(node) == true)
+		{
+			if (node->type == N_CMD)
+			{
+				exec_simple_cmd();
+			}
+			else
+				exec_pipe();
+		}
+	}
 }
 
-t_io_type	get_io_type(t_token_type type)
+void	exec_ast(t_node *node)
 {
-}
-
-t_node	new_node(t_node_type type)
-{// create a new node
-}
-
-t_io_node	*new_io_node(t_token_type type, char *value)
-{
-}
-
-void	append_io_node(t_io_node **lst, t_io_node *new)
-{
+	pre_exec(node);
 }

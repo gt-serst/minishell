@@ -6,41 +6,49 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:37:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/24 12:06:40 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:18:50 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-bool	ft_isspace(char	c)
+bool	check_unexpected_token(char *cmd_line)
 {
-	if (c == 32 || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
-}
-
-bool	ft_ismetachar(char c)
-{
-	if (c == '<' || c == '>' || c == '|' || c == '(' || c == ')')
-		return (1);
-	return (0);
-}
-
-void	tokenizer(t_minishell *m)
-{// core routine for the tokenizer, scan each part of the cmd line and give to each of them a type of tokens (identifier, separator,...)
-	while (*(m->cmd_line))
+	if (*cmd_line == ';')
 	{
-		if (ft_isspace(*(m->cmd_line)))
-			(m->cmd_line)++;
-		else if (ft_ismetachar(*(m->cmd_line)))
-		{
-			separator_type(*(m->cmd_line));
-			(m->cmd_line)++;
-		}
+		ft_putstr_fd("bash: syntax error near unexpected token `;'\n", 2);
+		return (true);
+	}
+	return (false);
+}
+
+t_token	*tokenizer()
+{// core routine for the tokenizer, scan each part of the cmd line and give to each of them a type of tokens (identifier, separator,...)
+	t_token *t;
+	t_token *token;
+	char	*cmd_line;
+
+	t = g_minishell.tokens;
+	cmd_line = g_minishell.cmd_line;
+	while (*(cmd_line))
+	{
+		if (ft_isspace(*cmd_line))
+			cmd_line++;
+		if (check_unexpected_token(cmd_line))
+			 return (tkclear(&t), NULL);
+		else if (ft_ismetachar(*(cmd_line)))
+			token = separator_handler(&cmd_line); //get the right index in the line we are
+		else
+			token = identifier_handler(&cmd_line); //get the right index in the line we are
+		if (!token)
+			return (tkclear(&t), NULL);
 		else
 		{
-			identifier_handler(*(m->cmd_line));
-			(m->cmd_line)++;
+			//printf("Token %s\n", token->value);
+			tkadd_back(&t, token);
 		}
 	}
+	free(g_minishell.cmd_line);
+	g_minishell.cmd_line = NULL;
+	return (t);
 }

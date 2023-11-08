@@ -5,42 +5,53 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 11:41:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/24 12:12:09 by gt-serst         ###   ########.fr       */
+/*   Created: 2023/10/24 15:58:21 by gt-serst          #+#    #+#             */
+/*   Updated: 2023/10/31 12:48:34 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	separator_type(char c)
-{// retrieve the type of separator and called the separator_handler
-	if (c == '<')
-		separator_handler(c, "T_LESS");
-	if (c == '>')
-		separator_handler(c, "T_REAT");
-	if (c == '<<')
-		separator_handler(c, "T_DESS");
-	if (c == '>>')
-		separator_handler(c, "T_DGREAT");
-	if (c == '|')
-		separator_handler(c, "T_PIPE");
-	if (c == '(')
-		separator_handler(c, "T_LPAREN");
-	if (c == ')')
-		separator_handler(c, "T_PPAREN");
-	//separator_handler(cmd_line);
+bool	ft_isspace(char	c)
+{
+	if (c == 32 || (c >= 9 && c <= 13))
+		return (true);
+	return (false);
 }
 
-void	identifier_handler(char c)
-{// create a tk and add it to the linkded list and then allocate a type of token to the cmd part
-	
-	//tk = tk_new(content);
-	//tkadd_back(token, tk);
+bool	ft_ismetachar(char c)
+{
+	if (c == '<' || c == '>' || c == '|' || c == '(' || c == ')')
+		return (true);
+	return (false);
 }
 
-void	separator_handler(char c, char *type)
-{//create a tk and add it to the linkded list and then allocate a type of token to the cmd part
-	(void)c;
-	//tk = tk_new(content);
-	//tkadd_back(token, tk);
+bool	ft_isquotes(char c)
+{
+	if (c == '"' || c == '\'')
+		return (true);
+	return (false);
+}
+
+void	skip_spaces(char **cmd_line)
+{
+	while (**cmd_line && ft_isspace(**cmd_line))
+		(*cmd_line)++;
+}
+
+bool	skip_quotes(char *cmd_line, size_t *i)
+{
+	char	quote;
+
+	quote = cmd_line[*i];
+	(*i)++;
+	while (cmd_line[*i] && cmd_line[*i] != quote)
+		(*i)++;
+	if (cmd_line[*i] == quote)
+	{
+		(*i)++;
+		return (true);
+	}
+	else
+		return (quotes_err_message(quote), false);
 }

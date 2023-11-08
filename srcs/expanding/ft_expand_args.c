@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:33:32 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/02 11:19:32 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:27:37 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ char	*ft_pre_expander(char *str)
 	while (str[i])
 	{
 		if (str[i] == '\'')
-			ret = ft_strjoin_f(ret, ft_squotes(str, &i));
+			ret = ft_strjoin_f(ret, ft_handle_squotes(str, &i));
 		else if (str[i] == '"')
-			ret = ft_strjoin_f(ret, ft_dquotes(str, &i));
+			ret = ft_strjoin_f(ret, ft_handle_dquotes(str, &i));
 		else if (str[i] == '$')
 			ret = ft_strjoin_f(ret, ft_dollar(str, &i));
 		else

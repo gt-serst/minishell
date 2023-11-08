@@ -6,35 +6,35 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:04:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/02 10:57:10 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:27:46 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*ft_dquote_str(char *str, size_t *i)
+char	*ft_handle_dquote_str(char *str, size_t *i)
 {
 	size_t	start;
 
-	start = *i;
-	while (str[*i] != '"' && str[*i] != '$')
-	{
-		(*i)++;
-	}
-	return (ft_substr(str, start, *i - start));
-}
+// 	start = *i;
+// 	while (str[*i] != '"' && str[*i] != '$')
+// 	{
+// 		(*i)++;
+// 	}
+// 	return (ft_substr(str, start, *i - start));
+// }
 
-char	*ft_squotes(char *str, size_t *i)
+char	*ft_handle_squotes(char *str, size_t *i)
 {
 	size_t	start;
 
-	start = *i;
-	(*i)++;
-	while (str[*i] != '\'')
-		(*i)++;
-	(*i)++;
-	return (ft_substr(str, start, *i - start));
-}
+// 	start = *i;
+// 	(*i)++;
+// 	while (str[*i] != '\'')
+// 		(*i)++;
+// 	(*i)++;
+// 	return (ft_substr(str, start, *i - start));
+// }
 
 char	*ft_normal_str(char *str, size_t *i)
 {
