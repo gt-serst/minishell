@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:38:20 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/08 10:22:16 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:27:34 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 
 bool	launch_redir(t_node *node)
 {
-	int	i;
+	size_t	i;
+	bool	mheredoc;
 
 	if (g_minishell.expand_err.type)
 		return (false);
 	i = 0;
+	mheredoc = false;
 	while (node->data.simple_cmd.args[i])
 	{
 		if(ft_strcmp(node->data.simple_cmd.args[i], "<") == 0)
 			input_redir(node);
 		else if(ft_strcmp(node->data.simple_cmd.args[i], "<<") == 0)
-			heredoc_redir(node);
+			heredoc_redir(node, i);
 		else if(ft_strcmp(node->data.simple_cmd.args[i], ">") == 0)
 			output_redir(node);
 		else if(ft_strcmp(node->data.simple_cmd.args[i], ">>") == 0)

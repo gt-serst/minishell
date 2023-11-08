@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:18:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/02 12:38:29 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:11:43 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_token	*identifier_handler(char **cmd_line);
 
 //TOKENIZER UTILS
 bool	ft_isspace(char	c);
-bool	ft_ismetachar(char c);
+bool	ft_ismetachar(char *s);
 bool	ft_isquotes(char c);
 void	skip_spaces(char **cmd_line);
 bool	skip_quotes(char *cmd_line, size_t *i);

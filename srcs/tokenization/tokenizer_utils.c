@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:58:21 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/31 12:48:34 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:13:58 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ bool	ft_isspace(char	c)
 	return (false);
 }
 
-bool	ft_ismetachar(char c)
+bool	ft_ismetachar(char *s)
 {
-	if (c == '<' || c == '>' || c == '|' || c == '(' || c == ')')
+	if (*s == ' ' || *s == '\t' || *s == '<' || *s == '>' || *s == '|')
 		return (true);
 	return (false);
 }

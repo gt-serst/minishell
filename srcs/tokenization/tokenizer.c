@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:37:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/08 12:32:58 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:16:02 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_token	*tokenizer()
 	{
 		if (check_unexpected_token(cmd_line))
 			 return (tkclear(&t), NULL);
-		else if (ft_ismetachar(*(cmd_line)))
+		else if (ft_ismetachar(cmd_line))
 			token = separator_handler(&cmd_line); //get the right index in the line we are
 		else
 			token = identifier_handler(&cmd_line); //get the right index in the line we are
@@ -44,7 +44,7 @@ t_token	*tokenizer()
 			return (tkclear(&t), NULL);
 		else
 		{
-			printf("Token %s\n", token->value);
+			printf("Token |%s|\n", token->value);
 			tkadd_back(&t, token);
 		}
 		while (ft_isspace(*cmd_line))

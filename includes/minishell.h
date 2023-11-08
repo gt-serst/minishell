@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/08 12:14:25 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:27:37 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ void		expanding_err_handler(void);
 //UTILS
 void	ft_print_ast(t_node *node);
 char	*ft_strjoin_free(char *s1, char *s2);
+char	*ft_strjoin_nl(char *s1, char *s2);
 
 #endif
