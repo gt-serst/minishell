@@ -11,3 +11,4 @@
 ## execution
 ## built-ins
 ## signals
+## errors management
