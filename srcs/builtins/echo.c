@@ -6,13 +6,13 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:40:40 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/06 10:59:25 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:19:55 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static bool is_option_n(char *s) 
+static bool	is_option_n(char *s)
 {
 	int	i;
 

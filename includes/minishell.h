@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/08 12:27:24 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:46:24 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@
 # include "../libraries/libft/libft.h"
 # include "tokenization.h"
 # include "parsing.h"
+# include "expanding.h"
 # include "execution.h"
+# include "builtins.h"
 
 typedef struct s_env
 {
@@ -37,9 +39,16 @@ typedef struct s_env
 
 typedef struct s_minishell
 {
-	t_node	*ast;
-	t_token	*tokens;
-	char	*cmd_line;
+	t_node			*ast;
+	t_token			*tokens;
+	t_token			*curr_token;
+	t_parsing_err	parsing_err;
+	t_expand_err	expand_err;
+	char			*cmd_line;
+	int				err_code;
+	char			**environ;
+	t_env			*envlst;
+	int				exit_s;
 }		t_minishell;
 
 extern t_minishell	g_minishell;
