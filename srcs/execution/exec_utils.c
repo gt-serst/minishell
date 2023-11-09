@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution.h                                        :+:      :+:    :+:   */
+/*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 12:14:07 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/09 14:08:13 by gt-serst         ###   ########.fr       */
+/*   Created: 2023/11/09 13:55:30 by gt-serst          #+#    #+#             */
+/*   Updated: 2023/11/09 13:56:21 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTION_H
-# define EXECUTION_H
+#include "../../includes/minishell.h"
 
-typedef enum e_ast_direction
+void	close_pipe(int *pipefd)
 {
-	D_LEFT,
-	D_RIGHT
-}	t_ast_direction;
-
-//	execution
-void	exec_ast(t_node *node);
-void	exec_pipeline(t_node *node);
-
-//	utils
-void	close_pipe(int *pipefd);
-
-#endif
+	close(pipefd[0]);
+	close(pipefd[1]);
+}

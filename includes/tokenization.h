@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:18:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/08 16:11:43 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/09 10:12:37 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,21 @@ typedef struct s_token
 	struct s_token	*prev;
 }	t_token;
 
+/*
+typedef enum e_token_err
+{
+	EE_MEM,
+	EE_SYNTAX,
+	EE_OPEN
+}	t_token_err_type;
+
+typedef struct s_token_err
+{
+	t_token_err_type	type;
+	char				*str;
+}	t_token_err;
+*/
+
 //TOKENIZATION
 t_token	*tokenizer(void);
 t_token	*separator_handler(char	**cmd_line);
@@ -38,7 +53,7 @@ t_token	*identifier_handler(char **cmd_line);
 
 //TOKENIZER UTILS
 bool	ft_isspace(char	c);
-bool	ft_ismetachar(char *s);
+bool	ft_ismetachar(char c);
 bool	ft_isquotes(char c);
 void	skip_spaces(char **cmd_line);
 bool	skip_quotes(char *cmd_line, size_t *i);

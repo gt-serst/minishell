@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 10:52:16 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/08 16:27:46 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/09 09:56:35 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,19 @@
 
 #ifndef EXPANDING_H
 # define EXPANDING_H
+
+typedef enum e_expand_err
+{
+	EE_MEM,
+	EE_SYNTAX,
+	EE_OPEN
+}	t_expand_err_type;
+
+typedef struct s_expand_err
+{
+	t_expand_err_type	type;
+	char				*str;
+}	t_expand_err;
 
 //	expander
 bool	recursive_expander(t_node *node);
@@ -23,8 +36,6 @@ char	*handle_dquotes(char *str, size_t *i);
 char	*handle_squotes(char *str, size_t *i);
 char	*handle_normal_str(char *str, size_t *i);
 bool	is_valid_var_char(char c);
-
-
 
 // redir
 bool	recursive_redir(t_node *node);

@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:45:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/03 12:24:51 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/09 12:15:45 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_simple_cmd
 	char	**expanded_args;
 	int		fdin;
 	int		fdout;
-	bool	here_doc;
 }	t_simple_cmd;
 
 typedef struct s_pipe

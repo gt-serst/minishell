@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:41:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/08 16:18:04 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/09 10:22:07 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ t_token	*separator_handler(char	**cmd_line)
 
 	i = 0;
 	tmp = *cmd_line;
-	while (tmp[i] && ft_ismetachar(tmp + i))
+	while (tmp[i] && ft_ismetachar(tmp[i]) && !ft_isspace(tmp[i]))
 		i++;
-	substr = ft_substr(tmp, 0, i - 1); //malloc allocation in substr
+	substr = ft_substr(tmp, 0, i); //malloc allocation in substr
 	if (!substr)
 		return (NULL);
 	*cmd_line += i;
@@ -57,7 +57,7 @@ t_token	*identifier_handler(char **cmd_line)
 
 	i = 0;
 	tmp = *cmd_line;
-	while (tmp[i] && !ft_ismetachar(tmp + i))
+	while (tmp[i] && !ft_ismetachar(tmp[i]) && !ft_isspace(tmp[i]))
 	{
 		if (ft_isquotes(tmp[i]))
 		{

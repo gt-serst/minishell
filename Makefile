@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/11/08 12:46:21 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/11/09 14:19:18 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ CFLAGS			:= -Wall -Wextra -Werror
 
 BUILTINS		:=
 
-EXECUTION		:=
+EXECUTION		:=	srcs/execution/exec_pipe.c\
+					srcs/execution/exec_utils.c\
+					srcs/execution/exec.c
 
 EXPANDING		:=	srcs/expanding/expand_args.c\
 					srcs/expanding/expand_utils.c\
