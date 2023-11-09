@@ -6,13 +6,13 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:37:12 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/08 15:07:43 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/09 12:08:48 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	exec_builtin(t_node *node) 
+static int	exec_builtin(char **args) 
 {
 	if (ft_strcmp(args[0], "echo") == 0)
 		return (ft_echo(args));

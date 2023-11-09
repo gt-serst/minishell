@@ -6,11 +6,25 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:24:26 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/08 14:59:37 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:06:51 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+bool	env_exists(char *key)
+{
+	t_env	*envlst;
+
+	envlst = g_minishell.envlst;
+	while (envlst)
+	{
+		if (!ft_strcmp(key, envlst->key))
+			return (true);
+		envlst = envlst->next;
+	}
+	return (false);
+}
 
 char	*env_key(char *str)
 {

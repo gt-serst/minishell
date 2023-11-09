@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:26:14 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/08 14:52:12 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/09 15:21:23 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,19 @@ static t_env	*new_envlst(char *key, char *value)
 	new = (t_env *)malloc(sizeof(t_env));
 	if (!new)
 		return (NULL);
-	new->key = envlst_handler(ft_strdup(key), false);
+	new->key = envlst_handler(ft_strdup(key));
 	if (value)
-		new->value = envlst_handler(ft_strdup(value), false);
+		new->value = envlst_handler(ft_strdup(value));
 	new->next = NULL;
 	return (new);
 }
 
-void	*envlst_handler(void *ptr, bool clean)
+void	*envlst_handler(void *ptr)
 {
 	static t_list	*list;
 
-	if (clean)
-	{
-		ft_lstclear(&list, ft_del);
-		return (NULL);
-	}
-	else
-	{
-		ft_lstadd_back(&list, ft_lstnew(ptr));
-		return (ptr);
-	}
+	ft_lstadd_back(&list, ft_lstnew(ptr));
+	return (ptr);
 }
 
 void	envlst_back(t_env *new)
@@ -81,7 +73,7 @@ void	update_envlst(char *key, char *value, bool create)
 		if (!ft_strcmp(key, envlst->key))
 		{
 			if (value)
-				envlst->value = envlst_handler(ft_strdup(value), false);
+				envlst->value = envlst_handler(ft_strdup(value));
 			return ;
 		}
 	}

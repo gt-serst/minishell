@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/08 15:46:24 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/09 15:34:38 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
+typedef struct
+{
+	int			err_code;
+	const char	*err_msg;
+} t_err;
+
+
 typedef struct s_minishell
 {
 	t_node			*ast;
@@ -65,7 +72,7 @@ void	quotes_err_message(char c);
 //PARSING ERR
 void		set_parsing_err(t_parsing_err_type type);
 t_node		*parsing_err_handler(void);
-void	set_expand_err(t_expand_err_type type);
+void		set_expand_err(t_expand_err_type type);
 
 //UTILS
 void	ft_print_ast(t_node *node);
