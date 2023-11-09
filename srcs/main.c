@@ -6,13 +6,11 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/03 16:37:39 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/09 15:59:00 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-t_minishell	g_minishell;
 
 int	main(int argc, char **argv, char **envp)
 {// main function, the bash cmd requested by the user is located in arguments, the function in in charge of the core routine for minishell, the following steps will be launched read, lexer, parser, expander and execution
@@ -34,8 +32,12 @@ int	main(int argc, char **argv, char **envp)
 			parsing_err_handler();
 			continue ;
 		}
+		recursive_expander(g_minishell.ast);
 		recursive_redir(g_minishell.ast);
+		if (g_minishell.expand_err.type)
+			expanding_err_handler();
 		ast_cleaner(&g_minishell.ast);
+		//system("leaks minishell");
 	}
 	return (EXIT_SUCCESS);
 }

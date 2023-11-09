@@ -6,57 +6,81 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:01:08 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/03 17:16:41 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/09 09:54:27 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	ft_heredoc_sigint_handler(int signum)
-{//catch the sigint signal and exit
-	(void)signum;
-	ast_cleaner(&g_minishell.ast);
-	exit(SIGINT);
-}
-
-bool	is_end_of_file(char *end_of_file, char *cmd_line)
-{//check if the EOF writing by the user is correct, remove pairs of quotes before compare, if a pair of quotes is missing the heredoc cannot quit by writing the EOF
-	char	*eof_trim;
-
-	printf("Eof %s\n", end_of_file);
-	eof_trim = ft_strtrim(end_of_file, "\"");
-	eof_trim = ft_strtrim(eof_trim, "\'");
-	printf("Eof trim %s\n", eof_trim);
-	if (ft_strcmp(eof_trim, cmd_line) == 0)
-		return (true);
-	else
-		return (false);
-}
-
-void	heredoc_redir(t_node *node)
-{//heredoc is a write input, when the user types a sequence of predefined characters (EOF) then the write input closes, a sigint signal can also interrupt the write input
+static void multiple_heredoc_redir(t_node *node, size_t i)
+{
 	char	*cmd_line;
-	char	*quotes;
+	char	*buf;
 
-	if (!node->data.simple_cmd.args || g_minishell.expand_err.type)
-		return ;
-	signal(SIGINT, ft_heredoc_sigint_handler);
-	quotes = node->data.simple_cmd.args[2];
-	while (*quotes && *quotes == '"' && *quotes == '\'')
-		quotes++;
+	buf = NULL;
 	while (1)
 	{
 		cmd_line = readline("> ");
 		if (!cmd_line)
 			break ;
-		if (ft_is_delimiter(node->data.simple_cmd.args[2], cmd_line))
+		if (ft_strcmp(node->data.simple_cmd.expanded_args[i + 1], cmd_line) == 0)
 			break ;
+		if (!buf)
+			buf = ft_strdup(cmd_line);
 		else
-		{
-			ft_putstr_fd(cmd_line, node->data.simple_cmd.fdout);
-			ft_putstr_fd("\n", node->data.simple_cmd.fdout);
-		}
+			buf = ft_strjoin_nl(buf, cmd_line);
+		if (!buf)
+			break ;
 	}
-	ast_cleaner(&node);
-	exit (0);
+	if (buf)
+		free(buf);
+}
+
+static void	single_heredoc_redir(t_node *node)
+{
+	char	*cmd_line;
+	char	*buf;
+
+	buf = NULL;
+	while (1)
+	{
+		cmd_line = readline("> ");
+		if (!cmd_line)
+			break ;
+		if (ft_strcmp(node->data.simple_cmd.expanded_args[2], cmd_line) == 0)
+			break ;
+		if (!buf)
+			buf = ft_strdup(cmd_line);
+		else
+			buf = ft_strjoin_nl(buf, cmd_line);
+		if (!buf)
+			break ;
+	}
+	ft_putstr_fd(buf, node->data.simple_cmd.fdout);
+	if (buf)
+	{
+		ft_putstr_fd("\n", node->data.simple_cmd.fdout);
+		free(buf);
+	}
+}
+
+void	heredoc_redir(t_node *node, size_t i)
+{//heredoc is a write input, when the user types a sequence of predefined characters (EOF) then the write input closes, a sigint signal can also interrupt the write input
+	size_t	j;
+	size_t	count;
+
+	if (!node->data.simple_cmd.args || g_minishell.expand_err.type)
+		return ;
+	count = 0;
+	j = i + 1;
+	while (node->data.simple_cmd.args[j])
+	{
+		if(ft_strcmp(node->data.simple_cmd.args[j], "<<") == 0)
+			count++;
+		j++;
+	}
+	if (count > 0)
+		multiple_heredoc_redir(node, i);
+	else
+		single_heredoc_redir(node);
 }

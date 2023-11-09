@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:36:34 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/03 11:48:59 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:35:08 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,53 @@ void	ft_print_ast(t_node *node)
 		if (node->data.pipe.right != NULL)
 			ft_print_ast(node->data.pipe.right);
 	}
+}
+
+char	*ft_strjoin_free(char *s1, char *s2)
+{
+	char	*str;
+	size_t	size;
+	int		i;
+	int		j;
+
+	if (!s1 || !s2)
+		return (NULL);
+	size = ft_strlen(s1) + ft_strlen(s2);
+	str = malloc(size * sizeof(char) + 1);
+	if (!str)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i])
+		str[j++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		str[j++] = s2[i++];
+	str[j] = '\0';
+	return (free(s1), free(s2), str);
+}
+
+char	*ft_strjoin_nl(char *s1, char *s2)
+{
+	char	*str;
+	size_t	size;
+	int		i;
+	int		j;
+
+	if (!s1 || !s2)
+		return (NULL);
+	size = ft_strlen(s1) + ft_strlen(s2) + 1;
+	str = malloc(size + sizeof(char) + 1);
+	if (!str)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i])
+		str[j++] = s1[i++];
+	str[j++] = '\n';
+	i = 0;
+	while (s2[i])
+		str[j++] = s2[i++];
+	str[j] = '\0';
+	return (free(s1), str);
 }

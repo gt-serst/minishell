@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_redir.c                                      :+:      :+:    :+:   */
+/*   other_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:04:46 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/03 16:39:42 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:46:12 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	input_redir(t_node *node)
 
 	if (!node->data.simple_cmd.args || g_minishell.expand_err.type)
 		return (false);
-	fd = open(node->data.simple_cmd.args[1], O_RDONLY);
+	fd = open(node->data.simple_cmd.args[2], O_RDONLY);
 	if (fd < 0)
 		return (set_expand_err(EE_OPEN), false);
 	printf("Input redirection\n");
@@ -34,7 +34,7 @@ bool	output_redir(t_node *node)
 
 	if (!node->data.simple_cmd.args || g_minishell.expand_err.type)
 		return (false);
-	fd = open(node->data.simple_cmd.args[1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	fd = open(node->data.simple_cmd.args[2], O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd < 0)
 		return (set_expand_err(EE_OPEN), false);
 	printf("Output redirection\n");
@@ -50,9 +50,12 @@ bool	append_redir(t_node *node)
 
 	if (!node->data.simple_cmd.args || g_minishell.expand_err.type)
 		return (false);
-	fd = open(node->data.simple_cmd.args[1], O_CREAT | O_WRONLY | O_APPEND, 0644);
+	fd = open(node->data.simple_cmd.args[2], O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (fd < 0)
+	{
+		printf("Error\n");
 		return (set_expand_err(EE_OPEN), false);
+	}
 	printf("Append redirection\n");
 	node->data.simple_cmd.fdout = fd;
 	//dup(fd, STDIN_FILENO);

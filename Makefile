@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/11/03 14:14:23 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/11/09 14:19:18 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,22 +21,28 @@ CFLAGS			:= -Wall -Wextra -Werror
 
 BUILTINS		:=
 
-EXECUTION		:=
+EXECUTION		:=	srcs/execution/exec_pipe.c\
+					srcs/execution/exec_utils.c\
+					srcs/execution/exec.c
 
-EXPANDING		:=	srcs/expanding/redir.c srcs/expanding/input_redir.c\
+EXPANDING		:=	srcs/expanding/expand_args.c\
+					srcs/expanding/expand_utils.c\
+					srcs/expanding/expand.c\
 					srcs/expanding/heredoc_redir.c\
+					srcs/expanding/other_redir.c\
+					srcs/expanding/redir.c
 
 PARSING			:=	srcs/parsing/ast_builder.c\
 					srcs/parsing/ast_cleaner.c\
 					srcs/parsing/nd_utils.c\
 					srcs/parsing/parser_handler.c\
 					srcs/parsing/parser_utils.c\
-					srcs/parsing/parser.c\
+					srcs/parsing/parser.c
 
 TOKENIZATION	:=	srcs/tokenization/tk_utils.c\
 					srcs/tokenization/tokenizer_handler.c\
 					srcs/tokenization/tokenizer_utils.c\
-					srcs/tokenization/tokenizer.c\
+					srcs/tokenization/tokenizer.c
 
 SRCS			:=	$(BUILTINS)\
 					$(EXECUTION)\
@@ -59,7 +65,7 @@ $(LIBFT):
 	@make -C $(LIBFT_PATH)
 
 $(NAME): $(LIBFT) $(OBJS)
-	@$(CC) -o $(NAME) $(OBJS) $(LIBFT_PATH)/$(LIBFT) -L$(LIBFT_PATH) -lreadline -L$(READLINE_PATH)/lib
+	@$(CC) -o $(NAME) $(OBJS) $(LIBFT_PATH)/$(LIBFT) -L$(LIBFT_PATH) -lreadline -L$(READLINE_PATH)/lib -g3 -fsanitize=address
 
 clean:
 	@make clean -C $(LIBFT_PATH)

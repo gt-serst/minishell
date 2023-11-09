@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/09 15:34:38 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/09 15:59:06 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 # include "execution.h"
 # include "builtins.h"
 
+
+t_minishell	g_minishell;
+
 typedef struct s_env
 {
 	char			*key;
@@ -43,12 +46,12 @@ typedef struct
 	const char	*err_msg;
 } t_err;
 
-
 typedef struct s_minishell
 {
 	t_node			*ast;
 	t_token			*tokens;
 	t_token			*curr_token;
+	//t_token_err		token_err;
 	t_parsing_err	parsing_err;
 	t_expand_err	expand_err;
 	char			*cmd_line;
@@ -57,8 +60,6 @@ typedef struct s_minishell
 	t_env			*envlst;
 	int				exit_s;
 }		t_minishell;
-
-extern t_minishell	g_minishell;
 
 //INIT
 void	init_env(char **envp);
@@ -71,10 +72,14 @@ void	quotes_err_message(char c);
 
 //PARSING ERR
 void		set_parsing_err(t_parsing_err_type type);
-t_node		*parsing_err_handler(void);
+void		parsing_err_handler(void);
 void		set_expand_err(t_expand_err_type type);
+void		expanding_err_handler(void);
+
 
 //UTILS
 void	ft_print_ast(t_node *node);
+char	*ft_strjoin_free(char *s1, char *s2);
+char	*ft_strjoin_nl(char *s1, char *s2);
 
 #endif
