@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/10 15:53:27 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/10 16:06:47 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ static int	ft_exec_child(t_node *node)
 }
 // Réinitialise stdin à la valeur initiale
 
-void	reset_stds(bool piped) 
-{
-	if (piped) 
-	{
-		return;
-	}
-	dup2(g_minishell.stdin, 0);
-	dup2(g_minishell.stdout, 1);
-}
+// void	reset_stds(bool piped) 
+// {
+// 	if (piped) 
+// 	{
+// 		return;
+// 	}
+// 	dup2(g_minishell.stdin, 0);
+// 	dup2(g_minishell.stdout, 1);
+// }
 
 int	exec_simple_cmd(t_node *node, bool piped) 
 {
