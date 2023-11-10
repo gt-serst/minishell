@@ -6,13 +6,13 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:37:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/09 10:18:22 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/10 15:02:39 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-bool	check_unexpected_token(char *cmd_line)
+static bool	unexpected_token(char *cmd_line)
 {
 	if (*cmd_line == ';')
 	{
@@ -34,8 +34,8 @@ t_token	*tokenizer()
 		cmd_line++;
 	while (*(cmd_line))
 	{
-		if (check_unexpected_token(cmd_line))
-			 return (tkclear(&t), NULL);
+		if (unexpected_token(cmd_line))
+			token = NULL;
 		else if (ft_ismetachar(*cmd_line))
 			token = separator_handler(&cmd_line); //get the right index in the line we are
 		else

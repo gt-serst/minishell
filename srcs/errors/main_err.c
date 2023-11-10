@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_output.c                                      :+:      :+:    :+:   */
+/*   main_err.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 16:43:58 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/10 15:15:44 by gt-serst         ###   ########.fr       */
+/*   Created: 2023/11/10 15:02:52 by gt-serst          #+#    #+#             */
+/*   Updated: 2023/11/10 15:03:30 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_sigquit_handler(int num)
+void	ft_exit_message(char *s)
 {
-	(void)num;
-	ft_putstr_fd("Quit\n", 1);
+	ft_putstr_fd(s, 2);
+	exit (EXIT_FAILURE);
 }

@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_output.c                                      :+:      :+:    :+:   */
+/*   token_err.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 16:43:58 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/10 15:15:44 by gt-serst         ###   ########.fr       */
+/*   Created: 2023/11/10 15:03:39 by gt-serst          #+#    #+#             */
+/*   Updated: 2023/11/10 15:04:06 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/minishell.c"
 
-void	ft_sigquit_handler(int num)
+void	quotes_err_message(char c)
 {
-	(void)num;
-	ft_putstr_fd("Quit\n", 1);
+	ft_putstr_fd("bash: unexpected EOF while looking for matching '", 2);
+	ft_putchar_fd(c, 2);
+	ft_putstr_fd("'\n", 2);
 }

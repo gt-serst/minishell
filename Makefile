@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/11/10 14:43:53 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/11/10 15:16:23 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,20 @@ CC				:= gcc
 
 CFLAGS			:= -Wall -Wextra -Werror
 
-BUILTINS		:=
+BUILTINS		:=	srcs/builtins/cd.c\
+					srcs/builtins/env.c\
+					srcs/builtins/exit.c\
+					srcs/builtins/pwd.c\
+					srcs/buitins/echo.c\
+					srcs/builtins/env_utils.c\
+					srcs/builtins/export.c\
+					srcs/builtins/unset.c
 
-EXECUTION		:=	srcs/execution/exec_pipe.c\
+CLEANING		:=	srcs/cleaning/shell_cleaner.c
+
+EXECUTION		:=	srcs/execution/exec_builtins.c\
+					srcs/execution/exec_simple_cmd.c\
+					srcs/execution/exec_pipe.c\
 					srcs/execution/exec_utils.c\
 					srcs/execution/exec.c
 
@@ -44,13 +55,23 @@ TOKENIZATION	:=	srcs/tokenization/tk_utils.c\
 					srcs/tokenization/tokenizer_utils.c\
 					srcs/tokenization/tokenizer.c
 
+ERRORS			:=	srcs/errors/exec_err.c\
+					srcs/errors/expand.err.c\
+					srcs/errors/main_err.c\
+					srcs/errors/parsing_err.c\
+					srcs/errors/token_err.c
+
 SRCS			:=	$(BUILTINS)\
+					$(CLEANING)\
 					$(EXECUTION)\
 					$(EXPANDING)\
 					$(PARSING)\
 					$(TOKENIZATION)\
-					srcs/main.c srcs/init.c srcs/errors.c\
-					srcs/utils.c
+					$(ERRORS)\
+					srcs/main.c\ 
+					srcs/init.c\ 	
+					srcs/utils.c\
+					srcs/main_output.c
 
 OBJS			:=	$(SRCS:.c=.o)
 
@@ -65,7 +86,7 @@ $(LIBFT):
 	@make -C $(LIBFT_PATH)
 
 $(NAME): $(LIBFT) $(OBJS)
-	@$(CC) -o $(NAME) $(OBJS) $(LIBFT_PATH)/$(LIBFT) -L$(LIBFT_PATH) -lreadline -L$(READLINE_PATH)/lib -g3 -fsanitize=address
+	@$(CC) -o $(NAME) $(OBJS) $(LIBFT_PATH)/$(LIBFT) -L$(LIBFT_PATH) -lreadline -L$(READLINE_PATH)/lib
 
 clean:
 	@make clean -C $(LIBFT_PATH)
