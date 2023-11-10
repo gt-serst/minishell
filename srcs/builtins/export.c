@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 12:07:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/09 14:13:23 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/10 15:44:52 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,17 @@ int	check_key(char *str)
 int	ft_export(char **argv)
 {
 	int		i;
-	int		exit_s;
+	int		err_code;
 	char	*key;
 
-	exit_s = 0;
+	err_code = 0;
 	i = 1;
 	if (!argv[1])
 		return (declare_envlst(), 0);
 	while (argv[i])
 	{
 		if (check_key(argv[i]) == 0)
-			exit_s = export_err_msg(argv[i]);
+			err_code = export_err_msg(argv[i]);
 		else
 		{
 			key = env_value(argv[i]);
@@ -84,5 +84,5 @@ int	ft_export(char **argv)
 		}
 		i++;
 	}
-	return (exit_s);
+	return (err_code);
 }

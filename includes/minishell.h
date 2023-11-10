@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/09 15:59:06 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/10 15:44:52 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct
 	const char	*err_msg;
 } t_err;
 
+
+
 typedef struct s_minishell
 {
 	t_node			*ast;
@@ -58,7 +60,8 @@ typedef struct s_minishell
 	int				err_code;
 	char			**environ;
 	t_env			*envlst;
-	int				exit_s;
+	int				err_code;
+	bool			signint_child;
 }		t_minishell;
 
 //INIT
