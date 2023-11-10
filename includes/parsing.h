@@ -6,24 +6,30 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:45:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/09 15:56:41 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/10 16:07:32 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-typedef enum e_node_type
-{
-	N_PIPE,
-	N_CMD
-}	t_node_type;
-
 typedef enum e_parsing_err_type
 {
 	PE_MEM,
 	PE_SYNTAX
 }	t_parsing_err_type;
+
+typedef struct s_parsing_err
+{
+	t_parsing_err_type	type;
+	char				*str;
+}	t_parsing_err;
+
+typedef enum e_node_type
+{
+	N_PIPE,
+	N_CMD
+}	t_node_type;
 
 typedef struct s_simple_cmd
 {
@@ -50,12 +56,6 @@ typedef struct s_node
 	t_node_type	type;
 	t_node_data	data;
 }	t_node;
-
-typedef struct s_parsing_err
-{
-	t_parsing_err_type	type;
-	char				*str;
-}	t_parsing_err;
 
 //PARSER
 t_node		*parser(void);

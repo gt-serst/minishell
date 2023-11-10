@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/10 15:10:05 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/10 15:26:11 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv, char **envp)
 		if (g_minishell.expand_err.type)
 			expanding_err_handler();
 		ast_cleaner(&g_minishell.ast);
-		system("leaks minishell");
+		//system("leaks minishell");
 	}
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/11/10 15:16:23 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/11/10 15:32:28 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,8 +68,8 @@ SRCS			:=	$(BUILTINS)\
 					$(PARSING)\
 					$(TOKENIZATION)\
 					$(ERRORS)\
-					srcs/main.c\ 
-					srcs/init.c\ 	
+					srcs/main.c\
+					srcs/init.c\
 					srcs/utils.c\
 					srcs/main_output.c
 
