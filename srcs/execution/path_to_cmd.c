@@ -35,11 +35,11 @@ char	*path_to_cmd(char *cmd)
 	char	*value;
 
 	if (*cmd == '\0')
-		return (set_exec_err());
+		return (set_exec_err(EXE_ARG), false);
 	if (ft_strnstr(cmd, "/", ft_strlen(cmd)))
 		return (set_exec_err();
 	value = ft_get_envlst_val("PATH");
 	if (value)
 		return (env_path_parsed(value, cmd));
-	return (set_exec_err());
+	return (set_exec_err(EXE_CMD_NOT_FOUND), false);
 }

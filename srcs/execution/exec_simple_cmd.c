@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/10 18:08:52 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:53:26 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,19 @@
 
 static int	exec_child(t_node *node)
 {
-	int	status;
-	int err_code;
-	int fork_pid;
-	t_path path_status;
+	int		status;
+	int		err_code;
+	int		fork_pid;
+	char	*path_status;
 
 	g_minishell.signint_child = true;
 	fork_pid = fork();
 	if (!fork_pid)
 	{
 		path_status = path_to_cmd((node->data.simple_cmd.expanded_args)[0]);
-		if (path_status.err.no != ENO_SUCCESS)
-		{
-			err_code = set_exec_error(path_status.err);
+		if (!path_status)
 			exit(status);
-		}
-		if (execve(path_status.path, node->data.simple_cmd.expanded_args, g_minishell.environ) == -1)
+		if (execve(path_status, node->data.simple_cmd.expanded_args, g_minishell.environ) == -1)
 			exit(1);
     }
 	waitpid(fork_pid, &status, 0);

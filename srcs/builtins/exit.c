@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:17:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/10 15:44:52 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:54:54 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,18 @@ static int	exitnbr(char *str)
 	int					sign;
 	int					err_code;
 	unsigned long long	result;
-	
+
 	i = 0;
 	sign = 1;
 	atoi_skip(str, &i, &sign);
-	if (!ft_isnumber(s + i))
+	if (!ft_isnumber(str + i))
 	{
 		err_code = ft_err_msg();
 		clean_minishell();
 		exit(err_code);
 	}
-	resut = 0;
-	while (s[i])
+	result = 0;
+	while (str[i])
 	{
 		result = (result * 10) + (s[i] - '0');
 		if (result > LONG_MAX)
@@ -69,7 +69,7 @@ static int	exitnbr(char *str)
 	return ((result * sign) % 256);
 }
 
-void	ft_exit(char **args)
+void	exit(char **args)
 {
 	int	err_code;
 
