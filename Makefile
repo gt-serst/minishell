@@ -6,14 +6,14 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/11/09 14:19:18 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/11/10 14:43:53 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			:= minishell
 
 LIBFT			:= libft.a
-LIBFT_PATH		:= "libraries/libft"
+LIBFT_PATH		:= "Libft"
 
 CC				:= gcc
 
