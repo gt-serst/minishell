@@ -37,7 +37,7 @@ char	*path_to_cmd(char *cmd)
 	if (*cmd == '\0')
 		return (set_exec_err());
 	if (ft_strnstr(cmd, "/", ft_strlen(cmd)))
-		return (set_exec_err());
+		return (set_exec_err();
 	value = ft_get_envlst_val("PATH");
 	if (value)
 		return (env_path_parsed(value, cmd));

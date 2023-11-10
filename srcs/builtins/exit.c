@@ -50,7 +50,7 @@ static int	exitnbr(char *str)
 	atoi_skip(str, &i, &sign);
 	if (!ft_isnumber(s + i))
 	{
-		err_code = ft_err_msg()
+		err_code = ft_err_msg();
 		clean_minishell();
 		exit(err_code);
 	}
