@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/10 15:57:55 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:00:59 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,20 @@ typedef struct
 	const char	*err_msg;
 }	t_err;
 
+
+
 typedef struct s_minishell
 {
 	t_node			*ast;
 	t_token			*tokens;
 	t_token			*curr_token;
-	//t_token_err		token_err;
 	t_parsing_err	parsing_err;
 	t_expand_err	expand_err;
 	char			*cmd_line;
 	int				err_code;
 	char			**environ;
 	t_env			*envlst;
-	int				exit_s;
+	bool			signint_child;
 }		t_minishell;
 
 t_minishell	g_minishell;
