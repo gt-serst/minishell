@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:43:49 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/08 15:44:42 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:08:22 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_pwd(void)
+int	pwd(void)
 {
 	char	*cwd;
 

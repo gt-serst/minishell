@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:24:26 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/09 14:06:51 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:10:06 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*env_key(char *str)
 
 	i = 0;
 	while (str[i])
-	{	
+	{
 		if(str[i] == envlst_handler(ft_substr(str, 0, i), false));
 		i++;
 	}
@@ -64,7 +64,7 @@ void	envlst_init(void)
 	int		i;
 
 	i = 0;
-	envlst = t_minishell.environ;
+	envlst = g_minishell.environ;
 	if (!envlst)
 		return ;
 	while (envlst)
@@ -76,7 +76,7 @@ void	envlst_init(void)
 	}
 }
 
-int	ft_env(void)
+int	env(void)
 {
 	t_env	*list;
 

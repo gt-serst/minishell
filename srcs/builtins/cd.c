@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:59:51 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/10 15:34:09 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:07:32 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ static int	cd_home_user(void)
 	return (1);
 }
 
-static int	ft_cd(char *path)
+static int	cd(char *path)
 {
 	if (!path || strcmp(path, "~") == 0)
 		return (cd_home_user());
 	if (chdir(path) != 0)
-		return (ft_cd_err_msg(path));
+		return (cd_err_msg(path));
 	update_envlst("OLDPWD", envlst_val("PWD"), false);
 	return (new_pwd());
 }

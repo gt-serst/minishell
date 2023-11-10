@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 12:07:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/10 15:44:52 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:08:16 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	export_err_msg(char *err)
 {
-	
+
 }
 
 static void	declare_envlst(void)
@@ -60,7 +60,7 @@ int	check_key(char *str)
 	return (1);
 }
 
-int	ft_export(char **argv)
+int	export(char **argv)
 {
 	int		i;
 	int		err_code;

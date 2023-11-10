@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:37:51 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/09 15:22:55 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:08:27 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	unset_env(char *key)
 	}
 }
 
-int	ft_unset(char **args)
+int	unset(char **args)
 {
 	int		i;
 	bool	err;

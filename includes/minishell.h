@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/10 18:00:59 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:11:08 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <signal.h>
 # include <termios.h>
 # include <dirent.h>
+#include <sys/errno.h>
 
 # include "../Libft/libft.h"
 # include "tokenization.h"
@@ -37,14 +38,6 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-typedef struct
-{
-	int			err_code;
-	const char	*err_msg;
-}	t_err;
-
-
-
 typedef struct s_minishell
 {
 	t_node			*ast;
@@ -52,6 +45,7 @@ typedef struct s_minishell
 	t_token			*curr_token;
 	t_parsing_err	parsing_err;
 	t_expand_err	expand_err;
+	t_exec_err		exec_err;
 	char			*cmd_line;
 	int				err_code;
 	char			**environ;
