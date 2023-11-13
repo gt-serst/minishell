@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:24:26 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/10 18:10:06 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:59:21 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ char	*env_key(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if(str[i] == envlst_handler(ft_substr(str, 0, i), false));
-		i++;
+		if(str[i] == (char)envlst_handler(ft_substr(str, 0, i)))
+			i++;
 	}
 	return (ft_strdup(str));
 }
@@ -49,11 +49,11 @@ char	*env_value(char *str)
 		if (str[i] == '=')
 		{
 			i++;
-			return (envlst_handler(
-					ft_substr(str, i, ft_strlen(str) - i), false));
+			return (envlst_handler(ft_substr(str, i, ft_strlen(str) - i)));
 		}
 		i++;
 	}
+	return (NULL);
 }
 
 void	envlst_init(void)
@@ -76,7 +76,7 @@ void	envlst_init(void)
 	}
 }
 
-int	env(void)
+int	ft_env(void)
 {
 	t_env	*list;
 

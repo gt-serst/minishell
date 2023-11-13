@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/10 18:53:26 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/13 16:38:42 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static int	exec_child(t_node *node)
 {
 	int		status;
-	int		err_code;
 	int		fork_pid;
 	char	*path_status;
 
+	status = 0;
 	g_minishell.signint_child = true;
 	fork_pid = fork();
 	if (!fork_pid)
@@ -28,10 +28,10 @@ static int	exec_child(t_node *node)
 			exit(status);
 		if (execve(path_status, node->data.simple_cmd.expanded_args, g_minishell.environ) == -1)
 			exit(1);
-    }
+	}
 	waitpid(fork_pid, &status, 0);
 	g_minishell.signint_child = false;
-	return exit_status(status);
+	exit(status);
 }
 // Réinitialise stdin à la valeur initiale
 
@@ -45,16 +45,16 @@ static int	exec_child(t_node *node)
 // 	dup2(g_minishell.stdout, 1);
 // }
 
-int	exec_simple_cmd(t_node *node, bool piped)
+int	exec_simple_cmd(t_node *node)
 {
 	int status;
 
 	if (is_builtin(node->data.simple_cmd.expanded_args[0]))
 	{
-		status = exec_builtin(node);
+		status = exec_builtins(node->data.simple_cmd.expanded_args);
 		// reset_stds(piped);
 		return status;
 	}
 	else
-    	return (exec_child(node));
+		return (exec_child(node));
 }

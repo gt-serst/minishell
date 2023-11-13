@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:57:14 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/09 14:11:48 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:40:05 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,21 @@ static void	exec_pipe_child(t_node *node, int *pipefd, t_ast_direction direction
 {
 	int	status;
 
-	if (direction = D_LEFT)
+	status = 0;
+	if (direction == D_LEFT)
 	{
 		close(pipefd[0]);
 		dup2(pipefd[1], STDOUT_FILENO);
 		close(pipefd[1]);
 	}
-	else if (direction = D_RIGHT)
+	else if (direction == D_RIGHT)
 	{
 		close(pipefd[1]);
 		dup2(pipefd[0], STDIN_FILENO);
 		close(pipefd[0]);
 	}
 	exec_ast(node);
-	ast_cleaner(node);
+	ast_cleaner(&node);
 	exit(status);
 }
 
@@ -40,6 +41,7 @@ void	exec_pipeline(t_node *node)
 	pid_t	left_pid;
 	pid_t	right_pid;
 
+	status = 0;
 	pipe(pipefd);
 	left_pid = fork();
 	if (left_pid == 0)
@@ -56,5 +58,5 @@ void	exec_pipeline(t_node *node)
 			waitpid(right_pid, &status, 0);
 		}
 	}
-	return (status);
+	exit(status);
 }

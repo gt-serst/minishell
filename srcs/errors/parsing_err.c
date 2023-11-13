@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_err.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 15:04:16 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/10 16:07:40 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:41:52 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	parsing_err_handler(void)
 	}
 	else if (g_minishell.parsing_err.type == PE_SYNTAX)
 	{
-		ft_putstr_fd("bash: syntax error\n, 2");
+		ft_putstr_fd("bash: syntax error\n", 2);
 		g_minishell.err_code = 258;
 	}
 	ft_bzero(&g_minishell.parsing_err, sizeof(t_parsing_err));

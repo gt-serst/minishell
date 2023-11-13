@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:59:51 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/10 18:07:32 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:47:23 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,16 @@ static int	cd_home_user(void)
 	return (1);
 }
 
-static int	cd(char *path)
+
+static int	cd_err_msg(char *err_msg)
+{
+	ft_putstr_fd("bash: cd: `", 2);
+	ft_putstr_fd(err_msg, 2);
+	ft_putstr_fd("': No such file or directory\n", 2);
+	return (1);
+}
+
+int	ft_cd(char *path)
 {
 	if (!path || strcmp(path, "~") == 0)
 		return (cd_home_user());

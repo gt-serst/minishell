@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:40:40 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/10 18:07:36 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:13:44 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,30 @@ static bool	is_option_n(char *s)
 	return (1);
 }
 
-int echo(char **args)
+int	ft_echo(char **args)
 {
-    int i;
-    bool no_newline;
+	int i;
+	bool no_newline;
 
 	i = 1;
 	no_newline = false;
-    while (args[i] && is_option_n(args[i]))
+	while (args[i] && is_option_n(args[i]))
 	{
-        no_newline = true;
-        i++;
-    }
-    while (args[i])
+		no_newline = true;
+		i++;
+	}
+	while (args[i])
 	{
-        ft_printf("%s", args[i]);
-        if (args[i + 1] != NULL)
+		ft_printf("%s", args[i]);
+		if (args[i + 1] != NULL)
 		{
-            ft_printf(" ");
-        }
-        i++;
-    }
-    if (!no_newline)
+			ft_printf(" ");
+		}
+		i++;
+	}
+	if (!no_newline)
 	{
-        ft_printf("\n");
-    }
-    return 0;
+		ft_printf("\n");
+	}
+	return 0;
 }

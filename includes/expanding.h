@@ -6,14 +6,14 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 10:52:16 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/10 16:01:58 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:43:12 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
 #ifndef EXPANDING_H
 # define EXPANDING_H
+
+#include "minishell.h"
 
 typedef enum e_expand_err
 {

@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/11/10 15:32:28 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/11/13 16:43:43 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ BUILTINS		:=	srcs/builtins/cd.c\
 					srcs/builtins/env.c\
 					srcs/builtins/exit.c\
 					srcs/builtins/pwd.c\
-					srcs/buitins/echo.c\
+					srcs/builtins/echo.c\
 					srcs/builtins/env_utils.c\
 					srcs/builtins/export.c\
 					srcs/builtins/unset.c
@@ -34,7 +34,8 @@ EXECUTION		:=	srcs/execution/exec_builtins.c\
 					srcs/execution/exec_simple_cmd.c\
 					srcs/execution/exec_pipe.c\
 					srcs/execution/exec_utils.c\
-					srcs/execution/exec.c
+					srcs/execution/exec.c\
+					srcs/execution/path_to_cmd.c
 
 EXPANDING		:=	srcs/expanding/expand_args.c\
 					srcs/expanding/expand_utils.c\
@@ -56,7 +57,7 @@ TOKENIZATION	:=	srcs/tokenization/tk_utils.c\
 					srcs/tokenization/tokenizer.c
 
 ERRORS			:=	srcs/errors/exec_err.c\
-					srcs/errors/expand.err.c\
+					srcs/errors/expand_err.c\
 					srcs/errors/main_err.c\
 					srcs/errors/parsing_err.c\
 					srcs/errors/token_err.c

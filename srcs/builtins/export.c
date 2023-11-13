@@ -6,16 +6,11 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 12:07:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/10 18:08:16 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:48:12 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-static int	export_err_msg(char *err)
-{
-
-}
 
 static void	declare_envlst(void)
 {
@@ -44,7 +39,7 @@ static void	declare_envlst(void)
 	}
 }
 
-int	check_key(char *str)
+static int	check_key(char *str)
 {
 	int	i;
 
@@ -60,7 +55,7 @@ int	check_key(char *str)
 	return (1);
 }
 
-int	export(char **argv)
+int	ft_export(char **argv)
 {
 	int		i;
 	int		err_code;
@@ -73,7 +68,7 @@ int	export(char **argv)
 	while (argv[i])
 	{
 		if (check_key(argv[i]) == 0)
-			err_code = export_err_msg(argv[i]);
+			err_code = export_err_message(argv[i]);
 		else
 		{
 			key = env_value(argv[i]);

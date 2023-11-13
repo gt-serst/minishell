@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:26:14 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/09 15:21:23 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:52:09 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*envlst_val(char *key)
 
 static t_env	*new_envlst(char *key, char *value)
 {
-	t_env	new;
+	t_env	*new;
 
 	new = (t_env *)malloc(sizeof(t_env));
 	if (!new)
@@ -48,7 +48,7 @@ void	*envlst_handler(void *ptr)
 	return (ptr);
 }
 
-void	envlst_back(t_env *new)
+static void	envlst_back(t_env *new)
 {
 	t_env	*curr;
 

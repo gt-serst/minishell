@@ -6,44 +6,40 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:38:07 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/10 18:06:29 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:00:32 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTINS_H
 # define BUILTINS_H
 
+typedef struct s_env
+{
+	char			*key;
+	char			*value;
+	struct s_env	*next;
+}	t_env;
+
 // echo
-int 			echo(char **args);
-static bool		is_option_n(char *s);
+int 			ft_echo(char **args);
 // cd
-static int		cd(char *path);
-static int		cd_home_user(void);
-static int		new_pwd(void);
+int				ft_cd(char *path);
 // pwd
-int				pwd(void);
+int				ft_pwd(void);
 // exit
-void			exit(char **args);
-static int		exitnbr(char *str);
-void			atoi_skip(char *s, int *i, int *sign);
-static bool		ft_isnumber(char *s);
+void			ft_exit(char **args);
 // export
-int				export(char **argv);
-int				check_key(char *str);
-static void		declare_envlst(void);
-static int		export_err_msg(char *err);
+int				ft_export(char **argv);
 // unset
-int				unset(char **args);
-static void		unset_env(char *key);
+int				ft_unset(char **args);
 // env & env_utils
-int				env(void);
+int				ft_env(void);
+void			update_envlst(char *key, char *value, bool create);
+char			*envlst_val(char *key);
+void			*envlst_handler(void *ptr);
 void			envlst_init(void);
+bool			env_exists(char *key);
 char			*env_value(char *str);
 char			*env_key(char *str);
-void			update_envlst(char *key, char *value, bool create);
-void			envlst_back(t_env *new);
-void			*envlst_handler(void *ptr);
-static t_env	*new_envlst(char *key, char *value);
-char			*envlst_val(char *key);
 
 #endif

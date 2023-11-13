@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:17:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/10 18:54:54 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/13 15:53:25 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool	ft_isnumber(char *s)
 	return (true);
 }
 
-void	atoi_skip(char *s, int *i, int *sign)
+static void	atoi_skip(char *s, int *i, int *sign)
 {
 	while (s[*i] && s[*i] == ' ')
 		(*i)++;
@@ -42,7 +42,6 @@ static int	exitnbr(char *str)
 {
 	int					i;
 	int					sign;
-	int					err_code;
 	unsigned long long	result;
 
 	i = 0;
@@ -50,26 +49,26 @@ static int	exitnbr(char *str)
 	atoi_skip(str, &i, &sign);
 	if (!ft_isnumber(str + i))
 	{
-		err_code = ft_err_msg();
-		clean_minishell();
-		exit(err_code);
+		set_exec_err(EXE_NUM_MANDATORY);
+		shell_cleaner();
+		exit(g_minishell.err_code);
 	}
 	result = 0;
 	while (str[i])
 	{
-		result = (result * 10) + (s[i] - '0');
+		result = (result * 10) + (str[i] - '0');
 		if (result > LONG_MAX)
 		{
-			err_code = ft_err_msg();
-			ft_clean_ms();
-			exit(err_code);
+			set_exec_err(EXE_NUM_MANDATORY);
+			shell_cleaner();
+			exit(g_minishell.err_code);
 		}
 		i++;
 	}
 	return ((result * sign) % 256);
 }
 
-void	exit(char **args)
+void	ft_exit(char **args)
 {
 	int	err_code;
 
@@ -78,13 +77,13 @@ void	exit(char **args)
 	{
 		if (args[2] && ft_isnumber(args[1]))
 		{
-			err_code = error_msg(42, "too many arguments");
-			clean_minishell();
-			exit(err_code);
+			set_exec_err(EXE_TOO_MANY_ARGS); //exit code 42
+			shell_cleaner();
+			return ;
 		}
 		else
 			err_code = exitnbr(args[1]);
 	}
-	clean_minishell();
+	shell_cleaner();
 	exit(err_code);
 }

@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:14:07 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/10 16:07:27 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:40:47 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ typedef enum e_exec_err_type
 	EXE_CMD_NOT_FOUND,
 	EXE_NO_SUCH_FILE,
 	EXE_PERM_DENIED,
-	EXE_TOO_MANY_ARGS
+	EXE_TOO_MANY_ARGS,
+	EXE_NUM_MANDATORY
 }	t_exec_err_type;
 
 typedef struct s_exec_err
@@ -37,6 +38,10 @@ typedef enum e_ast_direction
 //	execution
 void	exec_ast(t_node *node);
 void	exec_pipeline(t_node *node);
+int	exec_simple_cmd(t_node *node);
+int		exec_builtins(char **args);
+bool	is_builtin(char *arg);
+char	*path_to_cmd(char *cmd);
 
 //	utils
 void	close_pipe(int *pipefd);

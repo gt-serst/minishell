@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_buitins.c                                     :+:      :+:    :+:   */
+/*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:37:12 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/09 12:08:48 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:32:03 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	exec_builtin(char **args) 
+int	exec_builtins(char **args)
 {
+	if (g_minishell.exec_err.type)
+		return (0);
 	if (ft_strcmp(args[0], "echo") == 0)
 		return (ft_echo(args));
 	if (ft_strcmp(args[0], "cd") == 0)
@@ -27,7 +29,7 @@ static int	exec_builtin(char **args)
 	if (ft_strcmp(args[0], "unset") == 0)
 		return (ft_unset(args));
 	ft_exit(args);
-	return (ENO_GENERAL);
+	return (1);
 }
 
 bool	is_builtin(char *arg)
