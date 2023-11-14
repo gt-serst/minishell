@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:24:55 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/13 16:40:26 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:59:58 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ void	exec_ast(t_node *node)
 		{
 			if (node->type == N_CMD)
 			{
-				exec_simple_cmd(node);
+				if (!exec_simple_cmd(node))
+					return ;
 			}
 			else
-				exec_pipeline(node);
+				if (!exec_pipeline(node))
+					return ;
 		}
 	}
 	shell_cleaner();

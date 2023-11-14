@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:04:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/14 11:44:52 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:53:18 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*handle_dquotes(char *str, size_t *i)
 			ret = ft_strjoin_free(ret, handle_normal_dquotes(str, i));
 	}
 	(*i)++;
-	printf("Ret %s\n", ret);
+	// printf("Ret %s\n", ret);
 	return (ft_strjoin_free(ret, ft_strdup("")));
 }
 
@@ -92,7 +92,7 @@ char	*handle_normal_str(char *str, size_t *i)
 	start = *i;
 	while (str[*i] && str[*i] != '\'' && str[*i] != '"' && str[*i] != '$')
 		(*i)++;
-	printf("Substr return in handle normal str |%s|\n", ft_substr(str, start, *i - start));
+	// printf("Substr return in handle normal str |%s|\n", ft_substr(str, start, *i - start));
 	return (ft_substr(str, start, *i - start));
 }
 

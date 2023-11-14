@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:26:14 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/13 14:52:09 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 14:33:36 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static void	envlst_back(t_env *new)
 {
 	t_env	*curr;
 
+	if (!new)
+		return ;
 	if (!g_minishell.envlst)
 	{
 		g_minishell.envlst = new;
@@ -76,6 +78,7 @@ void	update_envlst(char *key, char *value, bool create)
 				envlst->value = envlst_handler(ft_strdup(value));
 			return ;
 		}
+		envlst = envlst->next;
 	}
 	if (create)
 		envlst_back(new_envlst(key, value));

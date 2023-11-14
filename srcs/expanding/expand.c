@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:23:17 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/14 11:01:49 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:52:52 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	recursive_expander(t_node *node)
 		return (false);
 	if (node->type == N_CMD)
 	{
-		printf("Command enter in expander %s\n", node->data.simple_cmd.args[0]);
+		// printf("Command enter in expander %s\n", node->data.simple_cmd.args[0]);
 		if (!expand_args(node))
 			return (false);
 	}

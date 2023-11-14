@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_err.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 15:03:39 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/14 10:52:07 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:51:00 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	set_token_err(t_token_err_type type)
 
 void	token_err_handler(void)
 {
-	if (g_minishell.token_err.type = TE_MEM)
+	if (g_minishell.token_err.type == TE_MEM)
 	{
 		ft_putstr_fd("bash: malloc allocation failed\n", 2);
 		g_minishell.err_code = 12;

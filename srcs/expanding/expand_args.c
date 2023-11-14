@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:33:32 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/14 11:02:43 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:54:56 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	*heredoc_expander(char *str)
 		else
 			ret = ft_strjoin_free(ret, handle_normal_str(str, &i));
 		if (!ret)
-			return (set_expand_err(EE_MEM, NULL));
+			return (set_expand_err(EE_MEM), NULL);
 	}
 	return (ret);
 }
@@ -40,7 +40,7 @@ static char	*cmd_pre_expander(char *str)
 
 	if (g_minishell.expand_err.type)
 		return (NULL);
-	printf("New str in pre expander %s\n", str);
+	// printf("New str in pre expander %s\n", str);
 	ret = ft_strdup("");
 	i = 0;
 	while (str[i])
@@ -56,7 +56,7 @@ static char	*cmd_pre_expander(char *str)
 		if (!ret)
 			return (set_expand_err(EE_MEM), NULL);
 	}
-	printf("Ret return in cmd pre expander %s\n", ret);
+	// printf("Ret return in cmd pre expander %s\n", ret);
 	return (ret);
 }
 

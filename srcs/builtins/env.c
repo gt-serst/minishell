@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:24:26 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/13 15:59:21 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 14:23:12 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ char	*env_key(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if(str[i] == (char)envlst_handler(ft_substr(str, 0, i)))
+		if (str[i] != '=')
 			i++;
+		else
+			return (envlst_handler(ft_substr(str, 0, i)));
 	}
 	return (ft_strdup(str));
 }
@@ -53,7 +55,7 @@ char	*env_value(char *str)
 		}
 		i++;
 	}
-	return (NULL);
+	return (ft_strdup(str));
 }
 
 void	envlst_init(void)
@@ -63,11 +65,12 @@ void	envlst_init(void)
 	char	*value;
 	int		i;
 
+	(void)value;
 	i = 0;
 	envlst = g_minishell.environ;
 	if (!envlst)
 		return ;
-	while (envlst)
+	while (envlst[i])
 	{
 		key = env_key(envlst[i]);
 		value = env_value(envlst[i]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:14:07 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/13 16:40:47 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 12:05:39 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef enum e_ast_direction
 
 //	execution
 void	exec_ast(t_node *node);
-void	exec_pipeline(t_node *node);
+int	exec_pipeline(t_node *node);
 int	exec_simple_cmd(t_node *node);
 int		exec_builtins(char **args);
 bool	is_builtin(char *arg);

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:57:14 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/13 16:40:05 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 12:05:05 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	exec_pipe_child(t_node *node, int *pipefd, t_ast_direction direction)
+static int	exec_pipe_child(t_node *node, int *pipefd, t_ast_direction direction)
 {
 	int	status;
 
@@ -31,10 +31,10 @@ static void	exec_pipe_child(t_node *node, int *pipefd, t_ast_direction direction
 	}
 	exec_ast(node);
 	ast_cleaner(&node);
-	exit(status);
+	return (status);
 }
 
-void	exec_pipeline(t_node *node)
+int	exec_pipeline(t_node *node)
 {
 	int	status;
 	int	pipefd[2];
@@ -45,12 +45,12 @@ void	exec_pipeline(t_node *node)
 	pipe(pipefd);
 	left_pid = fork();
 	if (left_pid == 0)
-		exec_pipe_child(node->data.pipe.left, pipefd, D_LEFT);
+		status = exec_pipe_child(node->data.pipe.left, pipefd, D_LEFT);
 	else
 	{
 		right_pid = fork();
 		if (right_pid == 0)
-			exec_pipe_child(node->data.pipe.right, pipefd, D_RIGHT);
+			status = exec_pipe_child(node->data.pipe.right, pipefd, D_RIGHT);
 		else
 		{
 			close_pipe(pipefd);
@@ -58,5 +58,5 @@ void	exec_pipeline(t_node *node)
 			waitpid(right_pid, &status, 0);
 		}
 	}
-	exit(status);
+	return (status);
 }

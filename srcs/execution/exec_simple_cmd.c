@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/13 16:38:42 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 14:37:32 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,27 @@ static int	exec_child(t_node *node)
 	if (!fork_pid)
 	{
 		path_status = path_to_cmd((node->data.simple_cmd.expanded_args)[0]);
+		printf("Path %s\n", path_status);
+		//printf("Failed");
 		if (!path_status)
 			exit(status);
+		//printf("\n\nn\n\n\n");
 		if (execve(path_status, node->data.simple_cmd.expanded_args, g_minishell.environ) == -1)
-			exit(1);
+		{
+			// int i = 0;
+			// while(g_minishell.environ[i])
+			// {
+			// 	printf("%s\n", g_minishell.environ[i]);
+			// 	i++;
+			// }
+			// while(node->data.simple_cmd.expanded_args)
+			// 	printf("%s\n", *(node->data.simple_cmd.expanded_args)++);
+			return (set_exec_err(EXE_CMD_NOT_FOUND), 0);
+		}
 	}
 	waitpid(fork_pid, &status, 0);
 	g_minishell.signint_child = false;
-	exit(status);
+	return (status);
 }
 // Réinitialise stdin à la valeur initiale
 
@@ -49,6 +62,8 @@ int	exec_simple_cmd(t_node *node)
 {
 	int status;
 
+	if (g_minishell.exec_err.type)
+		return (0);
 	if (is_builtin(node->data.simple_cmd.expanded_args[0]))
 	{
 		status = exec_builtins(node->data.simple_cmd.expanded_args);
