@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:57:14 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/14 12:05:05 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:58:03 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static int	exec_pipe_child(t_node *node, int *pipefd, t_ast_direction direction)
 		close(pipefd[0]);
 	}
 	exec_ast(node);
-	ast_cleaner(&node);
 	return (status);
 }
 

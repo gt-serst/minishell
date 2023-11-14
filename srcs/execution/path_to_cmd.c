@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:51:52 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/14 14:38:02 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:02:55 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ char	*path_to_cmd(char *cmd)
 		return (check_access(cmd), cmd);
 	value = envlst_val("PATH");
 	if (value)
-	{
-		printf("Je suis la commande ls %s\n", cmd);
 		return (env_path_parsed(value, cmd));
-	}
 	return (set_exec_err(EXE_NO_SUCH_FILE), NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/14 14:37:32 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:02:16 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	exec_child(t_node *node)
 	if (!fork_pid)
 	{
 		path_status = path_to_cmd((node->data.simple_cmd.expanded_args)[0]);
-		printf("Path %s\n", path_status);
+		//printf("Path %s\n", path_status);
 		//printf("Failed");
 		if (!path_status)
 			exit(status);

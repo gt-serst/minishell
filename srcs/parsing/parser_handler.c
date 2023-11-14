@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:24:59 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/14 09:50:37 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 14:57:27 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static bool	token_into_args(t_node* simple_cmd)
 	simple_cmd->data.simple_cmd.args = malloc(sizeof(char *) * (arglen() + 1));
 	if (!simple_cmd->data.simple_cmd.args)
 		return (set_parsing_err(PE_MEM), false);
-	ft_bzero(simple_cmd->data.simple_cmd.args, sizeof(char *));
+	//ft_bzero(simple_cmd->data.simple_cmd.args, sizeof(char *));
 	while (g_minishell.curr_token && (g_minishell.curr_token->type == T_IDENTIFIER
 		|| is_redir(g_minishell.curr_token->type)))
 	{

@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:06:38 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/14 13:39:16 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:50:38 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ void	init_env(char **envp)
 	envlst_init();
 	// g_minishell.stdin = dup(0);
 	// g_minishell.stdout = dup(1);
-	// tcgetattr(STDIN_FILENO, &g_minishell.original_term);
+	tcgetattr(STDIN_FILENO, &g_minishell.original_term);
 }

@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:12:28 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/14 09:52:34 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:58:57 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ void	shell_cleaner(void)
 {
 	ast_cleaner(&g_minishell.ast);
 	envlst_cleaner();
-	// rl_clear_history();
+	clear_history();
+	tcsetattr(STDIN_FILENO, TCSANOW, &g_minishell.original_term);
 }
