@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:41:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/09 10:22:07 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 10:08:42 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_token	*separator_handler(char	**cmd_line)
 		i++;
 	substr = ft_substr(tmp, 0, i); //malloc allocation in substr
 	if (!substr)
-		return (NULL);
+		return (set_token_err(TE_MEM), NULL);
 	*cmd_line += i;
 	if (ft_strcmp(substr, "<") == 0)
 		return (new_tk(substr, T_INPUT));
@@ -62,14 +62,14 @@ t_token	*identifier_handler(char **cmd_line)
 		if (ft_isquotes(tmp[i]))
 		{
 			if (!skip_quotes(tmp, &i))
-				return (NULL);
+				return (set_token_err(TE_SYNTAX), NULL);
 		}
 		else
 			i++;
 	}
 	substr = ft_substr(*cmd_line, 0, i); //malloc allocation in substr
 	if (!substr)
-		return (NULL);
+		return (set_token_err(TE_MEM), NULL);
 	*cmd_line += i;
 	return (new_tk(substr, T_IDENTIFIER)); //malloc allocation in token
 }

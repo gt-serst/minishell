@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:33:32 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/08 12:41:28 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:02:43 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static char	*heredoc_expander(char *str)
 	char	*ret;
 	size_t	i;
 
+	if (g_minishell.expand_err.type)
+		return (NULL);
 	ret = ft_strdup("");
 	i = 0;
 	while (str[i])
@@ -25,6 +27,8 @@ static char	*heredoc_expander(char *str)
 			ret = ft_strjoin_free(ret, handle_dollar(str, &i));
 		else
 			ret = ft_strjoin_free(ret, handle_normal_str(str, &i));
+		if (!ret)
+			return (set_expand_err(EE_MEM, NULL));
 	}
 	return (ret);
 }
@@ -34,6 +38,8 @@ static char	*cmd_pre_expander(char *str)
 	char	*ret;
 	size_t	i;
 
+	if (g_minishell.expand_err.type)
+		return (NULL);
 	printf("New str in pre expander %s\n", str);
 	ret = ft_strdup("");
 	i = 0;
@@ -47,6 +53,8 @@ static char	*cmd_pre_expander(char *str)
 			ret = ft_strjoin_free(ret, handle_dollar(str, &i));
 		else
 			ret = ft_strjoin_free(ret, handle_normal_str(str, &i));
+		if (!ret)
+			return (set_expand_err(EE_MEM), NULL);
 	}
 	printf("Ret return in cmd pre expander %s\n", ret);
 	return (ret);
@@ -70,7 +78,7 @@ bool	expand_args(t_node *node)
 	i = 0;
 	expanded = malloc(sizeof (char *) * get_rows(node->data.simple_cmd.args));
 	if (!expanded)
-		return (false);
+		return (set_expand_err(EE_MEM), false);
 	while (node->data.simple_cmd.args[i])
 	{
 		if (ft_strchr(node->data.simple_cmd.args[i], '$') != NULL && (i > 0)
@@ -92,7 +100,7 @@ bool	expand_args(t_node *node)
 	i = 0;
 	node->data.simple_cmd.expanded_args = malloc(sizeof(char *) * get_rows(node->data.simple_cmd.args) + 1);
 	if (!node->data.simple_cmd.expanded_args)
-		return (false);
+		return (set_expand_err(EE_MEM), false);
 	ft_bzero(node->data.simple_cmd.expanded_args, sizeof(char *));
 	while (expanded[i])
 	{

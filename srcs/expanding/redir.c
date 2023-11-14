@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:38:20 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/09 09:30:16 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:44:48 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	launch_redir(t_node *node)
 
 bool	recursive_redir(t_node *node)
 {
-	if (!node)
+	if (!node || g_minishell.expand_err.type)
 		return (false);
 	if (node->type == N_CMD)
 	{

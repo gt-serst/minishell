@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/13 16:50:46 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 10:00:46 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_minishell
 	t_node			*ast;
 	t_token			*tokens;
 	t_token			*curr_token;
+	t_token_err		token_err;
 	t_parsing_err	parsing_err;
 	t_expand_err	expand_err;
 	t_exec_err		exec_err;

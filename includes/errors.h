@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:42:16 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/13 15:47:23 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 10:52:16 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "minishell.h"
 
 void		ft_exit_message(char *s);
+void		set_token_err(t_token_err_type type);
+void		token_err_handler(void);
 void		quotes_err_message(char c);
 void		set_parsing_err(t_parsing_err_type type);
 void		parsing_err_handler(void);

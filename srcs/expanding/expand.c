@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:23:17 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/08 10:27:38 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:01:49 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	recursive_expander(t_node *node)
 {
-	if (!node)
+	if (!node || g_minishell.expand_err.type)
 		return (false);
 	if (node->type == N_CMD)
 	{

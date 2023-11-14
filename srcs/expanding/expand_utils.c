@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:04:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/08 11:46:35 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:44:52 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*handle_dollar(char *str, size_t *i)
 	while (is_valid_var_char(str[*i]))
 		(*i)++;
 	var = ft_substr(str, start, *i - start);
-	env_val = "gt-serst";
+	env_val = envlst_val(var);
 	if (!env_val)
 		return (free(var), ft_strdup(""));
 	return (free(var), ft_strdup(env_val));

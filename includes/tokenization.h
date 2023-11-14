@@ -6,12 +6,24 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:18:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/10 15:57:09 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 10:56:47 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKENIZATION_H
 # define TOKENIZATION_H
+
+typedef enum e_token_err_type
+{
+	TE_MEM,
+	TE_SYNTAX
+}	t_token_err_type;
+
+typedef struct s_token_err
+{
+	t_token_err_type	type;
+	char				*str;
+}	t_token_err;
 
 typedef enum e_token_type
 {

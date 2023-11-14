@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:37:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/10 15:02:39 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 10:10:15 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_token	*tokenizer()
 			token = separator_handler(&cmd_line); //get the right index in the line we are
 		else
 			token = identifier_handler(&cmd_line); //get the right index in the line we are
-		if (!token)
+		if (g_minishell.token_err.type)
 			return (tkclear(&t), NULL);
 		else
 		{
