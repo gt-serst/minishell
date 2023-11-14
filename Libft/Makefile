@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
+#    By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/30 15:48:39 by gt-serst          #+#    #+#              #
-#    Updated: 2023/11/10 15:29:37 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/11/14 10:01:09 by mde-plae         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS			=	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 					ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c \
 					get_next_line.c get_next_line_utils.c ft_printf.c \
 					ft_print_address.c ft_print_str.c ft_print_char.c ft_print_nbrbase.c \
-					ft_strcmp.c
+					ft_strcmp.c ft_free_malloc.c
 
 OBJS			= $(SRCS:.c=.o)
 

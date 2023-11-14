@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/13 16:50:46 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 09:53:43 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <signal.h>
+# include <string.h>
 # include <termios.h>
 # include <dirent.h>
 # include <sys/types.h>

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:59:51 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/13 14:47:23 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 09:51:23 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	cd_err_msg(char *err_msg)
 
 int	ft_cd(char *path)
 {
-	if (!path || strcmp(path, "~") == 0)
+	if (!path || ft_strcmp(path, "~") == 0)
 		return (cd_home_user());
 	if (chdir(path) != 0)
 		return (cd_err_msg(path));

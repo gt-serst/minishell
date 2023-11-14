@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_cleaner.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:12:28 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/13 16:02:33 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/14 09:52:34 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ void	shell_cleaner(void)
 {
 	ast_cleaner(&g_minishell.ast);
 	envlst_cleaner();
-	rl_clear_history();
+	// rl_clear_history();
 }
