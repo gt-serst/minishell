@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:36:34 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/15 16:47:17 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:57:24 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,14 @@ void	ft_print_ast(t_node *node)
 		return ;
 	if (node->type == N_CMD)
 	{
+		printf("New cmd\n");
 		i = 0;
+		while (node->data.simple_cmd.args[i])
+			printf("%s\n", node->data.simple_cmd.args[i++]);
 	}
 	else
 	{
+		printf("New pipe\n");
 		if (node->data.pipe.left != NULL)
 			ft_print_ast(node->data.pipe.left);
 		if (node->data.pipe.right != NULL)
@@ -39,10 +43,14 @@ void	ft_print_expanded_ast(t_node *node)
 		return ;
 	if (node->type == N_CMD)
 	{
+		printf("Cmd expanded\n");
 		i = 0;
+		while (node->data.simple_cmd.expanded_args[i])
+			printf("%s\n", node->data.simple_cmd.expanded_args[i++]);
 	}
 	else
 	{
+		printf("Pipe detected\n");
 		if (node->data.pipe.left != NULL)
 			ft_print_ast(node->data.pipe.left);
 		if (node->data.pipe.right != NULL)

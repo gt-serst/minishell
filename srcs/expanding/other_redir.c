@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   other_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:04:46 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/14 11:44:30 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:51:56 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ bool	input_redir(t_node *node)
 	if (fd < 0)
 		return (set_expand_err(EE_OPEN), false);
 	printf("Input redirection\n");
-	node->data.simple_cmd.fdin = fd;
-	//dup(fd, STDIN_FILENO);
-	//close(fd);
+	// node->data.simple_cmd.fdin = fd;
+	dup2(fd, STDIN_FILENO);
+	close(fd);
 	return (true);
 }
 
@@ -38,9 +38,9 @@ bool	output_redir(t_node *node)
 	if (fd < 0)
 		return (set_expand_err(EE_OPEN), false);
 	printf("Output redirection\n");
-	node->data.simple_cmd.fdout = fd;
-	//dup(fd, STDIN_FILENO);
-	//close(fd);
+	// node->data.simple_cmd.fdout = fd;
+	dup2(fd, STDOUT_FILENO);
+	close(fd);
 	return (true);
 }
 
@@ -57,8 +57,8 @@ bool	append_redir(t_node *node)
 		return (set_expand_err(EE_OPEN), false);
 	}
 	printf("Append redirection\n");
-	node->data.simple_cmd.fdout = fd;
-	//dup(fd, STDIN_FILENO);
-	//close(fd);
+	// node->data.simple_cmd.fdout = fd;
+	dup2(fd, STDOUT_FILENO);
+	close(fd);
 	return (true);
 }

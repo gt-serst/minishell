@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:38:20 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/15 16:49:23 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:27:15 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static void remove_redir(t_node *node)
+{
+	size_t	i;
+
+	i = 0;
+	while (node->data.simple_cmd.args[i])
+	{
+		if (ft_strcmp(node->data.simple_cmd.args[i], "<") == 0
+			|| ft_strcmp(node->data.simple_cmd.args[i], "<<") == 0
+			|| ft_strcmp(node->data.simple_cmd.args[i], ">") == 0
+			|| ft_strcmp(node->data.simple_cmd.args[i], ">>") == 0)
+			node->data.simple_cmd.expanded_args[i] = NULL;
+		printf("%s\n", node->data.simple_cmd.expanded_args[i]);
+		i++;
+	}
+}
 
 bool	launch_redir(t_node *node)
 {
@@ -31,6 +48,7 @@ bool	launch_redir(t_node *node)
 			append_redir(node);
 		i++;
 	}
+	remove_redir(node);
 	return (true);
 }
 
