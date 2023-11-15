@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:57:14 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/15 12:41:03 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/15 13:15:31 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	exec_pipe_child(t_node *node, int *pipefd, t_ast_direction direction
 	int	status;
 
 	printf("JE PASSE\n");
-	printf("Je suis %s\n", node->data.simple_cmd.expanded_args[0]);
+	//printf("Je suis %s\n", node->data.simple_cmd.expanded_args[0]);
 	if (direction == D_LEFT)
 	{
 		printf("Je suis %s\n", node->data.simple_cmd.expanded_args[0]);
@@ -31,7 +31,7 @@ static void	exec_pipe_child(t_node *node, int *pipefd, t_ast_direction direction
 		close(pipefd[1]);
 		dup2(pipefd[0], node->data.simple_cmd.fdin);
 		close(pipefd[0]);
-		dup2(pipefd[0], 0);
+		//dup2(pipefd[0], 0);
 	}
 	printf("Je suis %s\n", node->data.simple_cmd.expanded_args[0]);
 	status = exec_node(node);
@@ -58,9 +58,7 @@ int	exec_pipeline(t_node *node)
 			exec_pipe_child(node->data.pipe.right, pipefd, D_RIGHT);
 		else
 		{
-			close_pipe(pipefd);
-			waitpid(left_pid, &status, 0);
-			waitpid(right_pid, &status, 0);
+			(close_pipe(pipefd), waitpid(left_pid, &status, 0), waitpid(right_pid, &status, 0));
 			g_minishell.signint_child = false;
 			return (get_exit_status(status));
 		}

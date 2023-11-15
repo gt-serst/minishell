@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/15 12:37:48 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/15 13:21:42 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,13 @@ static int	exec_child(t_node *node)
 			(shell_cleaner(), exit(1));
 		}
 		//printf("\n\nn\n\n\n");
+		printf("Path status%s\n", path_status);
+		printf("%s\n", node->data.simple_cmd.expanded_args[0]);
 		if (execve(path_status, node->data.simple_cmd.expanded_args, g_minishell.environ) == -1)
 		{
+			printf("Path status%s\n", path_status);
+			printf("%s\n", node->data.simple_cmd.expanded_args[0]);
+			printf("JE PASSE\n");
 			// int i = 0;
 			// while(g_minishell.environ[i])
 			// {
@@ -45,6 +50,7 @@ static int	exec_child(t_node *node)
 			(shell_cleaner(), exit(1));
 		}
 	}
+	printf("JE PASSE\n");
 	waitpid(fork_pid, &status, 0);
 	g_minishell.signint_child = false;
 	return (get_exit_status(status));

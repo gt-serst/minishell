@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:51:52 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/15 10:08:20 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/15 13:13:56 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ char	*path_to_cmd(char *cmd)
 	if (ft_strnstr(cmd, "/", ft_strlen(cmd))) //if path already in the command
 		return (check_access(cmd), cmd);
 	value = envlst_val("PATH");
+	printf ("vvvaaluueee= %s \n", value);
 	if (value)
 		return (env_path_parsed(value, cmd));
 	return (set_exec_err(EXE_NO_SUCH_FILE), NULL);
