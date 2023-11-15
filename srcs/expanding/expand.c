@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:23:17 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/15 11:33:52 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:46:51 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ bool	recursive_expander(t_node *node)
 	}
 	if (node->data.pipe.left != NULL)
 	{
-		printf("Pipe detected\n");
 		if (!recursive_expander(node->data.pipe.left))
 			return (false);
 		if (!recursive_expander(node->data.pipe.right))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:38:20 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/14 11:44:48 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:49:23 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 bool	launch_redir(t_node *node)
 {
 	size_t	i;
-	bool	mheredoc;
 
 	if (g_minishell.expand_err.type)
 		return (false);
 	i = 0;
-	mheredoc = false;
 	while (node->data.simple_cmd.args[i])
 	{
 		if(ft_strcmp(node->data.simple_cmd.args[i], "<") == 0)

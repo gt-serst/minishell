@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:24:26 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/14 14:23:12 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:41:19 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*env_key(char *str)
 		if (str[i] != '=')
 			i++;
 		else
-			return (envlst_handler(ft_substr(str, 0, i)));
+			return (envlst_handler(ft_substr(str, 0, i), false));
 	}
 	return (ft_strdup(str));
 }
@@ -51,7 +51,7 @@ char	*env_value(char *str)
 		if (str[i] == '=')
 		{
 			i++;
-			return (envlst_handler(ft_substr(str, i, ft_strlen(str) - i)));
+			return (envlst_handler(ft_substr(str, i, ft_strlen(str) - i), false));
 		}
 		i++;
 	}

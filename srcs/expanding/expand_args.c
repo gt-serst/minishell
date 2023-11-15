@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:33:32 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/15 11:33:43 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:04:36 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ bool	expand_args(t_node *node)
 	size_t	i;
 	// char	**expanded;
 
-	printf("Enterering in expander\n");
 	i = 0;
 	node->data.simple_cmd.expanded_args = malloc(sizeof (char *) * get_rows(node->data.simple_cmd.args));
 	if (!node->data.simple_cmd.expanded_args)
@@ -96,11 +95,9 @@ bool	expand_args(t_node *node)
 			if (!node->data.simple_cmd.expanded_args[i])
 				return (false);
 		}
-		printf("Expanded value %s\n", node->data.simple_cmd.expanded_args[i]);
 		i++;
 	}
 	node->data.simple_cmd.expanded_args[i] = NULL;
-	printf("EXPANDED AST\n");
 	ft_print_expanded_ast(node);
 	// for (int j = 0; j < get_rows(node->data.simple_cmd.expanded_args); j++)
 	// {

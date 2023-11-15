@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:37:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/15 09:53:46 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:01:51 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ t_token	*tokenizer()
 		if (g_minishell.token_err.type)
 			return (tkclear(&t), NULL);
 		else
-		{
-			printf("Token |%s|\n", token->value);
 			tkadd_back(&t, token);
-		}
 		while (ft_isspace(*cmd_line))
 			cmd_line++;
 	}
