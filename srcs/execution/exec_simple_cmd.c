@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/14 16:02:16 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/15 12:37:48 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,19 @@ static int	exec_child(t_node *node)
 	int		fork_pid;
 	char	*path_status;
 
-	status = 0;
 	g_minishell.signint_child = true;
 	fork_pid = fork();
 	if (!fork_pid)
 	{
 		path_status = path_to_cmd((node->data.simple_cmd.expanded_args)[0]);
-		//printf("Path %s\n", path_status);
+		printf("Path %s\n", path_status);
 		//printf("Failed");
 		if (!path_status)
-			exit(status);
+		{
+			set_exec_err(EXE_CMD_NOT_FOUND);
+			exec_err_handler();
+			(shell_cleaner(), exit(1));
+		}
 		//printf("\n\nn\n\n\n");
 		if (execve(path_status, node->data.simple_cmd.expanded_args, g_minishell.environ) == -1)
 		{
@@ -39,12 +42,12 @@ static int	exec_child(t_node *node)
 			// }
 			// while(node->data.simple_cmd.expanded_args)
 			// 	printf("%s\n", *(node->data.simple_cmd.expanded_args)++);
-			return (set_exec_err(EXE_CMD_NOT_FOUND), 0);
+			(shell_cleaner(), exit(1));
 		}
 	}
 	waitpid(fork_pid, &status, 0);
 	g_minishell.signint_child = false;
-	return (status);
+	return (get_exit_status(status));
 }
 // Réinitialise stdin à la valeur initiale
 
@@ -64,11 +67,17 @@ int	exec_simple_cmd(t_node *node)
 
 	if (g_minishell.exec_err.type)
 		return (0);
+/*
+	if (!node->data.simple_cmd.expanded_args)
+	{
+		printf("Hello\n\n\n\n\n");
+	}
+*/
 	if (is_builtin(node->data.simple_cmd.expanded_args[0]))
 	{
 		status = exec_builtins(node->data.simple_cmd.expanded_args);
 		// reset_stds(piped);
-		return status;
+		return (status);
 	}
 	else
 		return (exec_child(node));

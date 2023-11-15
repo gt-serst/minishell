@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/14 15:52:01 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/15 11:28:33 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ void	init_env(char **envp);
 
 //UTILS
 void	ft_print_ast(t_node *node);
+void	ft_print_expanded_ast(t_node *node);
 char	*ft_strjoin_free(char *s1, char *s2);
 char	*ft_strjoin_nl(char *s1, char *s2);
 char	*ft_strjoin_char(char *s1, char *s2, char c);
+void	ft_free_array(char **array);
 
 #endif

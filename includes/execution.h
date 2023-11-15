@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:14:07 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/14 12:05:39 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/15 12:13:07 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,16 @@ typedef enum e_ast_direction
 }	t_ast_direction;
 
 //	execution
-void	exec_ast(t_node *node);
-int	exec_pipeline(t_node *node);
-int	exec_simple_cmd(t_node *node);
+int		exec_ast(t_node *node);
+int		exec_node(t_node *node);
+int		exec_pipeline(t_node *node);
+int		exec_simple_cmd(t_node *node);
 int		exec_builtins(char **args);
 bool	is_builtin(char *arg);
 char	*path_to_cmd(char *cmd);
 
 //	utils
+int		get_exit_status(int status);
 void	close_pipe(int *pipefd);
 
 #endif

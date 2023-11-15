@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:36:34 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/13 16:50:22 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/15 11:27:40 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,37 @@ void	ft_print_ast(t_node *node)
 {
 	int	i;
 
+	if (!node)
+		return ;
 	if (node->type == N_CMD)
 	{
 		i = 0;
 		printf("New cmd, Type %d\n", node->type);
 		while (node->data.simple_cmd.args[i])
 			printf("Arg %s\n", node->data.simple_cmd.args[i++]);
+	}
+	else
+	{
+		printf("New pipe, Type %d\n", node->type);
+		if (node->data.pipe.left != NULL)
+			ft_print_ast(node->data.pipe.left);
+		if (node->data.pipe.right != NULL)
+			ft_print_ast(node->data.pipe.right);
+	}
+}
+
+void	ft_print_expanded_ast(t_node *node)
+{
+	int	i;
+
+	if (!node)
+		return ;
+	if (node->type == N_CMD)
+	{
+		i = 0;
+		printf("New cmd, Type %d\n", node->type);
+		while (node->data.simple_cmd.expanded_args[i])
+			printf("Arg %s\n", node->data.simple_cmd.expanded_args[i++]);
 	}
 	else
 	{
@@ -105,4 +130,16 @@ char	*ft_strjoin_char(char *s1, char *s2, char c)
 		str[j++] = s2[i++];
 	str[j] = '\0';
 	return (free(s1), free(s2), str);
+}
+
+void	ft_free_array(char **array)
+{
+	size_t	i;
+
+	if (!array)
+		return ;
+	i = 0;
+	while (array[i])
+		free(array[i++]);
+	free(array);
 }

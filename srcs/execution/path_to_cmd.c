@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_to_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:51:52 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/14 16:02:55 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/15 10:08:20 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static	char	*check_access(char *cmd_path)
 {
-	printf("%s\n", cmd_path);
 	if (access(cmd_path, 0) == 0)
 		return (cmd_path);
 	return (NULL);
