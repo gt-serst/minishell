@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:26:14 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/14 14:33:36 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:39:13 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,33 @@ static t_env	*new_envlst(char *key, char *value)
 	new = (t_env *)malloc(sizeof(t_env));
 	if (!new)
 		return (NULL);
-	new->key = envlst_handler(ft_strdup(key));
+	new->key = envlst_handler(ft_strdup(key), false);
 	if (value)
-		new->value = envlst_handler(ft_strdup(value));
+		new->value = envlst_handler(ft_strdup(value), false);
 	new->next = NULL;
 	return (new);
 }
 
-void	*envlst_handler(void *ptr)
+static void	ft_del(void *ptr)
+{
+	free(ptr);
+	ptr = NULL;
+}
+
+void	*envlst_handler(void *ptr, bool clean)
 {
 	static t_list	*list;
 
-	ft_lstadd_back(&list, ft_lstnew(ptr));
-	return (ptr);
+	if (clean)
+	{
+		ft_lstclear(&list, ft_del);
+		return (NULL);
+	}
+	else
+	{
+		ft_lstadd_back(&list, ft_lstnew(ptr));
+		return (ptr);
+	}
 }
 
 static void	envlst_back(t_env *new)
@@ -75,7 +89,7 @@ void	update_envlst(char *key, char *value, bool create)
 		if (!ft_strcmp(key, envlst->key))
 		{
 			if (value)
-				envlst->value = envlst_handler(ft_strdup(value));
+				envlst->value = envlst_handler(ft_strdup(value), false);
 			return ;
 		}
 		envlst = envlst->next;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:38:07 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/13 16:00:32 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:37:38 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int				ft_unset(char **args);
 int				ft_env(void);
 void			update_envlst(char *key, char *value, bool create);
 char			*envlst_val(char *key);
-void			*envlst_handler(void *ptr);
+void			*envlst_handler(void *ptr, bool clean);
 void			envlst_init(void);
 bool			env_exists(char *key);
 char			*env_value(char *str);

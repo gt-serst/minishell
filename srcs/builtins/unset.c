@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:37:51 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/13 16:00:46 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:37:19 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_unset(char **args)
 			err = true;
 		}
 		else
-			unset_env(envlst_handler(env_key(args[i])));
+			unset_env(envlst_handler(env_key(args[i]), false));
 		i++;
 	}
 	return (err);
