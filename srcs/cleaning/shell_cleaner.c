@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_cleaner.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:12:28 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/14 15:58:57 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:46:18 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	envlst_cleaner(void)
 void	shell_cleaner(void)
 {
 	ast_cleaner(&g_minishell.ast);
-	envlst_cleaner();
-	clear_history();
+	//envlst_cleaner();
+	//clear_history();
 	tcsetattr(STDIN_FILENO, TCSANOW, &g_minishell.original_term);
 }

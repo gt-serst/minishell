@@ -15,12 +15,10 @@
 bool	launch_redir(t_node *node)
 {
 	size_t	i;
-	bool	mheredoc;
 
 	if (g_minishell.expand_err.type)
 		return (false);
 	i = 0;
-	mheredoc = false;
 	while (node->data.simple_cmd.args[i])
 	{
 		if(ft_strcmp(node->data.simple_cmd.args[i], "<") == 0)
