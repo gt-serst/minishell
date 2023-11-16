@@ -6,7 +6,7 @@
 #    By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/11/15 09:50:59 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/11/16 16:05:23 by mde-plae         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,7 @@ $(LIBFT):
 	@make bonus -C $(LIBFT_PATH)
 
 $(NAME): $(LIBFT) $(OBJS)
-	@$(CC) -o $(NAME) $(OBJS) $(LIBFT_PATH)/$(LIBFT) -L$(LIBFT_PATH) -lreadline -L$(READLINE_PATH)/lib -g3 -fsanitize=address
+	@$(CC) -o $(NAME) $(OBJS) $(LIBFT_PATH)/$(LIBFT) -L$(LIBFT_PATH) -lreadline -L$(READLINE_PATH)/lib
 
 clean:
 	@make clean -C $(LIBFT_PATH)

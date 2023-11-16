@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/15 16:42:58 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:18:42 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,5 @@ int	main(int argc, char **argv, char **envp)
 		shell_cleaner();
 		//system("leaks minishell");
 	}
-	
 	return (EXIT_SUCCESS);
 }
