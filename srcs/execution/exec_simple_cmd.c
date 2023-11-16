@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/15 17:55:19 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/16 13:58:04 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static void	close_io(void)
+{
+	dup2(g_minishell.in, STDIN_FILENO);
+	dup2(g_minishell.out, STDOUT_FILENO);
+	close(g_minishell.in);
+	close(g_minishell.out);
+}
 
 static int	exec_child(t_node *node)
 {
@@ -18,14 +26,17 @@ static int	exec_child(t_node *node)
 	int		fork_pid;
 	char	*path_status;
 
-	printf("Hello\n");
 	g_minishell.signint_child = true;
+	g_minishell.in = dup(STDIN_FILENO);
+	g_minishell.out = dup(STDOUT_FILENO);
+	dup2(node->data.simple_cmd.fdin, STDIN_FILENO);
+	dup2(node->data.simple_cmd.fdout, STDOUT_FILENO);
 	fork_pid = fork();
 	if (!fork_pid)
 	{
-		path_status = path_to_cmd((node->data.simple_cmd.expanded_args)[0]);
+		printf("%s\n", node->data.simple_cmd.expanded_args[0]);
+		path_status = path_to_cmd((node->data.simple_cmd.expanded_args[0]));
 		printf("Path status %s\n", path_status);
-		//printf("Failed");
 		if (!path_status)
 		{
 			set_exec_err(EXE_CMD_NOT_FOUND);
@@ -47,8 +58,11 @@ static int	exec_child(t_node *node)
 		}
 	}
 	// printf("Hello\n");
+	// close(node->data.simple_cmd.fdin);
+	// close(node->data.simple_cmd.fdout);
 	waitpid(fork_pid, &status, 0);
 	g_minishell.signint_child = false;
+	close_io();
 	return (get_exit_status(status));
 }
 // Réinitialise stdin à la valeur initiale

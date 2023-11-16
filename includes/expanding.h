@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 10:52:16 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/13 15:43:12 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:03:18 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ bool	is_valid_var_char(char c);
 
 // redir
 bool	recursive_redir(t_node *node);
-bool	input_redir(t_node *node);
+bool	input_redir(t_node *node, size_t i);
 void	heredoc_redir(t_node *node, size_t i);
-bool	output_redir(t_node *node);
-bool	append_redir(t_node *node);
+bool	output_redir(t_node *node, size_t i);
+bool	append_redir(t_node *node, size_t i);
 
 #endif

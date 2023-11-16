@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/15 16:30:47 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/16 13:42:08 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 
 typedef struct s_minishell
 {
-	int				stdin;
-	int				stdout;
+	int				in;
+	int				out;
 	t_node			*ast;
 	t_token			*tokens;
 	t_token			*curr_token;

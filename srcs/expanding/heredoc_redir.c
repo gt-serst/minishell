@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:01:08 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/14 11:44:40 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:09:44 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,6 @@ void	heredoc_redir(t_node *node, size_t i)
 		multiple_heredoc_redir(node, i);
 	else
 		single_heredoc_redir(node);
+	shell_cleaner();
+	exit(0);
 }
