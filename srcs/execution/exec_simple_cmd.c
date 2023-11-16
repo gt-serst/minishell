@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/16 15:45:51 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/16 23:53:22 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	close_io(void)
+void	close_io(void)
 {
 	dup2(g_minishell.in, STDIN_FILENO);
 	dup2(g_minishell.out, STDOUT_FILENO);
@@ -27,10 +27,6 @@ static int	exec_child(t_node *node)
 	char	*path_status;
 
 	g_minishell.signint_child = true;
-	g_minishell.in = dup(STDIN_FILENO);
-	g_minishell.out = dup(STDOUT_FILENO);
-	dup2(node->data.simple_cmd.fdin, STDIN_FILENO);
-	dup2(node->data.simple_cmd.fdout, STDOUT_FILENO);
 	fork_pid = fork();
 	if (!fork_pid)
 	{
@@ -88,6 +84,10 @@ int	exec_simple_cmd(t_node *node)
 	// {
 	// 	printf("Hello\n\n\n\n\n");
 	// }
+	g_minishell.in = dup(STDIN_FILENO);
+	g_minishell.out = dup(STDOUT_FILENO);
+	dup2(node->data.simple_cmd.fdin, STDIN_FILENO);
+	dup2(node->data.simple_cmd.fdout, STDOUT_FILENO);
 	if (is_builtin(node->data.simple_cmd.expanded_args[0]))
 	{
 		status = exec_builtins(node->data.simple_cmd.expanded_args);

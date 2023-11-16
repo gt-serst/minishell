@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:14:07 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/15 12:13:07 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/16 23:53:41 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ char	*path_to_cmd(char *cmd);
 //	utils
 int		get_exit_status(int status);
 void	close_pipe(int *pipefd);
+void	close_io(void);
 
 #endif
