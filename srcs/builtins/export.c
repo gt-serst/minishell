@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 12:07:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/13 15:48:12 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/17 17:29:30 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,22 @@ int	ft_export(char **argv)
 		return (declare_envlst(), 0);
 	while (argv[i])
 	{
+		printf("HELLO\n\n");
 		if (check_key(argv[i]) == 0)
 			err_code = export_err_message(argv[i]);
 		else
 		{
-			key = env_value(argv[i]);
+			key = env_key(argv[i]);
 			if (env_exists(key))
+			{
 				update_envlst(key, env_value(argv[i]), false);
+			}
 			else
+			{
 				update_envlst(key, env_value(argv[i]), true);
+			}
 		}
+		printf("Argv%s\n", argv[i]);
 		i++;
 	}
 	return (err_code);

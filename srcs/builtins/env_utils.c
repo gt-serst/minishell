@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:26:14 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/15 16:39:13 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/17 17:20:45 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,9 @@ void	update_envlst(char *key, char *value, bool create)
 		if (!ft_strcmp(key, envlst->key))
 		{
 			if (value)
+			{
 				envlst->value = envlst_handler(ft_strdup(value), false);
+			}
 			return ;
 		}
 		envlst = envlst->next;

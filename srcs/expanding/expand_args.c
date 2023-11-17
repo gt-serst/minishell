@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:33:32 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/15 16:04:36 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/17 17:30:52 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ bool	expand_args(t_node *node)
 	// char	**expanded;
 
 	i = 0;
-	node->data.simple_cmd.expanded_args = malloc(sizeof (char *) * get_rows(node->data.simple_cmd.args));
+	node->data.simple_cmd.expanded_args = malloc(sizeof (char *) * (get_rows(node->data.simple_cmd.args) + 1));
 	if (!node->data.simple_cmd.expanded_args)
 		return (set_expand_err(EE_MEM), false);
 	//ft_bzero(node->data.simple_cmd.expanded_args, sizeof(char *));
