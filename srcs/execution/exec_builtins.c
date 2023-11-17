@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:37:12 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/17 00:05:26 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/17 17:35:53 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ int	exec_builtins(char **args)
 	else if (ft_strcmp(args[0], "unset") == 0)
 		status = ft_unset(args);
 	else
+	{
+		ft_exit(args);
 		return (EXIT_FAILURE);
+	}
 	close_io();
 	return (status);
 }
