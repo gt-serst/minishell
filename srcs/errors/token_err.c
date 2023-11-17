@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_err.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 15:03:39 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/14 11:51:00 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/17 14:52:12 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ void	token_err_handler(void)
 		ft_putstr_fd("bash: malloc allocation failed\n", 2);
 		g_minishell.err_code = 12;
 	}
+	if (g_minishell.token_err.type == TE_SYNTAX)
+	{
+		ft_putstr_fd("bash: syntax error near unexpected token `|'\n", 2);
+		g_minishell.err_code = 258;
+	}
+	if (g_minishell.token_err.type == TE_QUOTES)
+		g_minishell.err_code = 1;
+	if (g_minishell.token_err.type == TE_UNEXP_TOK)
+		g_minishell.err_code = 258;
 	ft_bzero(&g_minishell.token_err, sizeof(t_token_err));
 }
 

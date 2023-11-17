@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/16 23:53:22 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/17 15:31:35 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	exec_child(t_node *node)
 	if (!fork_pid)
 	{
 		path_status = path_to_cmd((node->data.simple_cmd.expanded_args[0]));
-		printf("Path status %s\n", path_status);
+		//printf("Path status %s\n", path_status);
 		if (!path_status)
 		{
 			set_exec_err(EXE_CMD_NOT_FOUND);
@@ -41,8 +41,8 @@ static int	exec_child(t_node *node)
 		//printf("\n\nn\n\n\n");
 		if (execve(path_status, node->data.simple_cmd.expanded_args, g_minishell.environ) == -1)
 		{
-			printf("Hello\n");
-			perror("error");
+			//printf("Hello\n");
+			//perror("error");
 			// int i = 0;
 			// while(g_minishell.environ[i])
 			// {

@@ -3,20 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:37:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/15 16:01:51 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/17 14:53:00 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static bool	unexpected_token(char *cmd_line)
+bool	unexpected_token(char c)
 {
-	if (*cmd_line == ';')
+	if (c == ';')
 	{
 		ft_putstr_fd("bash: syntax error near unexpected token `;'\n", 2);
+		return (true);
+	}
+	else if (c == '\\')
+	{
+		ft_putstr_fd("bash: syntax error near unexpected token `\\'\n", 2);
 		return (true);
 	}
 	return (false);
@@ -34,9 +39,7 @@ t_token	*tokenizer()
 		cmd_line++;
 	while (*(cmd_line))
 	{
-		if (unexpected_token(cmd_line))
-			token = NULL;
-		else if (ft_ismetachar(*cmd_line))
+		if (ft_ismetachar(*cmd_line))
 			token = separator_handler(&cmd_line); //get the right index in the line we are
 		else
 			token = identifier_handler(&cmd_line); //get the right index in the line we are

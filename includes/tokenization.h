@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:18:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/14 10:56:47 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/17 14:48:03 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 
 typedef enum e_token_err_type
 {
-	TE_MEM,
-	TE_SYNTAX
+	TE_MEM = 1,
+	TE_SYNTAX,
+	TE_QUOTES,
+	TE_UNEXP_TOK
 }	t_token_err_type;
 
 typedef struct s_token_err
@@ -60,6 +62,7 @@ typedef struct s_token_err
 
 //TOKENIZATION
 t_token	*tokenizer(void);
+bool	unexpected_token(char c);
 t_token	*separator_handler(char	**cmd_line);
 t_token	*identifier_handler(char **cmd_line);
 

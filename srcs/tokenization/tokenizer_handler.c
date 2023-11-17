@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:41:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/14 10:08:42 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/17 14:36:25 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ t_token	*separator_handler(char	**cmd_line)
 		return (new_tk(substr, T_HEREDOC));
 	else if (ft_strcmp(substr, ">>") == 0)
 		return (new_tk(substr, T_APPEND));
-	else
+	else if (ft_strcmp(substr, "|") == 0)
 		return (new_tk(substr, T_PIPE)); //malloc allocation in token
+	else
+		return (set_token_err(TE_SYNTAX), NULL);
 }
 
 t_token	*identifier_handler(char **cmd_line)
@@ -62,10 +64,14 @@ t_token	*identifier_handler(char **cmd_line)
 		if (ft_isquotes(tmp[i]))
 		{
 			if (!skip_quotes(tmp, &i))
-				return (set_token_err(TE_SYNTAX), NULL);
+				return (set_token_err(TE_QUOTES), NULL);
 		}
 		else
+		{
+			if (unexpected_token(tmp[i]))
+				return (set_token_err(TE_UNEXP_TOK), NULL);
 			i++;
+		}
 	}
 	substr = ft_substr(*cmd_line, 0, i); //malloc allocation in substr
 	if (!substr)

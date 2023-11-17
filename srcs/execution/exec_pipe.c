@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:57:14 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/15 16:52:49 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/17 15:20:08 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static void	exec_pipe_child(t_node *node, int *pipefd, t_ast_direction direction
 	if (direction == D_LEFT)
 	{
 		close(pipefd[0]);
-		dup2(pipefd[1], node->data.simple_cmd.fdout);
+		dup2(pipefd[1], STDOUT_FILENO);
 		close(pipefd[1]);
 	}
 	else if (direction == D_RIGHT)
 	{
 		close(pipefd[1]);
-		dup2(pipefd[0], node->data.simple_cmd.fdin);
+		dup2(pipefd[0], STDIN_FILENO);
 		close(pipefd[0]);
 		//dup2(pipefd[0], 0);
 	}

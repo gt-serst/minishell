@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:38:20 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/16 14:02:47 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/17 10:40:32 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void remove_redir(t_node *node)
 			|| ft_strcmp(node->data.simple_cmd.args[i], ">") == 0
 			|| ft_strcmp(node->data.simple_cmd.args[i], ">>") == 0)
 			node->data.simple_cmd.expanded_args[i] = NULL;
-		printf("%s\n", node->data.simple_cmd.expanded_args[i]);
 		i++;
 	}
 }
