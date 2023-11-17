@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:17:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/13 15:53:25 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/17 15:22:07 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	ft_exit(char **args)
 		else
 			err_code = exitnbr(args[1]);
 	}
+	close_io();
 	shell_cleaner();
 	exit(err_code);
 }

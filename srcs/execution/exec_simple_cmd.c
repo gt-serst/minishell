@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/16 23:53:22 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/17 14:59:03 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	exec_child(t_node *node)
 	if (!fork_pid)
 	{
 		path_status = path_to_cmd((node->data.simple_cmd.expanded_args[0]));
-		printf("Path status %s\n", path_status);
+		//printf("Path status %s\n", path_status);
 		if (!path_status)
 		{
 			set_exec_err(EXE_CMD_NOT_FOUND);
