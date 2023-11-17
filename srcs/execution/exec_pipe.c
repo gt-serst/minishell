@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:57:14 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/17 15:20:08 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/17 17:52:41 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static void	exec_pipe_child(t_node *node, int *pipefd, t_ast_direction direction
 	if (direction == D_LEFT)
 	{
 		close(pipefd[0]);
-		dup2(pipefd[1], STDOUT_FILENO);
+		dup2(pipefd[1], node->data.simple_cmd.fdout);
 		close(pipefd[1]);
 	}
 	else if (direction == D_RIGHT)
 	{
 		close(pipefd[1]);
-		dup2(pipefd[0], STDIN_FILENO);
+		dup2(pipefd[0], node->data.simple_cmd.fdin);
 		close(pipefd[0]);
 		//dup2(pipefd[0], 0);
 	}
@@ -41,6 +41,8 @@ int	exec_pipeline(t_node *node)
 	pid_t	left_pid;
 	pid_t	right_pid;
 
+	g_minishell.in = dup(STDIN_FILENO);
+	g_minishell.out = dup(STDOUT_FILENO);
 	g_minishell.signint_child = true;
 	pipe(pipefd);
 	left_pid = fork();
