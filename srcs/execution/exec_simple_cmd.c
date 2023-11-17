@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/17 15:31:35 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/17 15:39:00 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	exec_child(t_node *node)
 		//printf("\n\nn\n\n\n");
 		if (execve(path_status, node->data.simple_cmd.expanded_args, g_minishell.environ) == -1)
 		{
-			//printf("Hello\n");
+			printf("%s\n", node->data.simple_cmd.expanded_args[0]);
 			//perror("error");
 			// int i = 0;
 			// while(g_minishell.environ[i])
