@@ -6,7 +6,7 @@
 /*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:37:12 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/17 00:05:26 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/18 20:05:02 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	exec_builtins(char **args)
 		status = ft_unset(args);
 	else
 		return (EXIT_FAILURE);
-	close_io();
 	return (status);
 }
 

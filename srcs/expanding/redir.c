@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:38:20 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/17 17:50:55 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/18 19:24:56 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ static void remove_redir(t_node *node)
 			|| ft_strcmp(node->data.simple_cmd.args[i], "<<") == 0
 			|| ft_strcmp(node->data.simple_cmd.args[i], ">") == 0
 			|| ft_strcmp(node->data.simple_cmd.args[i], ">>") == 0)
+		{
 			node->data.simple_cmd.expanded_args[i] = NULL;
+			node->data.simple_cmd.expanded_args[i + 1] = NULL;
+		}
 		printf("%s\n", node->data.simple_cmd.expanded_args[i]);
 		i++;
 	}
@@ -46,9 +49,10 @@ bool	launch_redir(t_node *node)
 			output_redir(node, i);
 		else if(ft_strcmp(node->data.simple_cmd.args[i], ">>") == 0)
 			append_redir(node, i);
-		remove_redir(&node->data.simple_cmd.args[i]);
 		i++;
 	}
+	if (g_minishell.expand_err.type)
+		return (false);
 	remove_redir(node);
 	return (true);
 }

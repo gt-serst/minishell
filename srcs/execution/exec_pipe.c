@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:57:14 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/17 17:52:41 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/18 19:53:49 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ static void	exec_pipe_child(t_node *node, int *pipefd, t_ast_direction direction
 	//printf("Je suis %s\n", node->data.simple_cmd.expanded_args[0]);
 	if (direction == D_LEFT)
 	{
-		close(pipefd[0]);
-		dup2(pipefd[1], node->data.simple_cmd.fdout);
-		close(pipefd[1]);
+		close(pipefd[STDIN_FILENO]);
+		dup2(pipefd[STDOUT_FILENO], node->data.simple_cmd.fdout);
+		close(pipefd[STDOUT_FILENO]);
 	}
 	else if (direction == D_RIGHT)
 	{
-		close(pipefd[1]);
-		dup2(pipefd[0], node->data.simple_cmd.fdin);
-		close(pipefd[0]);
-		//dup2(pipefd[0], 0);
+		close(pipefd[STDOUT_FILENO]);
+		dup2(pipefd[STDIN_FILENO], node->data.simple_cmd.fdin);
+		close(pipefd[STDIN_FILENO]);
+		// dup2(pipefd[0], 0);
 	}
-	status = exec_node(node);
+	status = exec_node(node, true);
 	(shell_cleaner(), exit(status));
 }
 
