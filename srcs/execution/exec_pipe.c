@@ -6,7 +6,7 @@
 /*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:57:14 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/18 19:53:49 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/18 22:35:05 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	exec_pipe_child(t_node *node, int *pipefd, t_ast_direction direction
 {
 	int	status;
 
-	//printf("Je suis %s\n", node->data.simple_cmd.expanded_args[0]);
 	if (direction == D_LEFT)
 	{
 		close(pipefd[STDIN_FILENO]);

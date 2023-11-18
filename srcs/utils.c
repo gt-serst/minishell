@@ -6,7 +6,7 @@
 /*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:36:34 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/15 16:57:24 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/18 22:39:42 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,4 +142,44 @@ void	ft_free_array(char **array)
 	while (array[i])
 		free(array[i++]);
 	free(array);
+}
+
+void	read_from_fd(t_node *node)
+{
+	char	buffer[4096];
+	int		len;
+
+	if (node->type == N_PIPE)
+	{
+		printf("Pipe\n");
+		while ((len = read(node->data.pipe.left->data.simple_cmd.fdin, buffer, sizeof(buffer))) > 0)
+		{
+			printf("Content in Fdin %s\n", buffer);
+			if (strstr(buffer, "exit") != NULL)
+				break;
+		}
+		while ((len = read(node->data.pipe.left->data.simple_cmd.fdout, buffer, sizeof(buffer))) > 0)
+		{
+			printf("Content in Fdout %s\n", buffer);
+			if (strstr(buffer, "exit") != NULL)
+				break;
+		}
+	}
+	else
+	{
+		printf("Cmd\n");
+		printf("%s\n", node->data.simple_cmd.expanded_args[0]);
+		while ((len = read(node->data.simple_cmd.fdin, buffer, sizeof(buffer))) > 0)
+		{
+			printf("Content in Fdin %s\n", buffer);
+			if (strstr(buffer, "exit") != NULL)
+				break;
+		}
+		while ((len = read(node->data.simple_cmd.fdout, buffer, sizeof(buffer))) > 0)
+		{
+			printf("Content in Fdout %s\n", buffer);
+			if (strstr(buffer, "exit") != NULL)
+				break;
+		}
+	}
 }

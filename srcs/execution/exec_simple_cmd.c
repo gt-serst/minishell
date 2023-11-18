@@ -6,7 +6,7 @@
 /*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/18 20:01:23 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/18 22:51:51 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static int	exec_child(t_node *node, bool piped)
 			(shell_cleaner(), exit(1));
 		}
 		//printf("\n\nn\n\n\n");
+		printf("Result:\n");
 		if (execve(path_status, node->data.simple_cmd.expanded_args, g_minishell.environ) == -1)
 		{
 			//printf("%s\n", node->data.simple_cmd.expanded_args[0]);
@@ -95,9 +96,10 @@ int	exec_simple_cmd(t_node *node, bool piped)
 	//printf("Stdout fd %d\n", node->data.simple_cmd.fdout);
 	g_minishell.in = dup(STDIN_FILENO);
 	g_minishell.out = dup(STDOUT_FILENO);
-	//printf("Hello\n");
+
 	dup2(node->data.simple_cmd.fdin, STDIN_FILENO);
-	dup2(node->data.simple_cmd.fdout, STDOUT_FILENO);
+	//read_from_fd(node);
+	dup2(node->data.simple_cmd.fdout, STDOUT_FILENO); // le contenu dans txt s'efface à cette ligne
 	if (is_builtin(node->data.simple_cmd.expanded_args[0]))
 	{
 		status = exec_builtins(node->data.simple_cmd.expanded_args);

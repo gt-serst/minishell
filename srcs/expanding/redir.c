@@ -6,7 +6,7 @@
 /*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:38:20 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/18 19:24:56 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/18 22:51:13 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void remove_redir(t_node *node)
 			node->data.simple_cmd.expanded_args[i] = NULL;
 			node->data.simple_cmd.expanded_args[i + 1] = NULL;
 		}
-		printf("%s\n", node->data.simple_cmd.expanded_args[i]);
+		//printf("%s\n", node->data.simple_cmd.expanded_args[i]);
 		i++;
 	}
 }

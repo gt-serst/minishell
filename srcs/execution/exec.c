@@ -6,7 +6,7 @@
 /*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:24:55 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/18 19:54:00 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/18 22:42:20 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	exec_node(t_node *node, bool piped)
 {
 	if (node->type == N_CMD)
 	{
+		//read_from_fd(node);
 		//ft_print_expanded_ast(node);
 		return (exec_simple_cmd(node, piped));
 	}
