@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenization.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:18:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/17 14:48:03 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/20 22:11:35 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ bool	skip_quotes(char *cmd_line, size_t *i);
 
 //TK UTILS
 t_token	*new_tk(void *content, t_token_type type);
-void	tkadd_back(t_token **t, t_token *elem);
+void	tk_lstadd_back(t_token **t, t_token *elem);
 void	tkclear(t_token **token);
 
 #endif

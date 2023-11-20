@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:56:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/15 09:52:05 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/20 22:43:36 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,14 @@
 
 t_node	*parser()
 {// core routine for parsing
-	g_minishell.curr_token = g_minishell.tokens;
-	g_minishell.ast = ast_builder();
+	t_io_node	**io_node;
+
+	io_node = malloc(sizeof(t_io_node*));
+	if (!io_node)
+		return (NULL);
+	io_node = NULL;
+	g_minishell.curr_token = g_minishell.token;
+	g_minishell.ast = ast_builder(io_node);
 	if (g_minishell.curr_token)
 		return (set_parsing_err(PE_SYNTAX), g_minishell.ast);
 	//printf("Print left side:\n");

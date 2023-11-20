@@ -6,7 +6,7 @@
 /*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:24:59 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/18 18:56:22 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/20 22:45:28 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,18 @@ static char	*join_with_char(char *s1, char *s2, char c)
 }
 */
 
+static bool	get_io_node(t_io_node **io_node)
+{
+	t_io_node	*new_io_node;
+
+	new_io_node = new_io_nd(get_io_nd_type(g_minishell.curr_token->type)); //malloc in new_io_node
+	if (!new_io_node)
+		return (false);
+	printf("Io node type: %d\n", new_io_node->type);
+	io_lstadd_back(io_node, new_io_node);
+	return (true);
+}
+
 int	arglen(void)
 {
 	t_token	*token;
@@ -55,7 +67,7 @@ int	arglen(void)
 	return (res);
 }
 
-static bool	token_into_args(t_node* simple_cmd)
+static bool	token_into_args(t_node* simple_cmd, t_io_node **io_node)
 {
 	int	i;
 
@@ -65,18 +77,23 @@ static bool	token_into_args(t_node* simple_cmd)
 	simple_cmd->data.simple_cmd.args = malloc(sizeof(char *) * (arglen() + 1));
 	if (!simple_cmd->data.simple_cmd.args)
 		return (set_parsing_err(PE_MEM), false);
-	//ft_bzero(simple_cmd->data.simple_cmd.args, sizeof(char *));
+	ft_bzero(simple_cmd->data.simple_cmd.args, sizeof(char *));
 	while (g_minishell.curr_token && (g_minishell.curr_token->type == T_IDENTIFIER
 		|| is_redir(g_minishell.curr_token->type)))
 	{
 		simple_cmd->data.simple_cmd.args[++i] = ft_strdup(g_minishell.curr_token->value);
+		if (is_redir(g_minishell.curr_token->type))
+		{
+			if (!get_io_node(io_node))
+				return (false);
+		}
 		get_next_token();
 	}
 	simple_cmd->data.simple_cmd.args[++i] = NULL;
 	return (true);
 }
 
-t_node	*get_simple_cmd(void)
+t_node	*get_simple_cmd(t_io_node **io_node)
 {// get the cmd and the cmd args of the simple cmd then create a tree node
 	t_node	*simple_cmd;
 
@@ -90,9 +107,7 @@ t_node	*get_simple_cmd(void)
 	{
 		simple_cmd->data.simple_cmd.fdin = STDIN_FILENO;
 		simple_cmd->data.simple_cmd.fdout = STDOUT_FILENO;
-		printf("Stdin fd %d\n", simple_cmd->data.simple_cmd.fdin);
-		printf("Stdout fd %d\n", simple_cmd->data.simple_cmd.fdout);
-		if (!token_into_args(simple_cmd))
+		if (!token_into_args(simple_cmd, io_node))
 			return (set_parsing_err(PE_MEM), NULL);
 	}
 	return (simple_cmd);

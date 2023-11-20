@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tk_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:59:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/17 14:49:29 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/20 22:11:16 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_token	*new_tk(void *content, t_token_type type)
 	return (elem);
 }
 
-void	tkadd_back(t_token **t, t_token *elem)
+void	tk_lstadd_back(t_token **t, t_token *elem)
 {// add the new node previously created to the linked list token
 	t_token	*tmp;
 

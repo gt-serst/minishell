@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/20 16:19:13 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/20 22:34:45 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ typedef struct s_minishell
 	int				in;
 	int				out;
 	t_node			*ast;
-	t_token			*tokens;
+	t_token			*token;
+	t_io_node		*io_node;
 	t_token			*curr_token;
 	t_token_err		token_err;
 	t_parsing_err	parsing_err;

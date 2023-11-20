@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ast_cleaner.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:33:23 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/14 15:54:32 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/20 22:42:05 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	io_node_lstcleaner(t_io_node **io_node)
+{
+	t_io_node	*current;
+	t_io_node	*next;
+
+	if (!io_node)
+		return ;
+	current = *io_node;
+	while (current)
+	{
+		next = current->next;
+		current = next;
+		free(current);
+
+	}
+	free(*io_node);
+	*io_node = NULL;
+}
 
 static void	cmd_node_cleaner(t_node *node)
 {
@@ -44,5 +63,5 @@ void	ast_cleaner(t_node **ast)
 		return ;
 	recursive_ast_cleaner(*ast);
 	*ast = NULL;
-	tkclear(&g_minishell.tokens);
+	tkclear(&g_minishell.token);
 }

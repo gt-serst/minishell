@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_builder.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 08:50:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/14 09:49:42 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/20 22:31:12 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_node	*get_children(t_token_type op, t_node *left, t_node *right)
 	return (pipe);
 }
 
-t_node	*ast_builder()
+t_node	*ast_builder(t_io_node **io_node)
 {//give the priority for each elements in the ast according to a precedence climbing algorithm
 	t_node			*left;
 	t_node			*right;
@@ -37,7 +37,7 @@ t_node	*ast_builder()
 
 	if (g_minishell.parsing_err.type || !g_minishell.curr_token)
 		return (NULL);
-	left = get_simple_cmd(); //gets the left atom
+	left = get_simple_cmd(io_node); //gets the left atom
 	if (!left)
 		return (NULL);
 	while (is_pipe())
@@ -45,7 +45,7 @@ t_node	*ast_builder()
 		//printf("Curr Token %s\n", g_minishell.curr_token->value);
 		op = g_minishell.curr_token->type;
 		get_next_token();
-		right = ast_builder(); //get the right atom
+		right = ast_builder(io_node); //get the right atom
 		if (!right)
 			return (left);
 		left = get_children(op, left, right);

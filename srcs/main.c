@@ -6,7 +6,7 @@
 /*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/18 20:04:08 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/20 22:34:56 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv, char **envp)
 			ft_exit_message("Error: Command line not found\n");
 		if (g_minishell.cmd_line[0])
 			add_history(g_minishell.cmd_line);
-		g_minishell.tokens = tokenizer();
+		g_minishell.token = tokenizer();
 		if (g_minishell.token_err.type)
 		{
 			token_err_handler();
