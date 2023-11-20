@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+         #
+#    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/11/17 17:15:47 by mde-plae         ###   ########.fr        #
+#    Updated: 2023/11/20 16:19:30 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,8 @@ SRCS			:=	$(BUILTINS)\
 					srcs/main.c\
 					srcs/init.c\
 					srcs/utils.c\
-					srcs/main_output.c
+					srcs/main_output.c\
+					srcs/errors.c
 
 OBJS			:=	$(SRCS:.c=.o)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/18 22:35:45 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/20 16:19:13 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ t_minishell	g_minishell;
 
 //INIT
 void	init_env(char **envp);
+
+//ERRORS
+void	error(int err, char *token, char *cmd);
 
 //UTILS
 void	ft_print_ast(t_node *node);
