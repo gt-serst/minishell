@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/20 12:51:57 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:46:18 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	exec_simple_cmd(t_node *node, bool piped)
 	dup2(node->data.simple_cmd.fdout, STDOUT_FILENO); // le contenu dans txt s'efface à cette ligne
 	if (is_builtin(node->data.simple_cmd.expanded_args[0]))
 	{
-		status = exec_builtins(node->data.simple_cmd.expanded_args);
+		status = exec_builtins(node->data.simple_cmd.expanded_args, piped);
 		close_io(piped);
 		return (status);
 	}

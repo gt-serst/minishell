@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:38:07 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/15 16:37:38 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:47:18 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,25 @@ typedef struct s_env
 }	t_env;
 
 // echo
-int 			ft_echo(char **args);
+int	ft_echo(char **args);
 // cd
-int				ft_cd(char *path);
+int	ft_cd(char *path);
 // pwd
-int				ft_pwd(void);
+int	ft_pwd(void);
 // exit
-void			ft_exit(char **args);
+void	ft_exit(char **args, bool piped);
 // export
-int				ft_export(char **argv);
+int	ft_export(char **argv);
 // unset
-int				ft_unset(char **args);
+int	ft_unset(char **args);
 // env & env_utils
-int				ft_env(void);
-void			update_envlst(char *key, char *value, bool create);
-char			*envlst_val(char *key);
-void			*envlst_handler(void *ptr, bool clean);
-void			envlst_init(void);
-bool			env_exists(char *key);
-char			*env_value(char *str);
-char			*env_key(char *str);
+int	ft_env(void);
+void	update_envlst(char *key, char *value, bool create);
+char	*envlst_val(char *key);
+void	*envlst_handler(void *ptr, bool clean);
+void	envlst_init(void);
+bool	env_exists(char *key);
+char	*env_value(char *str);
+char	*env_key(char *str);
 
 #endif

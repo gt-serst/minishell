@@ -6,13 +6,13 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:37:12 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/20 10:26:10 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:46:05 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	exec_builtins(char **args)
+int	exec_builtins(char **args, bool piped)
 {
 	int	status;
 
@@ -32,7 +32,7 @@ int	exec_builtins(char **args)
 		status = ft_unset(args);
 	else
 	{
-		ft_exit(args);
+		ft_exit(args, piped);
 		return (EXIT_FAILURE);
 	}
 	return (status);

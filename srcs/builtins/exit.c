@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:17:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/20 10:33:02 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:45:50 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int	exitnbr(char *str)
 	return ((result * sign) % 256);
 }
 
-void	ft_exit(char **args)
+void	ft_exit(char **args, bool piped)
 {
 	int	err_code;
 
@@ -84,7 +84,8 @@ void	ft_exit(char **args)
 		else
 			err_code = exitnbr(args[1]);
 	}
-	//close_io();
+	close_io(piped);
 	shell_cleaner();
+	envlst_cleaner();
 	exit(err_code);
 }
