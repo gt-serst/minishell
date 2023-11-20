@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   other_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:04:46 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/18 19:02:52 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/20 12:39:19 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,14 @@ bool	input_redir(t_node *node, size_t i)
 	if (!node->data.simple_cmd.args || g_minishell.expand_err.type)
 		return (false);
 	fd = open(node->data.simple_cmd.args[i + 1], O_RDONLY);
+	//printf("Txt fd : %d\n", fd);
 	if (fd < 0)
-	{
-		printf("Helddlo\n");
 		return (set_expand_err(EE_OPEN), false);
-	}
 	printf("Input redirection\n");
 	node->data.simple_cmd.fdin = fd;
 	// dup2(fd, STDIN_FILENO);
 	// close(fd);
+	//read_from_fd(node);
 	return (true);
 }
 
@@ -44,6 +43,7 @@ bool	output_redir(t_node *node, size_t i)
 	node->data.simple_cmd.fdout = fd;
 	// dup2(fd, STDOUT_FILENO);
 	// close(fd);
+	//read_from_fd(node);
 	return (true);
 }
 

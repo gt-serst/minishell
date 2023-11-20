@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:36:34 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/18 22:39:42 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/20 11:36:42 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,12 +169,14 @@ void	read_from_fd(t_node *node)
 	{
 		printf("Cmd\n");
 		printf("%s\n", node->data.simple_cmd.expanded_args[0]);
+		printf("Fdin %d\n", node->data.simple_cmd.fdin);
 		while ((len = read(node->data.simple_cmd.fdin, buffer, sizeof(buffer))) > 0)
 		{
 			printf("Content in Fdin %s\n", buffer);
 			if (strstr(buffer, "exit") != NULL)
 				break;
 		}
+		printf("Fdout %d\n", node->data.simple_cmd.fdout);
 		while ((len = read(node->data.simple_cmd.fdout, buffer, sizeof(buffer))) > 0)
 		{
 			printf("Content in Fdout %s\n", buffer);

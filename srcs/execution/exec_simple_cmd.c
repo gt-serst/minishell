@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/20 10:27:04 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/20 12:51:57 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,14 @@ static int	exec_child(t_node *node, bool piped)
 			exec_err_handler();
 			(shell_cleaner(), exit(1));
 		}
-		//printf("\n\nn\n\n\n");
 		printf("Result:\n");
+		//printf("%s\n", node->data.simple_cmd.expanded_args[0]);
+		//printf("%s\n", node->data.simple_cmd.expanded_args[1]);
+		//printf("Txt fd: %d\n", node->data.simple_cmd.fdin);
 		if (execve(path_status, node->data.simple_cmd.expanded_args, g_minishell.environ) == -1)
 		{
 			//printf("%s\n", node->data.simple_cmd.expanded_args[0]);
-			//perror("error");
+			perror("error");
 			// int i = 0;
 			// while(g_minishell.environ[i])
 			// {
@@ -64,6 +66,7 @@ static int	exec_child(t_node *node, bool piped)
 	//printf("Exec fin\n");
 	waitpid(fork_pid, &status, 0);
 	g_minishell.signint_child = false;
+	//printf("Txt fd before closing: %d\n", node->data.simple_cmd.fdin);
 	close(node->data.simple_cmd.fdin);
 	close(node->data.simple_cmd.fdout);
 	close_io(piped);
@@ -89,7 +92,6 @@ int	exec_simple_cmd(t_node *node, bool piped)
 		return (0);
 	if (!node->data.simple_cmd.expanded_args)
 	{
-		printf("Hello\n");
 		close_io(piped);
 		return (EXIT_FAILURE);
 	}
@@ -99,7 +101,6 @@ int	exec_simple_cmd(t_node *node, bool piped)
 	g_minishell.out = dup(STDOUT_FILENO);
 
 	dup2(node->data.simple_cmd.fdin, STDIN_FILENO);
-	//read_from_fd(node);
 	dup2(node->data.simple_cmd.fdout, STDOUT_FILENO); // le contenu dans txt s'efface à cette ligne
 	if (is_builtin(node->data.simple_cmd.expanded_args[0]))
 	{

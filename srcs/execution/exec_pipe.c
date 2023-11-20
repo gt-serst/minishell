@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:57:14 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/18 22:35:05 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/20 12:50:48 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,12 @@ static void	exec_pipe_child(t_node *node, int *pipefd, t_ast_direction direction
 {
 	int	status;
 
-	if (direction == D_LEFT)
+	if (node->data.simple_cmd.fdin != 0 || node->data.simple_cmd.fdout != 1)
+	{
+		// if (fdin != stdin || fdout != stdout)
+		// cat lit dans un pipe vide vu que son fdin est txt
+	}
+	else if (direction == D_LEFT)
 	{
 		close(pipefd[STDIN_FILENO]);
 		dup2(pipefd[STDOUT_FILENO], node->data.simple_cmd.fdout);
