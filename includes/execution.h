@@ -6,7 +6,7 @@
 /*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:14:07 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/16 23:53:41 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/18 22:34:37 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ typedef enum e_ast_direction
 
 //	execution
 int		exec_ast(t_node *node);
-int		exec_node(t_node *node);
+int		exec_node(t_node *node, bool piped);
 int		exec_pipeline(t_node *node);
-int		exec_simple_cmd(t_node *node);
-int		exec_builtins(char **args);
-bool	is_builtin(char *arg);
-char	*path_to_cmd(char *cmd);
+int		exec_simple_cmd(t_node *node, bool piped);
+int exec_builtins(char **args);
+bool is_builtin(char *arg);
+char *path_to_cmd(char *cmd);
 
 //	utils
 int		get_exit_status(int status);
 void	close_pipe(int *pipefd);
-void	close_io(void);
+void	close_io(bool piped);
 
 #endif

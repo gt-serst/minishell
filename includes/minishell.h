@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/16 13:42:08 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/18 22:35:45 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ char	*ft_strjoin_free(char *s1, char *s2);
 char	*ft_strjoin_nl(char *s1, char *s2);
 char	*ft_strjoin_char(char *s1, char *s2, char c);
 void	ft_free_array(char **array);
+void	read_from_fd(t_node *node);
 
 #endif

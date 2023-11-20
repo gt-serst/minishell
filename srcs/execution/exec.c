@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:24:55 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/16 13:30:31 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/18 22:42:20 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	exec_node(t_node *node)
+int	exec_node(t_node *node, bool piped)
 {
 	if (node->type == N_CMD)
 	{
+		//read_from_fd(node);
 		//ft_print_expanded_ast(node);
-		return (exec_simple_cmd(node));
+		return (exec_simple_cmd(node, piped));
 	}
 	else
 		return (exec_pipeline(node));
@@ -31,7 +32,7 @@ int	exec_ast(t_node *node)
 	{
 		if (recursive_redir(node) == true)
 		{
-			return (exec_node(node));
+			return (exec_node(node, false));
 		}
 	}
 	return (EXIT_FAILURE);

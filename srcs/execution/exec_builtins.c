@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:37:12 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/17 17:35:53 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/20 10:26:10 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	exec_builtins(char **args)
 		ft_exit(args);
 		return (EXIT_FAILURE);
 	}
-	close_io();
 	return (status);
 }
 

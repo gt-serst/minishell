@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:24:59 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/14 14:57:27 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/18 18:56:22 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ t_node	*get_simple_cmd(void)
 	{
 		simple_cmd->data.simple_cmd.fdin = STDIN_FILENO;
 		simple_cmd->data.simple_cmd.fdout = STDOUT_FILENO;
+		printf("Stdin fd %d\n", simple_cmd->data.simple_cmd.fdin);
+		printf("Stdout fd %d\n", simple_cmd->data.simple_cmd.fdout);
 		if (!token_into_args(simple_cmd))
 			return (set_parsing_err(PE_MEM), NULL);
 	}
