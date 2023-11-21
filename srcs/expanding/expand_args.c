@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:33:32 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/17 17:57:44 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:38:39 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ bool	expand_args(t_node *node)
 		i++;
 	}
 	node->data.simple_cmd.expanded_args[i] = NULL;
-	ft_print_expanded_ast(node);
+	// ft_print_expanded_ast(node);
 	// for (int j = 0; j < get_rows(node->data.simple_cmd.expanded_args); j++)
 	// {
 	// 	printf("Index %d : string %s\n", j, node->data.simple_cmd.expanded_args[j]);

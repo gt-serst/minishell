@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:36:34 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/20 11:36:42 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:42:37 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	ft_print_ast(t_node *node)
 		return ;
 	if (node->type == N_CMD)
 	{
-		printf("New cmd\n");
+		// printf("New cmd\n");
 		i = 0;
 		while (node->data.simple_cmd.args[i])
 			printf("%s\n", node->data.simple_cmd.args[i++]);
 	}
 	else
 	{
-		printf("New pipe\n");
+		// printf("New pipe\n");
 		if (node->data.pipe.left != NULL)
 			ft_print_ast(node->data.pipe.left);
 		if (node->data.pipe.right != NULL)
@@ -43,14 +43,14 @@ void	ft_print_expanded_ast(t_node *node)
 		return ;
 	if (node->type == N_CMD)
 	{
-		printf("Cmd expanded\n");
+		// printf("Cmd expanded\n");
 		i = 0;
 		while (node->data.simple_cmd.expanded_args[i])
 			printf("%s\n", node->data.simple_cmd.expanded_args[i++]);
 	}
 	else
 	{
-		printf("Pipe detected\n");
+		// printf("Pipe detected\n");
 		if (node->data.pipe.left != NULL)
 			ft_print_ast(node->data.pipe.left);
 		if (node->data.pipe.right != NULL)
@@ -151,35 +151,35 @@ void	read_from_fd(t_node *node)
 
 	if (node->type == N_PIPE)
 	{
-		printf("Pipe\n");
+		// printf("Pipe\n");
 		while ((len = read(node->data.pipe.left->data.simple_cmd.fdin, buffer, sizeof(buffer))) > 0)
 		{
-			printf("Content in Fdin %s\n", buffer);
+			// printf("Content in Fdin %s\n", buffer);
 			if (strstr(buffer, "exit") != NULL)
 				break;
 		}
 		while ((len = read(node->data.pipe.left->data.simple_cmd.fdout, buffer, sizeof(buffer))) > 0)
 		{
-			printf("Content in Fdout %s\n", buffer);
+			// printf("Content in Fdout %s\n", buffer);
 			if (strstr(buffer, "exit") != NULL)
 				break;
 		}
 	}
 	else
 	{
-		printf("Cmd\n");
-		printf("%s\n", node->data.simple_cmd.expanded_args[0]);
-		printf("Fdin %d\n", node->data.simple_cmd.fdin);
+		// printf("Cmd\n");
+		// printf("%s\n", node->data.simple_cmd.expanded_args[0]);
+		// printf("Fdin %d\n", node->data.simple_cmd.fdin);
 		while ((len = read(node->data.simple_cmd.fdin, buffer, sizeof(buffer))) > 0)
 		{
-			printf("Content in Fdin %s\n", buffer);
+			// printf("Content in Fdin %s\n", buffer);
 			if (strstr(buffer, "exit") != NULL)
 				break;
 		}
-		printf("Fdout %d\n", node->data.simple_cmd.fdout);
+		// printf("Fdout %d\n", node->data.simple_cmd.fdout);
 		while ((len = read(node->data.simple_cmd.fdout, buffer, sizeof(buffer))) > 0)
 		{
-			printf("Content in Fdout %s\n", buffer);
+			// printf("Content in Fdout %s\n", buffer);
 			if (strstr(buffer, "exit") != NULL)
 				break;
 		}

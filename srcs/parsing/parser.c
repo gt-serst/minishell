@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:56:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/20 22:43:36 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/21 12:44:08 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ t_node	*parser()
 	//ft_print_right_side(g_minishell.ast);
 	//printf("Print io list:\n");
 	//ft_print_io_list(&(g_minishell.ast->io_list));
-	ft_print_ast(g_minishell.ast);
+	// ft_print_ast(g_minishell.ast);
 	return (g_minishell.ast);
 }
