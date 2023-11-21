@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:41:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/17 14:36:25 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/21 10:06:21 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,30 @@ static int	separator_handler(t_token **t, char *substr, t_token_type type)
 	return (1);
 }
 */
+
+static char	*get_wrong_token(char *token)
+{
+	if (strncmp(token, "<<<", 3) == 0)
+	{
+		if (strcmp(token, "<<<") == 0)
+			return ("<");
+		else if (strcmp(token, "<<<<") == 0)
+			return ("<<");
+		else
+			return ("<<<");
+	}
+	if (strncmp(token, ">>>", 3) == 0)
+	{
+		if (strcmp(token, ">>>") == 0)
+			return(">");
+		else
+			return (">>");
+	}
+	if (strcmp(token, "||") == 0)
+		return ("|");
+	return ("||");
+}
+
 t_token	*separator_handler(char	**cmd_line)
 {// retrieve the type of separator and called the separator_handler
 	size_t	i;
@@ -48,7 +72,7 @@ t_token	*separator_handler(char	**cmd_line)
 	else if (ft_strcmp(substr, "|") == 0)
 		return (new_tk(substr, T_PIPE)); //malloc allocation in token
 	else
-		return (set_token_err(TE_SYNTAX), NULL);
+		return (error(258, get_wrong_token(substr), NULL), NULL);
 }
 
 t_token	*identifier_handler(char **cmd_line)

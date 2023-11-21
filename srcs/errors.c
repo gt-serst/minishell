@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:56:39 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/20 16:25:19 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/21 09:25:59 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void	error(int err, char *token, char *cmd)
 		ft_putstr_fd(cmd, 2);
 		ft_putstr_fd("\n", 2);
 	}
+	g_minishell.err_code = err;
 }

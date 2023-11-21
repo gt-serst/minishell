@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:37:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/20 22:44:13 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/21 09:12:20 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_token	*tokenizer()
 			new_token = separator_handler(&cmd_line); //get the right index in the line we are
 		else
 			new_token = identifier_handler(&cmd_line); //get the right index in the line we are
-		if (g_minishell.token_err.type)
+		if (!new_token)
 			return (tkclear(token), NULL);
 		else
 			tk_lstadd_back(token, new_token);
