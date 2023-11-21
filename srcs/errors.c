@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:56:39 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/21 09:25:59 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:05:26 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	error(int err, char *token, char *cmd)
 {
-	printf("Errno %d\n", err);
 	if (token)
 	{
 		ft_putstr_fd("bash: syntax error near unexpected token `", 2);

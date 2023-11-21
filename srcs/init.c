@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:06:38 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/18 19:28:59 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/21 12:38:36 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_env(char **envp)
 	ft_memset(&g_minishell, 0, sizeof(t_minishell));
 	g_minishell.environ = envp;
 	envlst_init();
-	// g_minishell.in = dup(0);
-	// g_minishell.out = dup(1);
+	g_minishell.in = dup(0);
+	g_minishell.out = dup(1);
 	tcgetattr(STDIN_FILENO, &g_minishell.original_term);
 }

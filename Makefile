@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/11/20 16:19:30 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/11/21 14:09:12 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME			:= minishell
 LIBFT			:= libft.a
 LIBFT_PATH		:= "Libft"
 
-CC				:= gcc
+CC				:= cc
 
 CFLAGS			:= -Wall -Wextra -Werror
 
