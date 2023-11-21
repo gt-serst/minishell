@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:33:23 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/21 13:58:39 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:29:43 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ static void	recursive_ast_cleaner(t_node *node)
 	free(node);
 }
 
-void	ast_cleaner(t_node **ast)
+void	ast_cleaner(t_node **ast, t_token **token)
 {
 	if (!*ast)
 		return ;
 	recursive_ast_cleaner(*ast);
 	*ast = NULL;
-	tkclear(&g_minishell.token);
+	tkclear(token);
 }

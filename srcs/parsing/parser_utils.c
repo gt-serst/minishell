@@ -6,22 +6,24 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:10:49 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/14 09:51:17 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:23:36 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	get_next_token(void)
-{// get the next token of the tokens list
-	g_minishell.curr_token = g_minishell.curr_token->next;
+t_token	*get_next_token(t_token *curr_token)
+{
+	if (!curr_token)
+		return (NULL);
+	return (curr_token->next);
 }
 
-bool	is_pipe(void)
+bool	is_pipe(t_token *curr_token)
 {// if is a pipe return 1 else 0
-	if (!g_minishell.curr_token)
+	if (!curr_token)
 		return (false);
-	if (g_minishell.curr_token->type == T_PIPE)
+	if (curr_token->type == T_PIPE)
 		return (true);
 	return (false);
 }
@@ -32,4 +34,3 @@ bool	is_redir(t_token_type type)
 		return (true);
 	return (false);
 }
-

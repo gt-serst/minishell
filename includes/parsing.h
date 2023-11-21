@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:45:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/20 22:37:36 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/21 18:31:58 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ typedef struct s_node
 }	t_node;
 
 //PARSER
-t_node		*parser(void);
-t_node		*ast_builder(t_io_node **io_node);
-t_node		*get_simple_cmd(t_io_node **io_node);
+t_node	*parser(t_token **token);
+t_node	*ast_builder(t_token **token, t_token *curr_token);
+t_node	*get_simple_cmd(t_token *curr_token);
 
 //PARSER UTILS
-void		get_next_token(void);
-bool		is_pipe(void);
+t_token	*get_next_token(t_token **token);
+bool	is_pipe(t_token *curr_token);
 bool		is_redir(t_token_type type);
 
 //ND UTILS
@@ -89,7 +89,7 @@ t_io_node		*new_io_nd(t_io_node_type type);
 void			io_lstadd_back(t_io_node **io_node, t_io_node *elem);
 
 //AST CLEANER
-void		ast_cleaner(t_node **ast);
+void		ast_cleaner(t_node **ast, t_token **token);
 void		io_node_lstcleaner(t_io_node **io_node);
 
 #endif

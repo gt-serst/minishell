@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/21 09:11:39 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:31:02 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,24 @@
 # include "cleaning.h"
 # include "errors.h"
 
+typedef struct s_io
+{
+	int	input;
+	int	output;
+}		t_io;
+
+typedef struct s_prompt
+{
+	char	**env;
+	char	*cmd_line;
+}		t_prompt;
+
 typedef struct s_minishell
 {
-	int				in;
-	int				out;
-	t_node			*ast;
-	t_token			*token;
-	t_io_node		*io_node;
-	t_token			*curr_token;
-	t_token_err		token_err;
-	t_parsing_err	parsing_err;
-	t_expand_err	expand_err;
-	t_exec_err		exec_err;
-	char			*cmd_line;
-	int				err_code;
-	char			**environ;
-	t_env			*envlst;
-	bool			signint_child;
-	struct termios	original_term;
+	t_token	*token;
+	t_node	*ast;
+	int		err_code;
 }		t_minishell;
-
-t_minishell	g_minishell;
 
 //INIT
 void	init_env(char **envp);

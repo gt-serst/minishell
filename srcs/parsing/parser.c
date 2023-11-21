@@ -3,33 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:56:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/21 12:44:08 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:31:38 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_node	*parser()
+t_node	*parser(t_token **token)
 {// core routine for parsing
-	t_io_node	**io_node;
+	//t_io_node	**io_node;
+	t_node	**ast;
+	t_token	*curr_token;
 
-	io_node = malloc(sizeof(t_io_node*));
-	if (!io_node)
+	//io_node = malloc(sizeof(t_io_node*));
+	//if (!io_node)
+		//return (NULL);
+	//io_node = NULL;
+	curr_token = *token;
+	ast = ast_builder(token, curr_token);
+	if (curr_token)
 		return (NULL);
-	io_node = NULL;
-	g_minishell.curr_token = g_minishell.token;
-	g_minishell.ast = ast_builder(io_node);
-	if (g_minishell.curr_token)
-		return (set_parsing_err(PE_SYNTAX), g_minishell.ast);
-	//printf("Print left side:\n");
-	//ft_print_left_side(g_minishell.ast);
-	//printf("Print right side:\n");
-	//ft_print_right_side(g_minishell.ast);
-	//printf("Print io list:\n");
-	//ft_print_io_list(&(g_minishell.ast->io_list));
-	// ft_print_ast(g_minishell.ast);
-	return (g_minishell.ast);
+	return (&ast);
 }

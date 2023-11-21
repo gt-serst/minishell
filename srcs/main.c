@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/20 22:34:56 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/21 18:36:34 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,27 @@
 
 int	main(int argc, char **argv, char **envp)
 {// main function, the bash cmd requested by the user is located in arguments, the function in in charge of the core routine for minishell, the following steps will be launched read, lexer, parser, expander and execution
+	t_minishell	mini;
+	t_prompt	prompt;
+
 	(void)argc;
 	(void)argv;
 	init_env(envp);
 	while (1)
 	{
-		g_minishell.cmd_line = readline("~>"); //malloc allocation in cmd_line
-		if (!g_minishell.cmd_line)
+		prompt.cmd_line = readline("~>"); //malloc allocation in cmd_line
+		if (!prompt.cmd_line)
 			ft_exit_message("Error: Command line not found\n");
-		if (g_minishell.cmd_line[0])
-			add_history(g_minishell.cmd_line);
-		g_minishell.token = tokenizer();
-		if (g_minishell.token_err.type)
-		{
-			token_err_handler();
+		if (prompt.cmd_line[0])
+			add_history(prompt.cmd_line);
+		mini.token = tokenizer(prompt);
+		if (!mini.token)
 			continue ;
-		}
-		g_minishell.ast = parser();
-		if (g_minishell.parsing_err.type)
-		{
-			parsing_err_handler();
+		mini.ast = parser(mini.token);
+		if (!mini.ast)
 			continue ;
-		}
-		exec_ast(g_minishell.ast);
-		if (g_minishell.expand_err.type)
-			expanding_err_handler();
-		if (g_minishell.exec_err.type)
-			exec_err_handler();
+		if (!exec_ast(mini.ast));
+			continue ;
 		shell_cleaner();
 		//system("leaks minishell");
 	}

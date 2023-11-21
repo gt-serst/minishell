@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:37:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/21 09:12:20 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:35:12 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,13 @@ bool	unexpected_token(char c)
 	return (false);
 }
 
-t_token	*tokenizer()
+t_token	*tokenizer(t_prompt *prompt)
 {// core routine for the tokenizer, scan each part of the cmd line and give to each of them a type of tokens (identifier, separator,...)
-	t_token **token;
+	t_token	**token;
 	t_token *new_token;
 	char	*cmd_line;
 
-	token = &g_minishell.token;
-	cmd_line = g_minishell.cmd_line;
+	cmd_line = prompt->cmd_line;
 	while (ft_isspace(*cmd_line))
 		cmd_line++;
 	while (*(cmd_line))
@@ -50,7 +49,7 @@ t_token	*tokenizer()
 		while (ft_isspace(*cmd_line))
 			cmd_line++;
 	}
-	free(g_minishell.cmd_line);
-	g_minishell.cmd_line = NULL;
-	return (*token);
+	free(prompt->cmd_line);
+	prompt->cmd_line = NULL;
+	return (&token);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenization.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:18:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/20 22:11:35 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/21 18:35:37 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_token_err
 */
 
 //TOKENIZATION
-t_token	*tokenizer(void);
+t_token	*tokenizer(t_prompt *prompt);
 bool	unexpected_token(char c);
 t_token	*separator_handler(char	**cmd_line);
 t_token	*identifier_handler(char **cmd_line);
@@ -75,7 +75,7 @@ bool	skip_quotes(char *cmd_line, size_t *i);
 
 //TK UTILS
 t_token	*new_tk(void *content, t_token_type type);
-void	tk_lstadd_back(t_token **t, t_token *elem);
+void	tk_lstadd_back(t_token **token, t_token *elem);
 void	tkclear(t_token **token);
 
 #endif
