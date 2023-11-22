@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:01:08 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/16 14:09:44 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:19:09 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ static void	single_heredoc_redir(t_node *node)
 	}
 }
 
-void	heredoc_redir(t_node *node, size_t i)
+int	heredoc_redir(t_node *node, size_t i)
 {//heredoc is a write input, when the user types a sequence of predefined characters (EOF) then the write input closes, a sigint signal can also interrupt the write input
 	size_t	j;
 	size_t	count;
 
-	if (!node->data.simple_cmd.args || g_minishell.expand_err.type)
-		return ;
+	if (!node->data.simple_cmd.args)
+		return (-1);
 	count = 0;
 	j = i + 1;
 	while (node->data.simple_cmd.args[j])
@@ -83,6 +83,5 @@ void	heredoc_redir(t_node *node, size_t i)
 		multiple_heredoc_redir(node, i);
 	else
 		single_heredoc_redir(node);
-	shell_cleaner();
-	exit(0);
+	return (0);
 }

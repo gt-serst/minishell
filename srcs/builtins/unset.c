@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:37:51 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/15 16:37:19 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/22 12:11:49 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	unset_env(char *key)
+static void	unset_env(t_env *envlst, char *key)
 {
 	t_env	*current;
 	t_env	*prev;
 
 	prev = NULL;
-	current = g_minishell.envlst;
+	current = envlst;
 	while (current)
 	{
 		if (!ft_strcmp(key, current->key))
@@ -26,7 +26,7 @@ static void	unset_env(char *key)
 			if (prev)
 				prev->next = current->next;
 			else
-				g_minishell.envlst = current->next;
+				envlst = current->next;
 			free(current);
 			return ;
 		}
@@ -35,7 +35,7 @@ static void	unset_env(char *key)
 	}
 }
 
-int	ft_unset(char **args)
+int	ft_unset(t_env *envlst, char **args)
 {
 	int		i;
 	bool	err;
@@ -54,7 +54,7 @@ int	ft_unset(char **args)
 			err = true;
 		}
 		else
-			unset_env(envlst_handler(env_key(args[i]), false));
+			unset_env(envlst, envlst_handler(env_key(args[i]), false));
 		i++;
 	}
 	return (err);

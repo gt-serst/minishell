@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:59:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/21 18:33:42 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:51:12 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_token	*new_tk(void *content, t_token_type type)
 
 	elem = malloc(sizeof(t_token));
 	if (!elem)
-		return (set_token_err(TE_MEM), NULL);
+		return (error(E_MEM, NULL, NULL), NULL);
 	elem->value = content;
 	elem->type = type;
 	elem->next = NULL;

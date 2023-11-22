@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/21 14:31:02 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:11:20 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,42 +26,50 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <sys/errno.h>
-
 # include "../Libft/libft.h"
 # include "tokenization.h"
 # include "parsing.h"
 # include "expanding.h"
-# include "execution.h"
 # include "builtins.h"
+# include "execution.h"
 # include "cleaning.h"
-# include "errors.h"
 
-typedef struct s_io
+bool	g_signint_child;
+
+typedef enum e_err_type
 {
-	int	input;
-	int	output;
-}		t_io;
+	E_QUOTES = 1,
+	E_FILE = 1,
+	E_NO_SUCH_FILE = 1,
+	E_TOO_MANY_ARGS = 1,
+	E_SYNTAX = 1,
+	E_EXPORT = 1,
+	E_MEM = 12,
+	E_CMD_NOT_FOUND = 127,
+	E_NUM_MANDATORY = 255,
+	E_UNEXP_TOK = 258
+}		t_err_type;
 
-typedef struct s_prompt
+typedef struct s_err
 {
-	char	**env;
-	char	*cmd_line;
-}		t_prompt;
+	t_err_type	type;
+	char		*str;
+}		t_err;
 
-typedef struct s_minishell
-{
-	t_token	*token;
-	t_node	*ast;
-	int		err_code;
-}		t_minishell;
+//	init
+void	init_env(t_minishell *m, char **envp);
 
-//INIT
-void	init_env(char **envp);
+//	error
+void	error(t_err_type type, char *token, char *cmd);
+void	num_mandatory_err_message(char *cmd);
+void	cmd_err_message(char *cmd);
+void	unexp_tok_err_message(char *token);
+void	file_err_message(char *file);
+void	export_err_message(char *s);
+void	quotes_err_message(char *s);
+void	ft_exit_message(char *str);
 
-//ERRORS
-void	error(int err, char *token, char *cmd);
-
-//UTILS
+//	utils
 void	ft_print_ast(t_node *node);
 void	ft_print_expanded_ast(t_node *node);
 char	*ft_strjoin_free(char *s1, char *s2);

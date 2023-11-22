@@ -3,39 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 12:07:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/17 17:29:30 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:43:50 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	declare_envlst(void)
+static void	declare_envlst(t_env *envlst)
 {
-	t_env	*list;
+	t_env	*lst;
 	size_t	i;
 
-	list = g_minishell.envlst;
-	while (list)
+	lst = envlst;
+	while (lst)
 	{
-		if (list->value != NULL && (ft_strcmp(list->key, "_") != 0))
+		if (lst->value != NULL && (ft_strcmp(lst->key, "_") != 0))
 		{
-			printf("declare -x %s=\"", list->key);
+			printf("declare -x %s=\"", lst->key);
 			i = 0;
-			while ((list->value)[i])
+			while ((lst->value)[i])
 			{
-				if ((list->value)[i] == '$' || (list->value)[i] == '"')
-					printf("\\%c", (list->value)[i++]);
+				if ((lst->value)[i] == '$' || (lst->value)[i] == '"')
+					printf("\\%c", (lst->value)[i++]);
 				else
-					printf("%c", (list->value)[i++]);
+					printf("%c", (lst->value)[i++]);
 			}
 			printf("\"\n");
 		}
-		else if (list->value == NULL && (ft_strcmp(list->key, "_") != 0))
-			printf("declare -x %s\n", list->key);
-		list = list->next;
+		else if (lst->value == NULL && (ft_strcmp(lst->key, "_") != 0))
+			printf("declare -x %s\n", lst->key);
+		lst = lst->next;
 	}
 }
 
@@ -55,7 +55,7 @@ static int	check_key(char *str)
 	return (1);
 }
 
-int	ft_export(char **argv)
+int	ft_export(t_env *envlst, char **argv)
 {
 	int		i;
 	int		err_code;
@@ -64,25 +64,19 @@ int	ft_export(char **argv)
 	err_code = 0;
 	i = 1;
 	if (!argv[1])
-		return (declare_envlst(), 0);
+		return (declare_envlst(envlst), 0);
 	while (argv[i])
 	{
-		printf("HELLO\n\n");
 		if (check_key(argv[i]) == 0)
-			err_code = export_err_message(argv[i]);
+			error(E_EXPORT, NULL, argv[i]);
 		else
 		{
 			key = env_key(argv[i]);
-			if (env_exists(key))
-			{
-				update_envlst(key, env_value(argv[i]), false);
-			}
+			if (env_exists(envlst, key))
+				update_envlst(envlst, key, env_value(argv[i]), false);
 			else
-			{
-				update_envlst(key, env_value(argv[i]), true);
-			}
+				update_envlst(envlst, key, env_value(argv[i]), true);
 		}
-		printf("Argv%s\n", argv[i]);
 		i++;
 	}
 	return (err_code);

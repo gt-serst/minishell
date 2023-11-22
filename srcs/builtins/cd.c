@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:59:51 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/14 09:51:23 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:04:11 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	new_pwd(void)
+static int	new_pwd(t_env *envlst)
 {
 	char	*cwd;
 
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 		return (1);
-	return (update_envlst("PWD", cwd, false), 0);
+	return (update_envlst(envlst, "PWD", cwd, false), 0);
 }
 
-static int	cd_home_user(void)
+static int	cd_home_user(t_env *envlst)
 {
 	char	*home;
 
-	update_envlst("OLDPWD", envlst_val("PWD"), false);
-	home = envlst_val("HOME");
+	update_envlst(envlst, "OLDPWD", envlst_val(envlst, "PWD"), false);
+	home = envlst_val(envlst, "HOME");
 	if (!home)
 	{
 		ft_putstr_fd("minishell: cd: HOME not set\n", 2);
@@ -35,7 +35,7 @@ static int	cd_home_user(void)
 	}
 	if (chdir(home) == 0)
 	{
-		update_envlst("PWD", home, false);
+		update_envlst(envlst, "PWD", home, false);
 		return (0);
 	}
 	return (1);
@@ -50,12 +50,12 @@ static int	cd_err_msg(char *err_msg)
 	return (1);
 }
 
-int	ft_cd(char *path)
+int	ft_cd(t_env *envlst, char *path)
 {
 	if (!path || ft_strcmp(path, "~") == 0)
-		return (cd_home_user());
+		return (cd_home_user(envlst));
 	if (chdir(path) != 0)
 		return (cd_err_msg(path));
-	update_envlst("OLDPWD", envlst_val("PWD"), false);
-	return (new_pwd());
+	update_envlst(envlst, "OLDPWD", envlst_val(envlst, "PWD"), false);
+	return (new_pwd(envlst));
 }

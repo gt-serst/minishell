@@ -6,13 +6,13 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:57:14 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/21 12:23:17 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:15:57 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	exec_pipe_child(t_node *node, int *pipefd, t_ast_direction direction)
+static void	exec_pipe_child(t_minishell *m, t_node *node, int *pipefd, t_ast_direction direction)
 {
 	int	status;
 
@@ -27,33 +27,32 @@ static void	exec_pipe_child(t_node *node, int *pipefd, t_ast_direction direction
 		close(pipefd[1]);
 		dup2(pipefd[0], STDIN_FILENO);
 		close(pipefd[0]);
-		// dup2(pipefd[0], 0);
 	}
-	status = exec_node(node, true);
-	(shell_cleaner(), exit(status));
+	status = exec_node(m, node, true);
+	(shell_cleaner(m), exit(status));
 }
 
-int	exec_pipeline(t_node *node)
+int	exec_pipeline(t_minishell *m, t_node *node)
 {
 	int	status;
 	int	pipefd[2];
 	pid_t	left_pid;
 	pid_t	right_pid;
 
-	g_minishell.signint_child = true;
+	g_signint_child = true;
 	pipe(pipefd);
 	left_pid = fork();
 	if (!left_pid)
-		exec_pipe_child(node->data.pipe.left, pipefd, D_LEFT);
+		exec_pipe_child(m, node->data.pipe.left, pipefd, D_LEFT);
 	else
 	{
 		right_pid = fork();
 		if (!right_pid)
-			exec_pipe_child(node->data.pipe.right, pipefd, D_RIGHT);
+			exec_pipe_child(m, node->data.pipe.right, pipefd, D_RIGHT);
 		else
 		{
 			(close_pipe(pipefd), waitpid(left_pid, &status, 0), waitpid(right_pid, &status, 0));
-			g_minishell.signint_child = false;
+			g_signint_child = false;
 			return (get_exit_status(status));
 		}
 	}

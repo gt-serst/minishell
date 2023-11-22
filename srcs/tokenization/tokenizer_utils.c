@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:58:21 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/15 09:50:27 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:25:09 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,5 @@ bool	skip_quotes(char *cmd_line, size_t *i)
 		return (true);
 	}
 	else
-		return (quotes_err_message(quote), false);
+		return (error(E_QUOTES, &quote, NULL), NULL);
 }

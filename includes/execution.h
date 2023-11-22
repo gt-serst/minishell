@@ -6,28 +6,12 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:14:07 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/20 13:46:37 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:45:35 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTION_H
 # define EXECUTION_H
-
-typedef enum e_exec_err_type
-{
-	EXE_ARG,
-	EXE_CMD_NOT_FOUND,
-	EXE_NO_SUCH_FILE,
-	EXE_PERM_DENIED,
-	EXE_TOO_MANY_ARGS,
-	EXE_NUM_MANDATORY
-}	t_exec_err_type;
-
-typedef struct s_exec_err
-{
-	t_exec_err_type type;
-	char			*str;
-}	t_exec_err;
 
 typedef enum e_ast_direction
 {
@@ -36,17 +20,17 @@ typedef enum e_ast_direction
 }	t_ast_direction;
 
 //	execution
-int		exec_ast(t_node *node);
-int		exec_node(t_node *node, bool piped);
-int		exec_pipeline(t_node *node);
-int		exec_simple_cmd(t_node *node, bool piped);
-int		exec_builtins(char **args, bool piped);
+int		exec_ast(t_minishell *m, t_node *node);
+int		exec_node(t_minishell *m, t_node *node, bool piped);
+int		exec_pipeline(t_minishell *m, t_node *node);
+int		exec_simple_cmd(t_minishell *m, t_node *node, bool piped);
+int		exec_builtins(t_minishell *m, char **args, bool piped);
 bool	is_builtin(char *arg);
-char	*path_to_cmd(char *cmd);
+char	*path_to_cmd(t_env *envlst, char *cmd);
 
 //	utils
 int		get_exit_status(int status);
 void	close_pipe(int *pipefd);
-void	close_io(bool piped);
+void	close_io(t_minishell *m, bool piped);
 
 #endif

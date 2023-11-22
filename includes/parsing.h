@@ -6,24 +6,12 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:45:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/21 18:31:58 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:29:43 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
-
-typedef enum e_parsing_err_type
-{
-	PE_MEM,
-	PE_SYNTAX
-}	t_parsing_err_type;
-
-typedef struct s_parsing_err
-{
-	t_parsing_err_type	type;
-	char				*str;
-}	t_parsing_err;
 
 typedef enum e_node_type
 {
@@ -71,24 +59,24 @@ typedef struct s_node
 	t_node_data	data;
 }	t_node;
 
-//PARSER
+//	parser
 t_node	*parser(t_token **token);
 t_node	*ast_builder(t_token **token, t_token *curr_token);
 t_node	*get_simple_cmd(t_token *curr_token);
 
-//PARSER UTILS
-t_token	*get_next_token(t_token **token);
+//	parser utils
+t_token	*get_next_token(t_token *token);
 bool	is_pipe(t_token *curr_token);
 bool		is_redir(t_token_type type);
 
-//ND UTILS
+//	node utils
 t_node_type		get_nd_type(t_token_type type);
 t_io_node_type	get_io_nd_type(t_token_type type);
 t_node			*new_nd(t_node_type type);
 t_io_node		*new_io_nd(t_io_node_type type);
 void			io_lstadd_back(t_io_node **io_node, t_io_node *elem);
 
-//AST CLEANER
+//	cleaner
 void		ast_cleaner(t_node **ast, t_token **token);
 void		io_node_lstcleaner(t_io_node **io_node);
 

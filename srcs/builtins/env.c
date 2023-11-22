@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:24:26 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/17 17:14:26 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:54:41 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-bool	env_exists(char *key)
+bool	env_exists(t_env *envlst, char *key)
 {
-	t_env	*envlst;
+	t_env	*lst;
 
-	envlst = g_minishell.envlst;
-	while (envlst)
+	lst = envlst;
+	while (lst)
 	{
-		if (!ft_strcmp(key, envlst->key))
+		if (!ft_strcmp(key, lst->key))
 			return (true);
-		envlst = envlst->next;
+		lst = lst->next;
 	}
 	return (false);
 }
@@ -58,37 +58,35 @@ char	*env_value(char *str)
 	return (ft_strdup(str));
 }
 
-void	envlst_init(void)
+void	envlst_init(t_env *envlst, char **env)
 {
-	char	**envlst;
 	char	*key;
 	char	*value;
 	int		i;
 
 	(void)value;
-	i = 0;
-	envlst = g_minishell.environ;
-	if (!envlst)
+	if (!env)
 		return ;
-	while (envlst[i])
+	i = 0;
+	while (env[i])
 	{
-		key = env_key(envlst[i]);
-		value = env_value(envlst[i]);
-		update_envlst(key, value, true);
+		key = env_key(env[i]);
+		value = env_value(env[i]);
+		update_envlst(envlst, key, value, true);
 		i++;
 	}
 }
 
-int	ft_env(void)
+int	ft_env(t_env *envlst)
 {
-	t_env	*list;
+	t_env	*lst;
 
-	list = g_minishell.envlst;
-	while (list)
+	lst = envlst;
+	while (lst)
 	{
-		if (list->value != NULL)
-			ft_printf("%s=%s\n", list->key, list->value);
-		list = list->next;
+		if (lst->value != NULL)
+			ft_printf("%s=%s\n", lst->key, lst->value);
+		lst = lst->next;
 	}
 	return (0);
 }

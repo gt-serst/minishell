@@ -6,13 +6,13 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:04:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/17 13:14:23 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:16:26 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*handle_dollar(char *str, size_t *i)
+char	*handle_dollar(t_minishell *m, char *str, size_t *i)
 {// handle particular case like $ + digit, $ + @, $ + ? and $ + non-numerical then get the value of the envar to replace it in str
 	size_t	start;
 	char	*var;
@@ -27,7 +27,7 @@ char	*handle_dollar(char *str, size_t *i)
 	else if (str[*i] == '?')
 	{
 		(*i)++;
-		return (ft_itoa(g_minishell.err_code));
+		return (ft_itoa(m->err_code));
 	}
 	else if (!is_valid_var_char(str[*i]))
 		return (ft_strdup("$"));
@@ -35,7 +35,7 @@ char	*handle_dollar(char *str, size_t *i)
 	while (is_valid_var_char(str[*i]))
 		(*i)++;
 	var = ft_substr(str, start, *i - start);
-	env_val = envlst_val(var);
+	env_val = envlst_val(m->envlst, var);
 	if (!env_val)
 		return (free(var), ft_strdup(""));
 	return (free(var), ft_strdup(env_val));
@@ -67,7 +67,7 @@ char	*handle_squotes(char *str, size_t *i)
 	return (substr);
 }
 
-char	*handle_dquotes(char *str, size_t *i)
+char	*handle_dquotes(t_minishell *m, char *str, size_t *i)
 {
 	char	*ret;
 
@@ -76,7 +76,7 @@ char	*handle_dquotes(char *str, size_t *i)
 	while (str[*i] != '"')
 	{
 		if (str[*i] == '$')
-			ret = ft_strjoin_free(ret, handle_dollar(str, i));
+			ret = ft_strjoin_free(ret, handle_dollar(m, str, i));
 		else
 			ret = ft_strjoin_free(ret, handle_normal_dquotes(str, i));
 	}

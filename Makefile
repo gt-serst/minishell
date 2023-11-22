@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/11/21 14:09:50 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/11/22 14:36:07 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,19 +56,12 @@ TOKENIZATION	:=	srcs/tokenization/tk_utils.c\
 					srcs/tokenization/tokenizer_utils.c\
 					srcs/tokenization/tokenizer.c
 
-ERRORS			:=	srcs/errors/exec_err.c\
-					srcs/errors/expand_err.c\
-					srcs/errors/main_err.c\
-					srcs/errors/parsing_err.c\
-					srcs/errors/token_err.c
-
 SRCS			:=	$(BUILTINS)\
 					$(CLEANING)\
 					$(EXECUTION)\
 					$(EXPANDING)\
 					$(PARSING)\
 					$(TOKENIZATION)\
-					$(ERRORS)\
 					srcs/main.c\
 					srcs/init.c\
 					srcs/utils.c\

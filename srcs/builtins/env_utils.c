@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:26:14 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/17 17:20:45 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:57:14 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*envlst_val(char *key)
+char	*envlst_val(t_env *envlst, char *key)
 {
-	t_env	*envlst;
+	t_env	*lst;
 
-	envlst = g_minishell.envlst;
-	while (envlst)
+	lst = envlst;
+	while (lst)
 	{
-		if (!ft_strcmp(key, envlst->key))
-			return (envlst->value);
-		envlst = envlst->next;
+		if (!ft_strcmp(key, lst->key))
+			return (lst->value);
+		lst = lst->next;
 	}
 	return (NULL);
 }
@@ -48,54 +48,52 @@ static void	ft_del(void *ptr)
 
 void	*envlst_handler(void *ptr, bool clean)
 {
-	static t_list	*list;
+	static t_list	*lst;
 
 	if (clean)
 	{
-		ft_lstclear(&list, ft_del);
+		ft_lstclear(&lst, ft_del);
 		return (NULL);
 	}
 	else
 	{
-		ft_lstadd_back(&list, ft_lstnew(ptr));
+		ft_lstadd_back(&lst, ft_lstnew(ptr));
 		return (ptr);
 	}
 }
 
-static void	envlst_back(t_env *new)
+static void	envlst_back(t_env *envlst, t_env *new)
 {
 	t_env	*curr;
 
 	if (!new)
 		return ;
-	if (!g_minishell.envlst)
+	if (!envlst)
 	{
-		g_minishell.envlst = new;
+		envlst = new;
 		return ;
 	}
-	curr = g_minishell.envlst;
+	curr = envlst;
 	while (curr && curr->next)
 		curr = curr->next;
 	curr->next = new;
 }
 
-void	update_envlst(char *key, char *value, bool create)
+void	update_envlst(t_env *envlst, char *key, char *value, bool create)
 {
-	t_env	*envlst;
+	t_env	*lst;
 
-	envlst = g_minishell.envlst;
-	while (envlst)
+	lst = envlst;
+	while (lst)
 	{
-		if (!ft_strcmp(key, envlst->key))
+		if (!ft_strcmp(key, lst->key))
 		{
 			if (value)
-			{
-				envlst->value = envlst_handler(ft_strdup(value), false);
-			}
+				lst->value = envlst_handler(ft_strdup(value), false);
 			return ;
 		}
-		envlst = envlst->next;
+		lst = lst->next;
 	}
 	if (create)
-		envlst_back(new_envlst(key, value));
+		envlst_back(lst, new_envlst(key, value));
 }

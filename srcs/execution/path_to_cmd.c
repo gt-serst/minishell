@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_to_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:51:52 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/15 16:37:59 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:13:35 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static char	*env_path_parsed(char *path, char *cmd)
 	char	*cmd_path;
 	char	**split_path;
 
-	//printf("%s\n", cmd);
 	split_path = ft_split(path, ':');
 	i = 0;
 	while (split_path[i])
@@ -40,16 +39,16 @@ static char	*env_path_parsed(char *path, char *cmd)
 	return (NULL);
 }
 
-char	*path_to_cmd(char *cmd)
+char	*path_to_cmd(t_env *envlst, char *cmd)
 {
 	char	*value;
 
 	if (*cmd == '\0')
-		return (set_exec_err(EXE_CMD_NOT_FOUND), NULL);
+		return (error(E_CMD_NOT_FOUND, NULL, cmd), NULL);
 	if (ft_strnstr(cmd, "/", ft_strlen(cmd))) //if path already in the command
 		return (check_access(cmd), cmd);
-	value = envlst_val("PATH");
+	value = envlst_val(envlst, "PATH");
 	if (value)
 		return (env_path_parsed(value, cmd));
-	return (set_exec_err(EXE_NO_SUCH_FILE), NULL);
+	return (error(E_NO_SUCH_FILE, NULL, cmd), NULL);
 }

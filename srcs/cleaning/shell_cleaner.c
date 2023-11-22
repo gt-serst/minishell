@@ -3,35 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   shell_cleaner.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:12:28 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/15 16:52:38 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/22 15:11:34 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	envlst_cleaner(void)
+void	envlst_cleaner(t_env *envlst)
 {
-	t_env	*envlst;
-	t_env	*envlst_tofree;
+	t_env	*lst;
+	t_env	*tmp;
 
-	envlst = g_minishell.envlst;
-	while (envlst)
+	lst = envlst;
+	while (lst)
 	{
-		envlst_tofree = envlst;
-		envlst = envlst->next;
-		free(envlst_tofree);
+		tmp = envlst;
+		lst = lst->next;
+		free(tmp);
 	}
-	g_minishell.envlst = NULL;
+	envlst = NULL;
 }
 
-void	shell_cleaner(void)
+void	shell_cleaner(t_minishell *m)
 {
-	// envlst_handler(NULL, true);
-	ast_cleaner(&g_minishell.ast);
-	// envlst_cleaner();
-	// clear_history();
-	tcsetattr(STDIN_FILENO, TCSANOW, &g_minishell.original_term);
+	ast_cleaner(&m->ast, &m->token);
+	tcsetattr(STDIN_FILENO, TCSANOW, &m->original_term);
+}
+
+void	shell_shutdown(t_minishell *m)
+{
+	ast_cleaner(&m->ast, &m->token);
+	envlst_cleaner(m->envlst);
+	clear_history();
+	tcsetattr(STDIN_FILENO, TCSANOW, &m->original_term);
 }
