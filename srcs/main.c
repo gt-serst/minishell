@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 10:29:30 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:56:19 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int	main(int argc, char **argv, char **envp)
 			ft_exit_message("bash: command line not found\n");
 		if (m.cmd_line[0])
 			add_history(m.cmd_line);
-		m.token = tokenizer(m.cmd_line);
+		m.token = tokenizer(&m);
 		if (!m.token)
 			continue ;
-		m.ast = parser(&m.token);
+		m.ast = parser(&m);
 		if (!m.ast)
 			continue ;
 		if (!exec_ast(&m, m.ast))

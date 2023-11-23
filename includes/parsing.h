@@ -6,13 +6,13 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:45:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 10:50:58 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:56:35 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
-
+/*
 typedef enum e_node_type
 {
 	N_PIPE,
@@ -58,9 +58,9 @@ typedef struct s_node
 	t_node_type	type;
 	t_node_data	data;
 }	t_node;
-
+*/
 //	parser
-t_node	*parser(t_token **token);
+t_node	*parser(t_minishell *m);
 t_node	*ast_builder(t_token **curr_token);
 t_node	*get_simple_cmd(t_token **curr_token);
 

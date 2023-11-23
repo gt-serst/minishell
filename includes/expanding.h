@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 10:52:16 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 10:24:36 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:50:15 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "minishell.h"
 
+/*
 typedef struct s_env
 {
 	char			*key;
@@ -34,6 +35,7 @@ typedef struct s_minishell
 	int					err_code;
 	struct termios		original_term;
 }		t_minishell;
+*/
 
 //	expander
 bool	recursive_expander(t_minishell *m, t_node *node);
