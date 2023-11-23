@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:18:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/22 17:16:56 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 10:39:18 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,8 @@ typedef struct s_token
 	struct s_token	*prev;
 }	t_token;
 
-typedef struct s_prompt
-{
-	char	*cmd_line;
-	char	*env;
-}		t_prompt;
-
 //	tokenization
-t_token	*tokenizer(t_prompt *prompt);
+t_token	*tokenizer(char *line);
 bool	unexpected_token(char c);
 t_token	*separator_handler(char	**cmd_line);
 t_token	*identifier_handler(char **cmd_line);

@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 10:52:16 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/22 17:16:52 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 10:24:36 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ typedef struct s_minishell
 {
 	int					input;
 	int					output;
+	char				*cmd_line;
 	t_token				*token;
 	t_node				*ast;
 	t_env				*envlst;
-	t_prompt			*prompt;
 	char				**env;
 	int					err_code;
 	struct termios		original_term;

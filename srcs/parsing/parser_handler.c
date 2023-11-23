@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:24:59 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/22 17:25:58 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:31:27 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,19 @@ static int	arglen(t_token *curr_token)
 	return (res);
 }
 
-static bool	token_into_args(t_node* simple_cmd, t_token *curr_token)
+static bool	token_into_args(t_node *simple_cmd, t_token **curr_token)
 {
 	int	i;
 
 	i = -1;
-	simple_cmd->data.simple_cmd.args = malloc(sizeof(char *) * (arglen(curr_token) + 1));
+	simple_cmd->data.simple_cmd.args = malloc(sizeof(char *) * (arglen(*curr_token) + 1));
 	if (!simple_cmd->data.simple_cmd.args)
 		return (error(E_MEM, NULL, NULL), false);
 	ft_bzero(simple_cmd->data.simple_cmd.args, sizeof(char *));
-	while (curr_token && (curr_token->type == T_IDENTIFIER
-		|| is_redir(curr_token->type)))
+	while (*curr_token && ((*curr_token)->type == T_IDENTIFIER
+		|| is_redir((*curr_token)->type)))
 	{
-		simple_cmd->data.simple_cmd.args[++i] = ft_strdup(curr_token->value);
+		simple_cmd->data.simple_cmd.args[++i] = ft_strdup((*curr_token)->value);
 /*
 		if (is_redir(g_minishell.curr_token->type))
 		{
@@ -62,26 +62,29 @@ static bool	token_into_args(t_node* simple_cmd, t_token *curr_token)
 				return (false);
 		}
 */
-		curr_token = get_next_token(curr_token);
+		get_next_token(curr_token);
 	}
 	simple_cmd->data.simple_cmd.args[++i] = NULL;
 	return (true);
 }
 
-t_node	*get_simple_cmd(t_token *curr_token)
+t_node	*get_simple_cmd(t_token **curr_token)
 {// get the cmd and the cmd args of the simple cmd then create a tree node
 	t_node	*simple_cmd;
 
+	if (!*curr_token)
+		return (NULL);
 	simple_cmd = new_nd(N_CMD);
 	if (!simple_cmd)
 		return (error(E_MEM, NULL, NULL), NULL);
-	while (curr_token && (curr_token->type == T_IDENTIFIER
-		|| is_redir(curr_token->type)))
+	while (*curr_token && ((*curr_token)->type == T_IDENTIFIER
+		|| is_redir((*curr_token)->type)))
 	{
 		simple_cmd->data.simple_cmd.fdin = STDIN_FILENO;
 		simple_cmd->data.simple_cmd.fdout = STDOUT_FILENO;
-		if (!token_into_args(simple_cmd, &curr_token))
+		if (!token_into_args(simple_cmd, curr_token))
 			return (error(E_MEM, NULL, NULL), NULL);
+		printf("%s\n", simple_cmd->data.simple_cmd.args[0]);
 	}
 	return (simple_cmd);
 }

@@ -6,17 +6,22 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:10:49 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/21 18:23:36 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 10:42:52 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_token	*get_next_token(t_token *curr_token)
+void	get_next_token(t_token **curr_token)
 {
-	if (!curr_token)
-		return (NULL);
-	return (curr_token->next);
+	t_token	*tmp;
+
+	tmp = *curr_token;
+	if (!tmp)
+		return ;
+	*curr_token = (*curr_token)->next;
+	free(tmp->value);
+	free(tmp);
 }
 
 bool	is_pipe(t_token *curr_token)
