@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 14:45:10 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:45:53 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ int	main(int argc, char **argv, char **envp)
 		m.ast = parser(&m);
 		if (!m.ast)
 			continue ;
-		if (!exec_ast(&m, m.ast))
-			continue ;
+		exec_ast(&m, m.ast);
 		shell_cleaner(&m);
 		//system("leaks minishell");
 	}
