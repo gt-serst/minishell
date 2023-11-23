@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_output.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:43:58 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/23 17:07:58 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:13:00 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	handle_sigint(int signum)
 	g_signint = 1;
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
 }
 
 void	handle_sigquit(int signum)
