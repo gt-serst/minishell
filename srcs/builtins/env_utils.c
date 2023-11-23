@@ -6,17 +6,17 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:26:14 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/22 16:57:14 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:16:13 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*envlst_val(t_env *envlst, char *key)
+char	*envlst_val(t_env **envlst, char *key)
 {
 	t_env	*lst;
 
-	lst = envlst;
+	lst = *envlst;
 	while (lst)
 	{
 		if (!ft_strcmp(key, lst->key))
@@ -62,28 +62,28 @@ void	*envlst_handler(void *ptr, bool clean)
 	}
 }
 
-static void	envlst_back(t_env *envlst, t_env *new)
+static void	envlst_back(t_env **envlst, t_env *new)
 {
 	t_env	*curr;
 
 	if (!new)
 		return ;
-	if (!envlst)
+	if (!*envlst)
 	{
-		envlst = new;
+		*envlst = new;
 		return ;
 	}
-	curr = envlst;
+	curr = *envlst;
 	while (curr && curr->next)
 		curr = curr->next;
 	curr->next = new;
 }
 
-void	update_envlst(t_env *envlst, char *key, char *value, bool create)
+void	update_envlst(t_env **envlst, char *key, char *value, bool create)
 {
 	t_env	*lst;
 
-	lst = envlst;
+	lst = *envlst;
 	while (lst)
 	{
 		if (!ft_strcmp(key, lst->key))
@@ -95,5 +95,5 @@ void	update_envlst(t_env *envlst, char *key, char *value, bool create)
 		lst = lst->next;
 	}
 	if (create)
-		envlst_back(lst, new_envlst(key, value));
+		envlst_back(envlst, new_envlst(key, value));
 }

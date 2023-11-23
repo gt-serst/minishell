@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:24:59 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 11:39:34 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 12:55:45 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,18 @@ static bool	get_io_node(t_io_node **io_node, t_token *curr_token)
 }
 */
 
-static int	arglen(t_token *curr_token)
+static int	arglen(t_token **curr_token)
 {
-	t_token	*token;
+	t_token	*tmp;
 	int		res;
 
-	token = curr_token;
+	tmp = *curr_token;
 	res = 0;
-	while (token && (token->type == T_IDENTIFIER
-			|| is_redir(token->type)))
+	while (tmp && (tmp->type == T_IDENTIFIER
+			|| is_redir(tmp->type)))
 	{
 		res++;
-		token = token->next;
+		tmp = tmp->next;
 	}
 	return (res);
 }
@@ -47,7 +47,7 @@ static bool	token_into_args(t_node *simple_cmd, t_token **curr_token)
 	int	i;
 
 	i = -1;
-	simple_cmd->data.simple_cmd.args = malloc(sizeof(char *) * (arglen(*curr_token) + 1));
+	simple_cmd->data.simple_cmd.args = malloc(sizeof(char *) * (arglen(curr_token) + 1));
 	if (!simple_cmd->data.simple_cmd.args)
 		return (error(E_MEM, NULL, NULL), false);
 	ft_bzero(simple_cmd->data.simple_cmd.args, sizeof(char *));
@@ -85,6 +85,5 @@ t_node	*get_simple_cmd(t_token **curr_token)
 		if (!token_into_args(simple_cmd, curr_token))
 			return (error(E_MEM, NULL, NULL), NULL);
 	}
-	printf("%s\n", simple_cmd->data.simple_cmd.args[0]);
 	return (simple_cmd);
 }

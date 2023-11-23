@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/22 17:11:20 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 12:02:37 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ bool	g_signint_child;
 
 typedef enum e_err_type
 {
-	E_QUOTES = 1,
-	E_FILE = 1,
-	E_NO_SUCH_FILE = 1,
-	E_TOO_MANY_ARGS = 1,
-	E_SYNTAX = 1,
-	E_EXPORT = 1,
+	E_QUOTES,
+	E_FILE,
+	E_NO_SUCH_FILE,
+	E_TOO_MANY_ARGS,
+	E_SYNTAX,
+	E_EXPORT,
 	E_MEM = 12,
 	E_CMD_NOT_FOUND = 127,
 	E_NUM_MANDATORY = 255,

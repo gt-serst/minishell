@@ -6,18 +6,18 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 12:07:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/22 15:43:50 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:51:21 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	declare_envlst(t_env *envlst)
+static void	declare_envlst(t_env **envlst)
 {
 	t_env	*lst;
 	size_t	i;
 
-	lst = envlst;
+	lst = *envlst;
 	while (lst)
 	{
 		if (lst->value != NULL && (ft_strcmp(lst->key, "_") != 0))
@@ -55,7 +55,7 @@ static int	check_key(char *str)
 	return (1);
 }
 
-int	ft_export(t_env *envlst, char **argv)
+int	ft_export(t_env **envlst, char **argv)
 {
 	int		i;
 	int		err_code;

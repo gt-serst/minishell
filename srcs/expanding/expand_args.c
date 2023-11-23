@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:33:32 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/22 16:18:39 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:50:27 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ bool	expand_args(t_minishell *m, t_node *node)
 		i++;
 	}
 	node->data.simple_cmd.expanded_args[i] = NULL;
+	//ft_print_expanded_ast(node);
 	return (true);
 }

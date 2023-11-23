@@ -6,17 +6,17 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:24:26 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/22 16:54:41 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:15:51 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-bool	env_exists(t_env *envlst, char *key)
+bool	env_exists(t_env **envlst, char *key)
 {
 	t_env	*lst;
 
-	lst = envlst;
+	lst = *envlst;
 	while (lst)
 	{
 		if (!ft_strcmp(key, lst->key))
@@ -58,12 +58,15 @@ char	*env_value(char *str)
 	return (ft_strdup(str));
 }
 
-void	envlst_init(t_env *envlst, char **env)
+void	envlst_init(t_env **envlst, char **env)
 {
 	char	*key;
 	char	*value;
 	int		i;
 
+	int j = 0;
+	while (env[j])
+		printf("%s\n", env[j++]);
 	(void)value;
 	if (!env)
 		return ;
@@ -72,16 +75,20 @@ void	envlst_init(t_env *envlst, char **env)
 	{
 		key = env_key(env[i]);
 		value = env_value(env[i]);
+		printf("Key %s\n", key);
+		printf("Value %s\n", value);
 		update_envlst(envlst, key, value, true);
+		printf("Key in envlst: %s\n", (*envlst)->key);
+		printf("Value in envlst: %s\n", (*envlst)->value);
 		i++;
 	}
 }
 
-int	ft_env(t_env *envlst)
+int	ft_env(t_env **envlst)
 {
 	t_env	*lst;
 
-	lst = envlst;
+	lst = *envlst;
 	while (lst)
 	{
 		if (lst->value != NULL)

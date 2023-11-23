@@ -6,19 +6,19 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:37:51 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/22 12:11:49 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:53:09 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	unset_env(t_env *envlst, char *key)
+static void	unset_env(t_env **envlst, char *key)
 {
 	t_env	*current;
 	t_env	*prev;
 
 	prev = NULL;
-	current = envlst;
+	current = *envlst;
 	while (current)
 	{
 		if (!ft_strcmp(key, current->key))
@@ -26,7 +26,7 @@ static void	unset_env(t_env *envlst, char *key)
 			if (prev)
 				prev->next = current->next;
 			else
-				envlst = current->next;
+				current = current->next;
 			free(current);
 			return ;
 		}
@@ -35,7 +35,7 @@ static void	unset_env(t_env *envlst, char *key)
 	}
 }
 
-int	ft_unset(t_env *envlst, char **args)
+int	ft_unset(t_env **envlst, char **args)
 {
 	int		i;
 	bool	err;

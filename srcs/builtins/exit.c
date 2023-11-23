@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:17:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/22 15:08:58 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:57:40 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	ft_exit(t_minishell *m, char **args, bool piped)
 			err_code = exitnbr(m, args[1]);
 	}
 	close_io(m, piped);
-	shell_cleaner(m);
-	envlst_cleaner(m->envlst);
+	shell_shutdown(m);
 	exit(err_code);
 }

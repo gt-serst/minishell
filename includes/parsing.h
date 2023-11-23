@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:45:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 11:56:35 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 12:39:23 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_node	*ast_builder(t_token **curr_token);
 t_node	*get_simple_cmd(t_token **curr_token);
 
 //	parser utils
-void	get_next_token(t_token **token);
+void	get_next_token(t_token **curr_token);
 bool	is_pipe(t_token *curr_token);
 bool		is_redir(t_token_type type);
 

@@ -6,25 +6,29 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:12:28 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 11:38:59 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:00:21 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	envlst_cleaner(t_env *envlst)
+void	envlst_cleaner(t_env **envlst)
 {
-	t_env	*lst;
-	t_env	*tmp;
+	t_env	*current;
+	t_env	*next;
 
-	lst = envlst;
-	while (lst)
+	if (!envlst)
+		return ;
+	current = *envlst;
+	while (current != NULL)
 	{
-		tmp = envlst;
-		lst = lst->next;
-		free(tmp);
+		next = current->next;
+		free(current->key);
+		free(current->value);
+		current = next;
+		free(current);
 	}
-	envlst = NULL;
+	*envlst = NULL;
 }
 
 void	shell_cleaner(t_minishell *m)
@@ -36,7 +40,7 @@ void	shell_cleaner(t_minishell *m)
 void	shell_shutdown(t_minishell *m)
 {
 	ast_cleaner(&m->ast);
-	envlst_cleaner(m->envlst);
+	envlst_cleaner(&m->envlst);
 	clear_history();
 	tcsetattr(STDIN_FILENO, TCSANOW, &m->original_term);
 }
