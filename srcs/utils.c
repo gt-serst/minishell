@@ -6,16 +6,29 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:36:34 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 12:57:25 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:54:21 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+void	ft_print_token(t_token *token)
+{
+	printf("Try to print token\n");
+	if (!token)
+		return ;
+	while (token)
+	{
+		printf("%s\n", token->value);
+		token = token->next;
+	}
+}
+
 void	ft_print_ast(t_node *node)
 {
 	int	i;
 
+	printf("Try to print ast\n");
 	if (!node)
 		return ;
 	if (node->type == N_CMD)
@@ -39,6 +52,7 @@ void	ft_print_expanded_ast(t_node *node)
 {
 	int	i;
 
+	printf("Try to print expanded ast\n");
 	if (!node)
 		return ;
 	if (node->type == N_CMD)

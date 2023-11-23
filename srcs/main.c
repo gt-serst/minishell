@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 17:33:05 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:49:14 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ int	main(int argc, char **argv, char **envp)
 		exec_ast(&m, m.ast);
 		tcsetattr(STDIN_FILENO, TCSANOW, &m.original_term);
 		shell_cleaner(&m);
+		ft_print_token(m.token);
+		ft_print_ast(m.ast);
+		ft_print_expanded_ast(m.ast);
 		//system("leaks minishell");
 	}
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 17:23:11 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:49:40 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	quotes_err_message(char *s);
 void	ft_exit_message(char *str);
 
 //	utils
+void	ft_print_token(t_token *token);
 void	ft_print_ast(t_node *node);
 void	ft_print_expanded_ast(t_node *node);
 char	*ft_strjoin_free(char *s1, char *s2);
