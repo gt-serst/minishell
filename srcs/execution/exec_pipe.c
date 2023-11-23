@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:57:14 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/22 15:15:57 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:56:52 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	exec_pipeline(t_minishell *m, t_node *node)
 	pid_t	left_pid;
 	pid_t	right_pid;
 
-	g_signint_child = true;
+	g_signint = 1;
 	pipe(pipefd);
 	left_pid = fork();
 	if (!left_pid)
@@ -52,7 +52,7 @@ int	exec_pipeline(t_minishell *m, t_node *node)
 		else
 		{
 			(close_pipe(pipefd), waitpid(left_pid, &status, 0), waitpid(right_pid, &status, 0));
-			g_signint_child = false;
+			g_signint = 0;
 			return (get_exit_status(status));
 		}
 	}

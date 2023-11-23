@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"dirent.h": "c",
+		"termios.h": "c",
+		"readline.h": "c"
+	}
+}
