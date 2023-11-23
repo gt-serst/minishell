@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:24:26 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/23 14:12:55 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 23:07:16 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	ft_env(t_env **envlst)
 	while (lst)
 	{
 		if (lst->value != NULL)
-			ft_printf("%s=%s\n", lst->key, lst->value);
+			printf("%s=%s\n", lst->key, lst->value);
 		lst = lst->next;
 	}
 	return (0);

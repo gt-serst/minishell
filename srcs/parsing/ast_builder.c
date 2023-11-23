@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_builder.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 08:50:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 12:39:05 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 00:26:14 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_node	*ast_builder(t_token **curr_token)
 	t_node			*right;
 	t_token_type	op;
 
-	//printf("Hello\n");
 	if (!*curr_token)
 		return (NULL);
 	left = get_simple_cmd(curr_token); //gets the left atom

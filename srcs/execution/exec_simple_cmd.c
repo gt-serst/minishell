@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/23 18:07:24 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 00:13:33 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,13 @@ int	exec_simple_cmd(t_minishell *m, t_node *node, bool piped)
 	}
 	if (node->data.simple_cmd.fdout != 1)
 	{
-		dup2(node->data.simple_cmd.fdout, STDOUT_FILENO); // output redir is blocked into this dup2
+		dup2(node->data.simple_cmd.fdout, STDOUT_FILENO); // output redir is blocked or in the command ls is not found into this dup2
 		close(node->data.simple_cmd.fdout);
 	}
 	if (is_builtin(node->data.simple_cmd.expanded_args[0]))
 	{
 		status = exec_builtins(m, node->data.simple_cmd.expanded_args, piped);
+		close_io(m, piped);
 		return (status);
 	}
 	else

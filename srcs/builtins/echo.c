@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:40:40 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/13 14:13:44 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 23:06:16 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,12 @@ int	ft_echo(char **args)
 	}
 	while (args[i])
 	{
-		ft_printf("%s", args[i]);
+		ft_putstr_fd(args[i], 1);
 		if (args[i + 1] != NULL)
-		{
-			ft_printf(" ");
-		}
+			ft_putstr_fd(" ", 1);
 		i++;
 	}
 	if (!no_newline)
-	{
-		ft_printf("\n");
-	}
+		ft_putstr_fd("\n", 1);
 	return 0;
 }

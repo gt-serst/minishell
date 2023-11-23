@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:24:59 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 12:55:45 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 00:45:29 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_node	*get_simple_cmd(t_token **curr_token)
 {// get the cmd and the cmd args of the simple cmd then create a tree node
 	t_node	*simple_cmd;
 
-	if (!*curr_token)
+	if (!*curr_token || is_pipe(*curr_token))
 		return (NULL);
 	simple_cmd = new_nd(N_CMD);
 	if (!simple_cmd)
@@ -80,6 +80,12 @@ t_node	*get_simple_cmd(t_token **curr_token)
 	while (*curr_token && ((*curr_token)->type == T_IDENTIFIER
 		|| is_redir((*curr_token)->type)))
 	{
+		if (is_redir((*curr_token)->type) && ((*curr_token)->next == NULL))
+		{
+			free((*curr_token)->value);
+			(*curr_token)->value = ft_strdup("new_line");
+			return (NULL);
+		}
 		simple_cmd->data.simple_cmd.fdin = STDIN_FILENO;
 		simple_cmd->data.simple_cmd.fdout = STDOUT_FILENO;
 		if (!token_into_args(simple_cmd, curr_token))

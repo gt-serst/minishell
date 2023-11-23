@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:56:39 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 14:47:57 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/23 23:11:56 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	error(t_err_type type, char *token, char *cmd)
 		cmd_err_message(cmd);
 	else if (type == E_NUM_MANDATORY)
 		cmd_err_message(cmd);
-	else if (type == E_EXPORT)
-		export_err_message(cmd);
 	else
 		ft_putstr_fd(get_str_err(type), 2);
 }
@@ -76,13 +74,6 @@ void	file_err_message(char *file)
 		ft_putstr_fd(file, 2);
 		ft_putstr_fd(": Permission denied\n", 2);
 	}
-}
-
-void	export_err_message(char *s)
-{
-	ft_putstr_fd("bash: export: `", 2);
-	ft_putstr_fd(s, 2);
-	ft_putstr_fd("': not a valid identifier\n", 2);
 }
 
 void	quotes_err_message(char *s)
