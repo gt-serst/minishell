@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 11:56:19 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:45:10 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv, char **envp)
 	init_env(&m, envp);
 	while (1)
 	{
+		// signals_init();
 		m.cmd_line = readline("~>"); //malloc allocation in cmd_line
 		if (!m.cmd_line)
 			ft_exit_message("bash: command line not found\n");
