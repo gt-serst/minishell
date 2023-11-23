@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 16:54:07 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:23:11 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,7 @@ void	ft_free_array(char **array);
 void	read_from_fd(t_node *node);
 
 // signals
-void	handle_sigint(int signum);
-void	handle_sigquit(int signum);
-void	signal_handlers(void);
-//void	rl_replace_line(const char *text, int clear_undo);
+void	init_signals(t_minishell *m);
+void	sigquit_handler(int num);
 
 #endif

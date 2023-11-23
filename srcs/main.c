@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 16:59:10 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:33:05 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv, char **envp)
 	init_env(&m, envp);
 	while (1)
 	{
-		signal_handlers();
+		init_signals(&m);
 		m.cmd_line = readline("~>"); //malloc allocation in cmd_line
 		if (!m.cmd_line)
 			ft_exit_message("bash: command line not found\n");
@@ -33,7 +33,9 @@ int	main(int argc, char **argv, char **envp)
 		m.ast = parser(&m);
 		if (!m.ast)
 			continue ;
+		signal(SIGQUIT, sigquit_handler);
 		exec_ast(&m, m.ast);
+		tcsetattr(STDIN_FILENO, TCSANOW, &m.original_term);
 		shell_cleaner(&m);
 		//system("leaks minishell");
 	}
