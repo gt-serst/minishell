@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/23 14:41:36 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:57:07 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	exec_child(t_minishell *m, t_node *node)
 	int		fork_pid;
 	char	*path_status;
 
-	g_signint_child = true;
+	g_signint = 1;
 	fork_pid = fork();
 	if (!fork_pid)
 	{
@@ -48,38 +48,23 @@ static int	exec_child(t_minishell *m, t_node *node)
 		}
 	}
 	waitpid(fork_pid, &status, 0);
-	g_signint_child = false;
+	g_signint = 0;
 	return (get_exit_status(status));
 }
 
 int	exec_simple_cmd(t_minishell *m, t_node *node, bool piped)
 {
 	int status;
-	if (piped)
+	
+	if (node->data.simple_cmd.fdin != 0)
 	{
-		if (node->data.simple_cmd.fdin != 0)
-		{
-			dup2(node->data.simple_cmd.fdin, STDIN_FILENO);
-			close(node->data.simple_cmd.fdin);
-		}
-		if (node->data.simple_cmd.fdout != 1)
-		{
-			dup2(node->data.simple_cmd.fdout, STDOUT_FILENO);
-			close(node->data.simple_cmd.fdout);
-		}
+		dup2(node->data.simple_cmd.fdin, STDIN_FILENO);
+		close(node->data.simple_cmd.fdin);
 	}
-	else
+	if (node->data.simple_cmd.fdout != 1)
 	{
-		if (node->data.simple_cmd.fdin != 0)
-		{
-			dup2(node->data.simple_cmd.fdin, STDIN_FILENO);
-			close(node->data.simple_cmd.fdin);
-		}
-		if (node->data.simple_cmd.fdout == 1)
-		{
-			dup2(node->data.simple_cmd.fdout, STDOUT_FILENO);
-			close(node->data.simple_cmd.fdout);
-		}
+		dup2(node->data.simple_cmd.fdout, STDOUT_FILENO);
+		close(node->data.simple_cmd.fdout);
 	}
 	if (is_builtin(node->data.simple_cmd.expanded_args[0]))
 	{

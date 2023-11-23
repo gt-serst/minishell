@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 12:02:37 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:54:07 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # include "execution.h"
 # include "cleaning.h"
 
-bool	g_signint_child;
+int	g_signint;
 
 typedef enum e_err_type
 {
@@ -77,5 +77,11 @@ char	*ft_strjoin_nl(char *s1, char *s2);
 char	*ft_strjoin_char(char *s1, char *s2, char c);
 void	ft_free_array(char **array);
 void	read_from_fd(t_node *node);
+
+// signals
+void	handle_sigint(int signum);
+void	handle_sigquit(int signum);
+void	signal_handlers(void);
+//void	rl_replace_line(const char *text, int clear_undo);
 
 #endif

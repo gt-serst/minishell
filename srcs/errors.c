@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:56:39 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 12:01:58 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:47:57 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static char	*get_str_err(t_err_type type)
 
 void	error(t_err_type type, char *token, char *cmd)
 {
-	printf("%d\n", type);
 	if (type == E_UNEXP_TOK)
 		unexp_tok_err_message(token);
 	else if (type == E_QUOTES)
