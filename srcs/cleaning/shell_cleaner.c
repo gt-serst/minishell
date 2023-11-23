@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:12:28 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 14:00:21 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:09:42 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 void	envlst_cleaner(t_env **envlst)
 {
 	t_env	*current;
-	t_env	*next;
+	t_env	*tmp;
 
 	if (!envlst)
 		return ;
 	current = *envlst;
-	while (current != NULL)
+	while (current)
 	{
-		next = current->next;
-		free(current->key);
-		free(current->value);
-		current = next;
-		free(current);
+		tmp = current;
+		current = current->next;
+		free(tmp->key);
+		free(tmp->value);
+		free(tmp);
 	}
 	*envlst = NULL;
 }

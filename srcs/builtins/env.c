@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:24:26 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/23 13:15:51 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:12:55 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,6 @@ void	envlst_init(t_env **envlst, char **env)
 	char	*value;
 	int		i;
 
-	int j = 0;
-	while (env[j])
-		printf("%s\n", env[j++]);
 	(void)value;
 	if (!env)
 		return ;
@@ -75,11 +72,7 @@ void	envlst_init(t_env **envlst, char **env)
 	{
 		key = env_key(env[i]);
 		value = env_value(env[i]);
-		printf("Key %s\n", key);
-		printf("Value %s\n", value);
 		update_envlst(envlst, key, value, true);
-		printf("Key in envlst: %s\n", (*envlst)->key);
-		printf("Value in envlst: %s\n", (*envlst)->value);
 		i++;
 	}
 }

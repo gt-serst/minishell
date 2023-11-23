@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 11:56:19 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:36:28 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ int	main(int argc, char **argv, char **envp)
 		m.ast = parser(&m);
 		if (!m.ast)
 			continue ;
-		if (!exec_ast(&m, m.ast))
-			continue ;
+		exec_ast(&m, m.ast);
 		shell_cleaner(&m);
 		//system("leaks minishell");
 	}
