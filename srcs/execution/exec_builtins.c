@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:37:12 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/23 13:53:25 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:03:16 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	exec_builtins(t_minishell *m, char **args, bool piped)
 	if (ft_strcmp(args[0], "echo") == 0)
 		status = ft_echo(args);
 	else if (ft_strcmp(args[0], "cd") == 0)
-		status = ft_cd(m->envlst, args[1]);
+		status = ft_cd(&m->envlst, args[1]);
 	else if (ft_strcmp(args[0], "env") == 0)
 		status = ft_env(&m->envlst);
 	else if (ft_strcmp(args[0], "pwd") == 0)

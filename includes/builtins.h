@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:38:07 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/23 13:52:25 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:02:58 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int		ft_echo(char **args);
 
 //	cd
-int		ft_cd(t_env *envlst, char *path);
+int		ft_cd(t_env **envlst, char *path);
 
 //	pwd
 int		ft_pwd(void);

@@ -6,13 +6,13 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:59:51 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/22 13:04:11 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:02:34 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	new_pwd(t_env *envlst)
+static int	new_pwd(t_env **envlst)
 {
 	char	*cwd;
 
@@ -22,7 +22,7 @@ static int	new_pwd(t_env *envlst)
 	return (update_envlst(envlst, "PWD", cwd, false), 0);
 }
 
-static int	cd_home_user(t_env *envlst)
+static int	cd_home_user(t_env **envlst)
 {
 	char	*home;
 
@@ -50,7 +50,7 @@ static int	cd_err_msg(char *err_msg)
 	return (1);
 }
 
-int	ft_cd(t_env *envlst, char *path)
+int	ft_cd(t_env **envlst, char *path)
 {
 	if (!path || ft_strcmp(path, "~") == 0)
 		return (cd_home_user(envlst));
