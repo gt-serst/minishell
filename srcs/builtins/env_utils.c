@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:26:14 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/23 13:16:13 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:45:56 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-char	*envlst_val(t_env **envlst, char *key)
-{
-	t_env	*lst;
-
-	lst = *envlst;
-	while (lst)
-	{
-		if (!ft_strcmp(key, lst->key))
-			return (lst->value);
-		lst = lst->next;
-	}
-	return (NULL);
-}
 
 static t_env	*new_envlst(char *key, char *value)
 {

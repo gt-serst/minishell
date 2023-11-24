@@ -6,10 +6,9 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/23 16:57:07 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:33:07 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../includes/minishell.h"
 
@@ -23,39 +22,46 @@ void	close_io(t_minishell *m, bool piped)
 	close(m->output);
 }
 
+static void	exec_child_process(t_minishell *m, t_node *node)
+{
+	char	*path_status;
+
+	path_status = path_to_cmd(m->envlst, 
+			node->data.simple_cmd.expanded_args[0]);
+	if (!path_status)
+	{
+		error(E_CMD_NOT_FOUND, NULL, node->data.simple_cmd.expanded_args[0]);
+		shell_cleaner(m);
+		exit(1);
+	}
+	if (execve(path_status, node->data.simple_cmd.expanded_args, m->env) == -1)
+	{
+		error(E_CMD_NOT_FOUND, NULL, node->data.simple_cmd.expanded_args[0]);
+		shell_cleaner(m);
+		exit(1);
+	}
+}
+
 static int	exec_child(t_minishell *m, t_node *node)
 {
-	int		status;
-	int		fork_pid;
-	char	*path_status;
+	int	status;
+	int	fork_pid;
 
 	g_signint = 1;
 	fork_pid = fork();
 	if (!fork_pid)
 	{
-		//printf("Expanded cmd in exec child %s\n", node->data.simple_cmd.expanded_args[0]);
-		path_status = path_to_cmd(m->envlst, (node->data.simple_cmd.expanded_args[0]));
-		//printf("Path %s\n", path_status);
-		if (!path_status)
-		{
-			error(E_CMD_NOT_FOUND, NULL, node->data.simple_cmd.expanded_args[0]);
-			(shell_cleaner(m), exit(1));
-		}
-		if (execve(path_status, node->data.simple_cmd.expanded_args, m->env) == -1)
-		{
-			error(E_CMD_NOT_FOUND, NULL, node->data.simple_cmd.expanded_args[0]);
-			(shell_cleaner(m), exit(1));
-		}
+		exec_child_process(m, node);
 	}
 	waitpid(fork_pid, &status, 0);
 	g_signint = 0;
 	return (get_exit_status(status));
 }
 
-int	exec_simple_cmd(t_minishell *m, t_node *node, bool piped)
+static void	prepare_redirections(t_minishell *m, t_node *node)
 {
-	int status;
-	
+	m->input = dup(STDIN_FILENO);
+	m->output = dup(STDOUT_FILENO);
 	if (node->data.simple_cmd.fdin != 0)
 	{
 		dup2(node->data.simple_cmd.fdin, STDIN_FILENO);
@@ -66,9 +72,17 @@ int	exec_simple_cmd(t_minishell *m, t_node *node, bool piped)
 		dup2(node->data.simple_cmd.fdout, STDOUT_FILENO);
 		close(node->data.simple_cmd.fdout);
 	}
+}
+
+int	exec_simple_cmd(t_minishell *m, t_node *node, bool piped)
+{
+	int	status;
+
+	prepare_redirections(m, node);
 	if (is_builtin(node->data.simple_cmd.expanded_args[0]))
 	{
 		status = exec_builtins(m, node->data.simple_cmd.expanded_args, piped);
+		close_io(m, piped);
 		return (status);
 	}
 	else
@@ -78,3 +92,4 @@ int	exec_simple_cmd(t_minishell *m, t_node *node, bool piped)
 		return (status);
 	}
 }
+// output redir is blocked or in the command ls is not found into this dup2

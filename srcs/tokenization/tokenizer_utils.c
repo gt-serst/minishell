@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:58:21 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/22 16:25:09 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:59:31 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-bool	ft_isspace(char	c)
+bool	ft_isspace(char c)
 {
 	if (c == 32 || (c >= 9 && c <= 13))
 		return (true);

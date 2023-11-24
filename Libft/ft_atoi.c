@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:14:34 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/10/24 11:55:40 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 09:41:56 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ int	ft_atoi(const char *str)
 		number = number * 10 + str[tmp] - '0';
 		tmp++;
 	}
-	if (number >= LONG_MAX && sign % 2 == 0)
-		return (0);
-	if (number >= LONG_MAX && sign % 2 == 1)
-		return (-1);
 	return (number * sign);
 }
 

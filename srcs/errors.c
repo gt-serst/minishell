@@ -6,54 +6,11 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:56:39 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 14:47:57 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/24 09:45:19 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-static char	*get_str_err(t_err_type type)
-{
-	if (type == E_MEM)
-		return ("bash: malloc allocation failed");
-	else if (type == E_TOO_MANY_ARGS)
-		return ("bash: exit: too many arguments");
-	else if (type == E_SYNTAX)
-		return ("bash: syntax error");
-	return ("bash: error undefined");
-}
-
-void	error(t_err_type type, char *token, char *cmd)
-{
-	if (type == E_UNEXP_TOK)
-		unexp_tok_err_message(token);
-	else if (type == E_QUOTES)
-		quotes_err_message(token);
-	else if (type == E_FILE)
-		file_err_message(cmd);
-	else if (type == E_CMD_NOT_FOUND)
-		cmd_err_message(cmd);
-	else if (type == E_NUM_MANDATORY)
-		cmd_err_message(cmd);
-	else if (type == E_EXPORT)
-		export_err_message(cmd);
-	else
-		ft_putstr_fd(get_str_err(type), 2);
-}
-
-void	num_mandatory_err_message(char *cmd)
-{
-	ft_putstr_fd("bash: exit: ", 2);
-	ft_putstr_fd(cmd, 2);
-	ft_putstr_fd(": numeric argument required\n", 2);
-}
-
-void	cmd_err_message(char *cmd)
-{
-	ft_putstr_fd("bash: ", 2);
-	ft_putstr_fd(cmd, 2);
-	ft_putstr_fd(": command not found\n", 2);
-}
 
 void	unexp_tok_err_message(char *token)
 {
@@ -76,13 +33,6 @@ void	file_err_message(char *file)
 		ft_putstr_fd(file, 2);
 		ft_putstr_fd(": Permission denied\n", 2);
 	}
-}
-
-void	export_err_message(char *s)
-{
-	ft_putstr_fd("bash: export: `", 2);
-	ft_putstr_fd(s, 2);
-	ft_putstr_fd("': not a valid identifier\n", 2);
 }
 
 void	quotes_err_message(char *s)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:17:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/23 13:57:40 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:00:17 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,21 @@ static void	atoi_skip(char *s, int *i, int *sign)
 	}
 }
 
+static unsigned long long	parse_number(char *str, int *i)
+{
+	unsigned long long	result;
+
+	result = 0;
+	while (str[*i])
+	{
+		result = (result * 10) + (str[*i] - '0');
+		if (result > LONG_MAX)
+			return (ULLONG_MAX);
+		(*i)++;
+	}
+	return (result);
+}
+
 static int	exitnbr(t_minishell *m, char *str)
 {
 	int					i;
@@ -53,17 +68,12 @@ static int	exitnbr(t_minishell *m, char *str)
 		shell_cleaner(m);
 		exit(m->err_code);
 	}
-	result = 0;
-	while (str[i])
+	result = parse_number(str, &i);
+	if (result == ULLONG_MAX)
 	{
-		result = (result * 10) + (str[i] - '0');
-		if (result > LONG_MAX)
-		{
-			error(E_NUM_MANDATORY, NULL, (char*)result);
-			shell_cleaner(m);
-			exit(m->err_code);
-		}
-		i++;
+		error(E_NUM_MANDATORY, NULL, (char *)result);
+		shell_cleaner(m);
+		exit(m->err_code);
 	}
 	return ((result * sign) % 256);
 }

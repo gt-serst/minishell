@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:24:26 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/23 14:12:55 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:45:50 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-bool	env_exists(t_env **envlst, char *key)
+char	*envlst_val(t_env **envlst, char *key)
 {
 	t_env	*lst;
 
@@ -20,10 +20,10 @@ bool	env_exists(t_env **envlst, char *key)
 	while (lst)
 	{
 		if (!ft_strcmp(key, lst->key))
-			return (true);
+			return (lst->value);
 		lst = lst->next;
 	}
-	return (false);
+	return (NULL);
 }
 
 char	*env_key(char *str)
@@ -51,7 +51,8 @@ char	*env_value(char *str)
 		if (str[i] == '=')
 		{
 			i++;
-			return (envlst_handler(ft_substr(str, i, ft_strlen(str) - i), false));
+			return (envlst_handler
+				(ft_substr(str, i, ft_strlen(str) - i), false));
 		}
 		i++;
 	}
@@ -85,7 +86,7 @@ int	ft_env(t_env **envlst)
 	while (lst)
 	{
 		if (lst->value != NULL)
-			ft_printf("%s=%s\n", lst->key, lst->value);
+			printf("%s=%s\n", lst->key, lst->value);
 		lst = lst->next;
 	}
 	return (0);

@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 12:07:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/23 13:51:21 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/23 23:11:03 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static int	export_err_message(char *s)
+{
+	ft_putstr_fd("bash: export: `", 2);
+	ft_putstr_fd(s, 2);
+	ft_putstr_fd("': not a valid identifier\n", 2);
+	return (1);
+}
 
 static void	declare_envlst(t_env **envlst)
 {
@@ -68,7 +76,7 @@ int	ft_export(t_env **envlst, char **argv)
 	while (argv[i])
 	{
 		if (check_key(argv[i]) == 0)
-			error(E_EXPORT, NULL, argv[i]);
+			err_code = export_err_message(argv[i]);
 		else
 		{
 			key = env_key(argv[i]);

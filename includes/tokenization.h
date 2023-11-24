@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:18:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 17:36:55 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/24 09:40:34 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ t_token	*separator_handler(char	**cmd_line);
 t_token	*identifier_handler(char **cmd_line);
 
 //	tokenizer utils
-bool	ft_isspace(char	c);
+bool	ft_isspace(char c);
 bool	ft_ismetachar(char c);
 bool	ft_isquotes(char c);
 void	skip_spaces(char **cmd_line);

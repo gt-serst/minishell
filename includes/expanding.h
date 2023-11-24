@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   expanding.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 10:52:16 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 11:50:15 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 09:38:43 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXPANDING_H
 # define EXPANDING_H
 
-#include "minishell.h"
+# include "minishell.h"
 
 /*
 typedef struct s_env

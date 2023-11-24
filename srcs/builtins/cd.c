@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:59:51 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/23 14:02:34 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:34:28 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static int	cd_home_user(t_env **envlst)
 	}
 	return (1);
 }
-
 
 static int	cd_err_msg(char *err_msg)
 {
