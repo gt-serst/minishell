@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:01:08 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 19:49:49 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 19:58:56 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static char	*get_heredoc_input(int *fd, char *delimiter)
 }
 
 int	heredoc_redir(t_minishell *m, char *delimiter)
-{//heredoc is a write input, when the user types a sequence of predefined characters (EOF) then the write input closes, a sigint signal can also interrupt the write input
+{
 	char	*input;
 	int		fd[2];
 
@@ -102,3 +102,6 @@ int	heredoc_redir(t_minishell *m, char *delimiter)
 	close(fd[STDOUT_FILENO]);
 	return (fd[0]);
 }
+//heredoc is a write input, when the user types a sequence
+// of predefined characters (EOF) then the write input closes,
+// a sigint signal can also interrupt the write input

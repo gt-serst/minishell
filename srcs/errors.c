@@ -6,54 +6,11 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:56:39 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 12:14:03 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 19:56:38 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-static char	*get_str_err(t_err_type type)
-{
-	if (type == E_MEM)
-		return ("bash: malloc allocation failed\n");
-	else if (type == E_TOO_MANY_ARGS)
-		return ("bash: exit: too many arguments\n");
-	else if (type == E_SYNTAX)
-		return ("bash: syntax error\n");
-	return ("bash: error undefined\n");
-}
-
-void	error(t_err_type type, char *token, char *cmd)
-{
-	if (type == E_UNEXP_TOK)
-		unexp_tok_err_message(token);
-	else if (type == E_QUOTES)
-		quotes_err_message(token);
-	else if (type == E_FILE)
-		file_err_message(cmd);
-	else if (type == E_FILE_LONG)
-		file_long_err_message(cmd);
-	else if (type == E_CMD_NOT_FOUND)
-		cmd_err_message(cmd);
-	else if (type == E_NUM_MANDATORY)
-		cmd_err_message(cmd);
-	else
-		ft_putstr_fd(get_str_err(type), 2);
-}
-
-void	num_mandatory_err_message(char *cmd)
-{
-	ft_putstr_fd("bash: exit: ", 2);
-	ft_putstr_fd(cmd, 2);
-	ft_putstr_fd(": numeric argument required\n", 2);
-}
-
-void	cmd_err_message(char *cmd)
-{
-	ft_putstr_fd("bash: ", 2);
-	ft_putstr_fd(cmd, 2);
-	ft_putstr_fd(": command not found\n", 2);
-}
 
 void	unexp_tok_err_message(char *token)
 {

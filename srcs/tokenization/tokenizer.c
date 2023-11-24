@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:37:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 17:07:50 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:02:37 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	unexpected_token(char c)
 }
 
 t_token	*tokenizer(t_minishell *m)
-{// core routine for the tokenizer, scan each part of the cmd line and give to each of them a type of tokens (identifier, separator,...)
+{
 	t_token	**token;
 	t_token	*new_token;
 	char	*cmd_line;
@@ -34,9 +34,9 @@ t_token	*tokenizer(t_minishell *m)
 	while (*(cmd_line))
 	{
 		if (ft_ismetachar(*cmd_line))
-			new_token = separator_handler(&cmd_line); //get the right index in the line we are
+			new_token = separator_handler(&cmd_line);
 		else
-			new_token = identifier_handler(&cmd_line); //get the right index in the line we are
+			new_token = identifier_handler(&cmd_line);
 		if (!new_token)
 			return (tkclear(token), NULL);
 		else
@@ -48,3 +48,5 @@ t_token	*tokenizer(t_minishell *m)
 	m->cmd_line = NULL;
 	return (*token);
 }
+// core routine for the tokenizer, scan each part of the cmd line
+// and give to each of them a type of tokens (identifier, separator,...)

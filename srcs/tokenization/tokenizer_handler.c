@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer_handler.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:41:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/22 16:24:57 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:02:59 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*get_unexp_str_token(char *token)
 	if (strncmp(token, ">>>", 3) == 0)
 	{
 		if (strcmp(token, ">>>") == 0)
-			return(">");
+			return (">");
 		else
 			return (">>");
 	}
@@ -46,7 +46,7 @@ static char	*get_unexp_char_token(char token)
 */
 
 t_token	*separator_handler(char	**cmd_line)
-{// retrieve the type of separator and called the separator_handler
+{
 	size_t	i;
 	char	*substr;
 	char	*tmp;
@@ -55,7 +55,7 @@ t_token	*separator_handler(char	**cmd_line)
 	tmp = *cmd_line;
 	while (tmp[i] && ft_ismetachar(tmp[i]) && !ft_isspace(tmp[i]))
 		i++;
-	substr = ft_substr(tmp, 0, i); //malloc allocation in substr
+	substr = ft_substr(tmp, 0, i);
 	if (!substr)
 		return (error(E_MEM, NULL, NULL), NULL);
 	*cmd_line += i;
@@ -68,13 +68,15 @@ t_token	*separator_handler(char	**cmd_line)
 	else if (ft_strcmp(substr, ">>") == 0)
 		return (new_tk(substr, T_APPEND));
 	else if (ft_strcmp(substr, "|") == 0)
-		return (new_tk(substr, T_PIPE)); //malloc allocation in token
+		return (new_tk(substr, T_PIPE));
 	else
 		return (error(E_UNEXP_TOK, get_unexp_str_token(substr), NULL), NULL);
 }
+// malloc allocation in token
+// retrieve the type of separator and called the separator_handler
 
 t_token	*identifier_handler(char **cmd_line)
-{// create a tk and add it to the linkded list and then allocate a type of token to the cmd part
+{
 	size_t	i;
 	char	*substr;
 	char	*tmp;
@@ -95,9 +97,12 @@ t_token	*identifier_handler(char **cmd_line)
 			i++;
 		}
 	}
-	substr = ft_substr(*cmd_line, 0, i); //malloc allocation in substr
+	substr = ft_substr(*cmd_line, 0, i);
 	if (!substr)
 		return (error(E_MEM, NULL, NULL), NULL);
 	*cmd_line += i;
-	return (new_tk(substr, T_IDENTIFIER)); //malloc allocation in token
+	return (new_tk(substr, T_IDENTIFIER));
 }
+// malloc allocation in substr & token
+// create a tk and add it to the linkded list
+// and then allocate a type of token to the cmd part

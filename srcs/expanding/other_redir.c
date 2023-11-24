@@ -6,14 +6,14 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:04:46 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 12:05:07 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 19:58:01 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 int	input_redir(char *args)
-{//input redirection -> modification of stdin
+{
 	int	fd;
 
 	if (!args)
@@ -23,9 +23,10 @@ int	input_redir(char *args)
 		error(E_FILE, NULL, args);
 	return (fd);
 }
+//input redirection -> modification of stdin
 
 int	output_redir(char *args)
-{//output redirection -> modification of stdout, if the file doesn't exist it is create, if it exist but there is aleardy content in it, the content will be erased
+{
 	int	fd;
 
 	if (!args)
@@ -35,9 +36,12 @@ int	output_redir(char *args)
 		error(E_FILE, NULL, args);
 	return (fd);
 }
+//output redirection -> modification of stdout,
+// if the file doesn't exist it is create,
+// if it exist but there is aleardy content in it, the content will be erased
 
 int	append_redir(char *args)
-{//output redirection -> modification of stdout, if the file doesn't exist it is create, if it exist but there is aleardy content in it, the new content will be added at the end of the existing content
+{
 	int	fd;
 
 	if (!args)
@@ -47,3 +51,7 @@ int	append_redir(char *args)
 		error(E_FILE, NULL, args);
 	return (fd);
 }
+//output redirection -> modification of stdout,
+// if the file doesn't exist it is create,
+// if it exist but there is aleardy content in it,
+// the new content will be added at the end of the existing content

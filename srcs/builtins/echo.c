@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:40:40 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/23 23:06:16 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/24 10:34:59 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static bool	is_option_n(char *s)
 
 int	ft_echo(char **args)
 {
-	int i;
-	bool no_newline;
+	int		i;
+	bool	no_newline;
 
 	i = 1;
 	no_newline = false;
@@ -50,5 +50,5 @@ int	ft_echo(char **args)
 	}
 	if (!no_newline)
 		ft_putstr_fd("\n", 1);
-	return 0;
+	return (0);
 }

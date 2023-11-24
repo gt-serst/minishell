@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   error_code.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 15:43:49 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 10:52:14 by mde-plae         ###   ########.fr       */
+/*   Created: 2023/11/24 14:08:39 by mde-plae          #+#    #+#             */
+/*   Updated: 2023/11/24 18:18:13 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 
-int	ft_pwd(void)
+int	*ft_get_exit_val(void)
 {
-	char	*cwd;
+	static int	exit_val = 0;
 
-	cwd = NULL;
-	cwd = getcwd(cwd, 0);
-	if (!cwd)
-		return (1);
-	ft_putstr_fd(cwd, 1);
-	ft_putstr_fd("\n", 1);
-	return (0);
+	
+	return (&exit_val);
+}
+
+void	ft_set_exit_val(int exit_value)
+{
+	*ft_get_exit_val() = exit_value;
 }

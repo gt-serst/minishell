@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:37:51 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/23 13:53:09 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:52:46 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+bool	env_exists(t_env **envlst, char *key)
+{
+	t_env	*lst;
+
+	lst = *envlst;
+	while (lst)
+	{
+		if (!ft_strcmp(key, lst->key))
+			return (true);
+		lst = lst->next;
+	}
+	return (false);
+}
 
 static void	unset_env(t_env **envlst, char *key)
 {

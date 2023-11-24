@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:43:58 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 15:49:00 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 19:56:00 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ void	init_signals(t_minishell *m)
 	struct termios	term;
 
 	term = m->original_term;
-	term.c_lflag &= ~ECHOCTL; // to avoid print crtl + c to the prompt
+	term.c_lflag &= ~ECHOCTL;
 	tcsetattr(STDIN_FILENO, TCSANOW, &term);
 	g_signint = 0;
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
 }
+// term.c_lflag &= ~ECHOCTL; to avoid print crtl + c to the prompt

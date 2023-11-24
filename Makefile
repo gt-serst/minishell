@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/11/24 18:15:20 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/11/24 19:55:03 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,8 +66,12 @@ SRCS			:=	$(BUILTINS)\
 					srcs/main.c\
 					srcs/init.c\
 					srcs/utils.c\
+					srcs/utils2.c\
 					srcs/main_output.c\
-					srcs/errors.c
+					srcs/errors.c\
+					srcs/errors2.c\
+					srcs/error_code.c
+
 
 OBJS			:=	$(SRCS:.c=.o)
 

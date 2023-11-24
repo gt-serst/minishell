@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_cleaner.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:33:23 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 10:51:29 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:44:03 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	io_node_lstcleaner(t_io_node **io_node)
 		next = current->next;
 		current = next;
 		free(current);
-
 	}
 	free(*io_node);
 	*io_node = NULL;

@@ -6,14 +6,14 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 08:50:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 18:18:32 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 19:51:38 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 static t_node	*get_children(t_token_type op, t_node *left, t_node *right)
-{// get the left and right children of the parent node
+{
 	t_node	*pipe;
 
 	pipe = new_nd(get_nd_type(op));
@@ -23,14 +23,17 @@ static t_node	*get_children(t_token_type op, t_node *left, t_node *right)
 	pipe->data.pipe.right = right;
 	return (pipe);
 }
+// get the left and right children of the parent node
 
 t_node	*ast_builder(t_token **curr_token)
-{//give the priority for each elements in the ast according to a precedence climbing algorithm
+{
 	t_node			*left;
 	t_node			*right;
 	t_token_type	op;
 
-	left = get_simple_cmd(curr_token); //gets the left atom
+	if (!*curr_token)
+		return (NULL);
+	left = get_simple_cmd(curr_token);
 	if (!left)
 		return (NULL);
 	while (*curr_token && is_pipe(*curr_token))
@@ -42,7 +45,7 @@ t_node	*ast_builder(t_token **curr_token)
 		}
 		op = (*curr_token)->type;
 		get_next_token(curr_token);
-		right = ast_builder(curr_token); //get the right atom
+		right = ast_builder(curr_token);
 		if (!right)
 			return (left);
 		left = get_children(op, left, right);
@@ -51,3 +54,5 @@ t_node	*ast_builder(t_token **curr_token)
 	}
 	return (left);
 }
+//give the priority for each elements
+// in the ast according to a precedence climbing algorithm
