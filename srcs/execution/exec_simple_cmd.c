@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 19:59:38 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 20:06:05 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,6 @@ static int	exec_child(t_minishell *m, t_node *node)
 
 static void	prepare_redirections(t_minishell *m, t_node *node)
 {
-	int status;
-
-	if (!node->data.simple_cmd.expanded_args[0])
-		return (close_io(m, piped), 0);
 	m->input = dup(STDIN_FILENO);
 	m->output = dup(STDOUT_FILENO);
 	if (node->data.simple_cmd.fdin != 0)
@@ -82,6 +78,8 @@ int	exec_simple_cmd(t_minishell *m, t_node *node, bool piped)
 {
 	int	status;
 
+	if (!node->data.simple_cmd.expanded_args[0])
+		return (close_io(m, piped), EXIT_FAILURE);
 	prepare_redirections(m, node);
 	if (is_builtin(node->data.simple_cmd.expanded_args[0]))
 	{

@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:33:32 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 19:53:40 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 20:09:35 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ static int	get_rows(char **str)
 	return (i);
 }
 
-static char	*expand_argument(t_minishell *m, char *arg)
+static char	*expand_argument(t_minishell *m, char *arg, size_t i)
 {
-	if (ft_strchr(arg, '$') != NULL && ft_strcmp(arg - 1, "<<") == 0)
-		return (heredoc_expander(m, arg));
+	if (ft_strchr(arg, '$') != NULL && (i > 0) && ft_strcmp(arg - 1, "<<") == 0)
+		return (ft_strdup(arg));
 	else
 		return (cmd_pre_expander(m, arg));
 }
@@ -94,15 +94,9 @@ bool	expand_args(t_minishell *m, t_node *node)
 	ft_bzero(node->data.simple_cmd.expanded_args, sizeof(char *));
 	while (node->data.simple_cmd.args[i])
 	{
-		if (ft_strchr(node->data.simple_cmd.args[i], '$') != NULL && (i > 0)
-				&& ft_strcmp(node->data.simple_cmd.args[i - 1], "<<") == 0)
-			node->data.simple_cmd.expanded_args[i] = ft_strdup(node->data.simple_cmd.args[i]);
-		else
-		{
-			node->data.simple_cmd.expanded_args[i] = cmd_pre_expander(m, node->data.simple_cmd.args[i]);
-			if (!node->data.simple_cmd.expanded_args[i])
+		node->data.simple_cmd.expanded_args[i] = expand_argument(m, node->data.simple_cmd.args[i], i);
+		if (!node->data.simple_cmd.expanded_args[i])
 				return (false);
-		}
 		i++;
 	}
 	node->data.simple_cmd.expanded_args[i] = NULL;
