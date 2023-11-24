@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+         #
+#    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/11/23 16:44:18 by mde-plae         ###   ########.fr        #
+#    Updated: 2023/11/24 18:15:20 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ EXPANDING		:=	srcs/expanding/expand_args.c\
 					srcs/expanding/expand.c\
 					srcs/expanding/heredoc_redir.c\
 					srcs/expanding/other_redir.c\
-					srcs/expanding/redir.c
+					srcs/expanding/redir.c\
+					srcs/expanding/redir_utils.c
 
 PARSING			:=	srcs/parsing/ast_builder.c\
 					srcs/parsing/ast_cleaner.c\
@@ -81,7 +82,7 @@ $(LIBFT):
 	@make bonus -C $(LIBFT_PATH)
 
 $(NAME): $(LIBFT) $(OBJS)
-	@$(CC) -o $(NAME) $(OBJS) $(LIBFT_PATH)/$(LIBFT) -L$(LIBFT_PATH) -lreadline -L$(READLINE_PATH)/lib
+	@$(CC) -o $(NAME) $(OBJS) $(LIBFT_PATH)/$(LIBFT) -L$(LIBFT_PATH) -lreadline -dL$(READLINE_PATH)/lib
 
 clean:
 	@make clean -C $(LIBFT_PATH)

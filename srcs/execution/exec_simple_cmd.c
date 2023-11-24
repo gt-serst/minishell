@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 00:13:33 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/24 18:55:44 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	exec_simple_cmd(t_minishell *m, t_node *node, bool piped)
 {
 	int status;
 
+	if (!node->data.simple_cmd.expanded_args[0])
+		return (close_io(m, piped), 0);
 	m->input = dup(STDIN_FILENO);
 	m->output = dup(STDOUT_FILENO);
 	if (node->data.simple_cmd.fdin != 0)
@@ -71,13 +73,11 @@ int	exec_simple_cmd(t_minishell *m, t_node *node, bool piped)
 	if (is_builtin(node->data.simple_cmd.expanded_args[0]))
 	{
 		status = exec_builtins(m, node->data.simple_cmd.expanded_args, piped);
-		close_io(m, piped);
-		return (status);
+		return (close_io(m, piped), status);
 	}
 	else
 	{
 		status = exec_child(m, node);
-		close_io(m, piped);
-		return (status);
+		return (close_io(m, piped), status);
 	}
 }

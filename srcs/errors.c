@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:56:39 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 23:11:56 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/24 12:14:03 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 static char	*get_str_err(t_err_type type)
 {
 	if (type == E_MEM)
-		return ("bash: malloc allocation failed");
+		return ("bash: malloc allocation failed\n");
 	else if (type == E_TOO_MANY_ARGS)
-		return ("bash: exit: too many arguments");
+		return ("bash: exit: too many arguments\n");
 	else if (type == E_SYNTAX)
-		return ("bash: syntax error");
-	return ("bash: error undefined");
+		return ("bash: syntax error\n");
+	return ("bash: error undefined\n");
 }
 
 void	error(t_err_type type, char *token, char *cmd)
@@ -31,6 +31,8 @@ void	error(t_err_type type, char *token, char *cmd)
 		quotes_err_message(token);
 	else if (type == E_FILE)
 		file_err_message(cmd);
+	else if (type == E_FILE_LONG)
+		file_long_err_message(cmd);
 	else if (type == E_CMD_NOT_FOUND)
 		cmd_err_message(cmd);
 	else if (type == E_NUM_MANDATORY)
@@ -74,6 +76,13 @@ void	file_err_message(char *file)
 		ft_putstr_fd(file, 2);
 		ft_putstr_fd(": Permission denied\n", 2);
 	}
+}
+
+void	file_long_err_message(char *file)
+{
+	ft_putstr_fd("bash: ", 2);
+	ft_putstr_fd(file, 2);
+	ft_putstr_fd(": File name too long\n", 2);
 }
 
 void	quotes_err_message(char *s)

@@ -3,16 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   expand_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:33:32 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 00:42:36 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/24 16:40:31 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static char	*heredoc_expander(t_minishell *m, char *str)
+static char	*heredoc_handle_normal_str(char *str, size_t *i)
+{// remove simple and double quotes for a random str without envars to carry
+	size_t	start;
+
+	start = *i;
+	while (str[*i] && str[*i] != '$')
+		(*i)++;
+	return (ft_substr(str, start, *i - start));
+}
+
+char	*heredoc_expander(t_minishell *m, char *str)
 {
 	char	*ret;
 	size_t	i;
@@ -24,7 +34,7 @@ static char	*heredoc_expander(t_minishell *m, char *str)
 		if (str[i] == '$')
 			ret = ft_strjoin_free(ret, handle_dollar(m, str, &i));
 		else
-			ret = ft_strjoin_free(ret, handle_normal_str(str, &i));
+			ret = ft_strjoin_free(ret, heredoc_handle_normal_str(str, &i));
 		if (!ret)
 			return (error(E_MEM, NULL, NULL), NULL);
 	}
@@ -77,11 +87,7 @@ bool	expand_args(t_minishell *m, t_node *node)
 	{
 		if (ft_strchr(node->data.simple_cmd.args[i], '$') != NULL && (i > 0)
 				&& ft_strcmp(node->data.simple_cmd.args[i - 1], "<<") == 0)
-		{
-			node->data.simple_cmd.expanded_args[i] = heredoc_expander(m, node->data.simple_cmd.args[i]);
-			if (!node->data.simple_cmd.expanded_args[i])
-				return (false);
-		}
+			node->data.simple_cmd.expanded_args[i] = ft_strdup(node->data.simple_cmd.args[i]);
 		else
 		{
 			node->data.simple_cmd.expanded_args[i] = cmd_pre_expander(m, node->data.simple_cmd.args[i]);

@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:24:55 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 14:23:38 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:26:26 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	exec_ast(t_minishell *m, t_node *node)
 		return (EXIT_FAILURE);
 	if (recursive_expander(m, node) == true)
 	{
-		if (recursive_redir(node) == true)
+		if (recursive_redir(m, node) == true)
 			return (exec_node(m, node, false));
 	}
 	return (EXIT_FAILURE);

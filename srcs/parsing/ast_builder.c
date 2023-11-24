@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_builder.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 08:50:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 00:26:14 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/24 18:18:32 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,16 @@ t_node	*ast_builder(t_token **curr_token)
 	t_node			*right;
 	t_token_type	op;
 
-	if (!*curr_token)
-		return (NULL);
 	left = get_simple_cmd(curr_token); //gets the left atom
 	if (!left)
 		return (NULL);
 	while (*curr_token && is_pipe(*curr_token))
 	{
-		//printf("Curr Token %s\n", g_minishell.curr_token->value);
+		if ((*curr_token)->next == NULL)
+		{
+			error(E_UNEXP_TOK, (*curr_token)->value, NULL);
+			return (get_next_token(curr_token), NULL);
+		}
 		op = (*curr_token)->type;
 		get_next_token(curr_token);
 		right = ast_builder(curr_token); //get the right atom

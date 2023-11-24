@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 23:15:07 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/24 17:51:08 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@
 # include "execution.h"
 # include "cleaning.h"
 
-int	g_signint;
+volatile sig_atomic_t	g_signint;
 
 typedef enum e_err_type
 {
 	E_QUOTES,
 	E_FILE,
 	E_NO_SUCH_FILE,
+	E_FILE_LONG,
 	E_TOO_MANY_ARGS,
 	E_SYNTAX,
 	E_MEM = 12,
@@ -64,6 +65,7 @@ void	num_mandatory_err_message(char *cmd);
 void	cmd_err_message(char *cmd);
 void	unexp_tok_err_message(char *token);
 void	file_err_message(char *file);
+void	file_long_err_message(char *file);
 void	quotes_err_message(char *s);
 void	ft_exit_message(char *str);
 

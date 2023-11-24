@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:24:59 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 00:45:29 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/24 18:19:47 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static bool	token_into_args(t_node *simple_cmd, t_token **curr_token)
 	while (*curr_token && ((*curr_token)->type == T_IDENTIFIER
 		|| is_redir((*curr_token)->type)))
 	{
+		if ((*curr_token)->type == T_HEREDOC)
+			simple_cmd->data.simple_cmd.heredoc = true;
 		simple_cmd->data.simple_cmd.args[++i] = ft_strdup((*curr_token)->value);
 /*
 		if (is_redir(g_minishell.curr_token->type))

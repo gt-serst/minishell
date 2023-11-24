@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:36:34 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 17:54:21 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 18:13:56 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_print_token(t_token *token)
 {
-	printf("Try to print token\n");
 	if (!token)
 		return ;
 	while (token)
@@ -28,7 +27,6 @@ void	ft_print_ast(t_node *node)
 {
 	int	i;
 
-	printf("Try to print ast\n");
 	if (!node)
 		return ;
 	if (node->type == N_CMD)
@@ -118,7 +116,7 @@ char	*ft_strjoin_nl(char *s1, char *s2)
 	while (s2[i])
 		str[j++] = s2[i++];
 	str[j] = '\0';
-	return (free(s1), str);
+	return (str);
 }
 
 char	*ft_strjoin_char(char *s1, char *s2, char c)

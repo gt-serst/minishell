@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:04:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/23 14:03:40 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:34:51 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	*handle_normal_str(char *str, size_t *i)
 	size_t	start;
 
 	start = *i;
-	while (str[*i] && str[*i] != '\'' && str[*i] != '"' && str[*i] != '$' && str[*i] != '\\')
+	while (str[*i] && str[*i] != '\'' && str[*i] != '"' && str[*i] != '$')
 		(*i)++;
 	// printf("Substr return in handle normal str |%s|\n", ft_substr(str, start, *i - start));
 	return (ft_substr(str, start, *i - start));
