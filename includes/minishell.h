@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/23 23:15:07 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/24 15:24:04 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	unexp_tok_err_message(char *token);
 void	file_err_message(char *file);
 void	quotes_err_message(char *s);
 void	ft_exit_message(char *str);
+void	ft_set_exit_val(int exit_value);
+int		*ft_get_exit_val(void);
 
 //	utils
 void	ft_print_token(t_token *token);

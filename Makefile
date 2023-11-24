@@ -6,7 +6,7 @@
 #    By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/11/24 09:58:00 by mde-plae         ###   ########.fr        #
+#    Updated: 2023/11/24 14:08:56 by mde-plae         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,8 @@ SRCS			:=	$(BUILTINS)\
 					srcs/utils2.c\
 					srcs/main_output.c\
 					srcs/errors.c\
-					srcs/errors2.c
+					srcs/errors2.c\
+					srcs/error_code.c
 
 
 OBJS			:=	$(SRCS:.c=.o)

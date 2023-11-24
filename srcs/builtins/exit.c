@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:17:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 12:00:17 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:50:26 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ static int	exitnbr(t_minishell *m, char *str)
 	{
 		error(E_NUM_MANDATORY, NULL, str + i);
 		shell_cleaner(m);
-		exit(m->err_code);
+		exit(*ft_get_exit_val());
 	}
 	result = parse_number(str, &i);
 	if (result == ULLONG_MAX)
 	{
 		error(E_NUM_MANDATORY, NULL, (char *)result);
 		shell_cleaner(m);
-		exit(m->err_code);
+		exit(*ft_get_exit_val());
 	}
 	return ((result * sign) % 256);
 }
@@ -82,12 +82,13 @@ void	ft_exit(t_minishell *m, char **args, bool piped)
 {
 	int	err_code;
 
-	err_code = m->err_code;
+	err_code = 0;
 	if (args[1])
 	{
 		if (args[2] && ft_isnumber(args[1]))
 		{
 			error(E_TOO_MANY_ARGS, NULL, NULL);
+			err_code = *ft_get_exit_val();
 			shell_cleaner(m);
 			return ;
 		}

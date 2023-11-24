@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 09:44:38 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 09:47:09 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/24 18:10:56 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,30 @@ static char	*get_str_err(t_err_type type)
 void	error(t_err_type type, char *token, char *cmd)
 {
 	if (type == E_UNEXP_TOK)
+	{
+		ft_set_exit_val(E_UNEXP_TOK);
 		unexp_tok_err_message(token);
+	}
 	else if (type == E_QUOTES)
+	{
+		ft_set_exit_val(E_QUOTES);
 		quotes_err_message(token);
+	}
 	else if (type == E_FILE)
+	{
+		ft_set_exit_val(E_FILE);
 		file_err_message(cmd);
+	}
 	else if (type == E_CMD_NOT_FOUND)
+	{
+		ft_set_exit_val(E_CMD_NOT_FOUND);
 		cmd_err_message(cmd);
+	}
 	else if (type == E_NUM_MANDATORY)
+	{
+		ft_set_exit_val(E_NUM_MANDATORY);
 		cmd_err_message(cmd);
+	}
 	else
 		ft_putstr_fd(get_str_err(type), 2);
 }

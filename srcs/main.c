@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 09:53:11 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:32:09 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	main(int argc, char **argv, char **envp)
 		init_signals(&m);
 		m.cmd_line = readline("~>");
 		if (!m.cmd_line)
-			ft_exit_message("bash: command line not found\n");
+			(shell_cleaner(&m),
+				ft_putstr_fd("exit\n", 1), exit(E_CMD_NOT_FOUND));
 		if (m.cmd_line[0])
 			add_history(m.cmd_line);
 		m.token = tokenizer(&m);

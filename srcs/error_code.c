@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   error_code.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 17:06:38 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 18:17:33 by mde-plae         ###   ########.fr       */
+/*   Created: 2023/11/24 14:08:39 by mde-plae          #+#    #+#             */
+/*   Updated: 2023/11/24 18:18:13 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	init_env(t_minishell *m, char **envp)
+int	*ft_get_exit_val(void)
 {
-	if (!envp)
-		return (ft_exit_message("bash: env variables not found\n"));
-	ft_memset(m, 0, sizeof(t_minishell));
-	m->env = envp;
-	envlst_init(&m->envlst, m->env);
-	m->input = dup(0);
-	m->output = dup(1);
-	ft_set_exit_val(0);
-	tcgetattr(STDIN_FILENO, &m->original_term);
+	static int	exit_val = 0;
+
+	
+	return (&exit_val);
 }
-//init env variables and all variables from our shell to correctly start
+
+void	ft_set_exit_val(int exit_value)
+{
+	*ft_get_exit_val() = exit_value;
+}
