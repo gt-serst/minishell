@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 09:44:38 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 18:10:56 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/25 23:04:14 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 static char	*get_str_err(t_err_type type)
 {
 	if (type == E_MEM)
-		return ("bash: malloc allocation failed");
+		return ("bash: malloc allocation failed\n");
 	else if (type == E_TOO_MANY_ARGS)
-		return ("bash: exit: too many arguments");
+		return ("bash: exit: too many arguments\n");
 	else if (type == E_SYNTAX)
-		return ("bash: syntax error");
-	return ("bash: error undefined");
+		return ("bash: syntax error\n");
+	return ("bash: error undefined\n");
 }
 
 void	error(t_err_type type, char *token, char *cmd)
@@ -39,6 +39,11 @@ void	error(t_err_type type, char *token, char *cmd)
 	{
 		ft_set_exit_val(E_FILE);
 		file_err_message(cmd);
+	}
+	else if (type == E_FILE_LENGTH)
+	{
+		ft_set_exit_val(E_FILE_LENGTH);
+		file_length_err_message(cmd);
 	}
 	else if (type == E_CMD_NOT_FOUND)
 	{

@@ -6,7 +6,7 @@
 /*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/25 12:34:17 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/25 23:06:38 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	exec_child_process(t_minishell *m, t_node *node)
 			node->data.simple_cmd.expanded_args[0]);
 	if (!path_status)
 	{
-		error(E_CMD_NOT_FOUND, NULL, node->data.simple_cmd.expanded_args[0]);
 		shell_cleaner(m);
 		exit(1);
 	}
@@ -50,9 +49,7 @@ static int	exec_child(t_minishell *m, t_node *node)
 	g_signint = 1;
 	fork_pid = fork();
 	if (!fork_pid)
-	{
 		exec_child_process(m, node);
-	}
 	waitpid(fork_pid, &status, 0);
 	g_signint = 0;
 	return (get_exit_status(status));

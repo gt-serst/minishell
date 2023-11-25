@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:56:39 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 19:56:38 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/25 23:05:42 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@ void	unexp_tok_err_message(char *token)
 
 void	file_err_message(char *file)
 {
-	if (errno == 2)
-	{
-		ft_putstr_fd("bash: ", 2);
-		ft_putstr_fd(file, 2);
-		ft_putstr_fd(": No such file or directory\n", 2);
-	}
-	else if (errno == 13)
+	if (errno == 13)
 	{
 		ft_putstr_fd("bash: ", 2);
 		ft_putstr_fd(file, 2);
 		ft_putstr_fd(": Permission denied\n", 2);
 	}
+	else
+	{
+		ft_putstr_fd("bash: ", 2);
+		ft_putstr_fd(file, 2);
+		ft_putstr_fd(": No such file or directory\n", 2);
+	}
 }
 
-void	file_long_err_message(char *file)
+void	file_length_err_message(char *file)
 {
 	ft_putstr_fd("bash: ", 2);
 	ft_putstr_fd(file, 2);

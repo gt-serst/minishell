@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:38:20 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 19:57:33 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/25 23:04:28 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static bool	open_redir(t_minishell *m, t_node *node)
 		if (arg_is_redir(node->data.simple_cmd.expanded_args[i]))
 		{
 			if (ft_strlen(node->data.simple_cmd.expanded_args[i + 1]) > 255)
-				return (error(E_FILE_LONG, NULL, node->data.simple_cmd.expanded_args[i + 1]), false);
+				return (error(E_FILE_LENGTH, NULL, node->data.simple_cmd.expanded_args[i + 1]), false);
 			if (!check_redir(m, node, &node->data.simple_cmd.expanded_args[i]))
 				return (false);
 			remove_redir(&node->data.simple_cmd.expanded_args[i]);

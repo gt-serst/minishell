@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 19:52:47 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/25 23:04:08 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ typedef enum e_err_type
 {
 	E_QUOTES,
 	E_FILE,
-	E_NO_SUCH_FILE,
-	E_FILE_LONG,
+	E_FILE_LENGTH,
 	E_TOO_MANY_ARGS,
 	E_SYNTAX,
 	E_MEM = 12,
@@ -65,7 +64,7 @@ void	num_mandatory_err_message(char *cmd);
 void	cmd_err_message(char *cmd);
 void	unexp_tok_err_message(char *token);
 void	file_err_message(char *file);
-void	file_long_err_message(char *file);
+void	file_length_err_message(char *file);
 void	quotes_err_message(char *s);
 void	ft_exit_message(char *str);
 void	ft_set_exit_val(int exit_value);
