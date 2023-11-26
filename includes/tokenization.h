@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenization.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:18:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 19:52:41 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/26 23:37:02 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ typedef struct s_minishell
 {
 	int					input;
 	int					output;
+	int					save_input;
+	int					save_output;
 	char				*cmd_line;
 	t_token				*token;
 	t_node				*ast;

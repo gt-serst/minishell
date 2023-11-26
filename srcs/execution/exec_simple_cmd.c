@@ -6,7 +6,7 @@
 /*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/25 23:06:38 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/26 23:37:16 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	exec_child_process(t_minishell *m, t_node *node)
 		shell_cleaner(m);
 		exit(1);
 	}
+	printf("Execve\n");
 	if (execve(path_status, node->data.simple_cmd.expanded_args, m->env) == -1)
 	{
 		error(E_CMD_NOT_FOUND, NULL, node->data.simple_cmd.expanded_args[0]);
@@ -75,6 +76,9 @@ int	exec_simple_cmd(t_minishell *m, t_node *node, bool piped)
 {
 	int	status;
 
+	printf("Cmd %s\n", node->data.simple_cmd.expanded_args[1]);
+	printf("Fdin %d\n", node->data.simple_cmd.fdin);
+	printf("Fdout %d\n", node->data.simple_cmd.fdout);
 	if (!node->data.simple_cmd.expanded_args[0])
 		return (close_io(m, piped), EXIT_FAILURE);
 	prepare_redirections(m, node);

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:57:14 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 10:54:00 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/26 23:42:03 by geraudtsers      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	exec_pipe_child(t_minishell *m, 
+static void	exec_pipe_child(t_minishell *m,
 	t_node *node, int *pipefd, t_ast_direction direction)
 {
 	int	status;
@@ -42,6 +42,8 @@ int	exec_pipeline(t_minishell *m, t_node *node)
 
 	g_signint = 1;
 	pipe(pipefd);
+	m->save_input = pipefd[0];
+	m->save_output = pipefd[1];
 	left_pid = fork();
 	if (!left_pid)
 		exec_pipe_child(m, node->data.pipe.left, pipefd, D_LEFT);
@@ -52,7 +54,7 @@ int	exec_pipeline(t_minishell *m, t_node *node)
 			exec_pipe_child(m, node->data.pipe.right, pipefd, D_RIGHT);
 		else
 		{
-			(close_pipe(pipefd), 
+			(close_pipe(pipefd),
 				waitpid(left_pid, &status, 0), waitpid(right_pid, &status, 0));
 			g_signint = 0;
 			return (get_exit_status(status));
