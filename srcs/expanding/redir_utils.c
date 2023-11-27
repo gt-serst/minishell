@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:47:14 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 14:56:25 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:57:06 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,26 @@ bool	arg_is_redir(char *arg)
 		|| ft_strcmp(arg, ">") == 0 || ft_strcmp(arg, ">>") == 0)
 		return (true);
 	return (false);
+}
+
+bool	is_delimiter(char *delimiter, char *line)
+{
+	if (!line || ft_strcmp(line, "") == 0)
+		return (false);
+	while (*line)
+	{
+		if (*delimiter == '"' || *delimiter == '\'')
+		{
+			delimiter++;
+			continue ;
+		}
+		else if (*line == *delimiter)
+		{
+			line++;
+			delimiter++;
+		}
+		else
+			return (false);
+	}
+	return (true);
 }

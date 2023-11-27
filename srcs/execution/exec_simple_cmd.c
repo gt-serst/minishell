@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 15:35:32 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:45:29 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	reset_io(t_minishell *m, bool piped)
 	close(m->output);
 }
 
-static void	exec_child_process(t_minishell *m, t_node *node)
+static void	exec_child_process(t_minishell *m, t_node *node, bool piped)
 {
 	char	*path_status;
 
@@ -30,7 +30,6 @@ static void	exec_child_process(t_minishell *m, t_node *node)
 			node->data.simple_cmd.expanded_args[0], m);
 	if (!path_status)
 	{
-		error(E_CMD_NOT_FOUND, NULL, node->data.simple_cmd.expanded_args[0], m);
 		shell_cleaner(m);
 		exit(1);
 	}
@@ -40,9 +39,11 @@ static void	exec_child_process(t_minishell *m, t_node *node)
 		shell_cleaner(m);
 		exit(1);
 	}
+	if (!piped)
+		shell_cleaner(m);
 }
 
-static int	exec_child(t_minishell *m, t_node *node)
+static int	exec_child(t_minishell *m, t_node *node, bool piped)
 {
 	int	status;
 	int	fork_pid;
@@ -50,7 +51,7 @@ static int	exec_child(t_minishell *m, t_node *node)
 	g_signint = 1;
 	fork_pid = fork();
 	if (!fork_pid)
-		exec_child_process(m, node);
+		exec_child_process(m, node, piped);
 	waitpid(fork_pid, &status, 0);
 	g_signint = 0;
 	return (get_exit_status(status));
@@ -82,11 +83,15 @@ int	exec_simple_cmd(t_minishell *m, t_node *node, bool piped)
 	if (is_builtin(node->data.simple_cmd.expanded_args[0]))
 	{
 		status = exec_builtins(m, node->data.simple_cmd.expanded_args, piped);
+		if (!piped)
+			shell_cleaner(m);
+		//system("leaks minishell");
 		return (reset_io(m, piped), status);
 	}
 	else
 	{
-		status = exec_child(m, node);
+		status = exec_child(m, node, piped);
+		//system("leaks minishell");
 		return (reset_io(m, piped), status);
 	}
 }

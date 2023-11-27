@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer_handler.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:41:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 12:43:03 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:43:33 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,12 @@ static char	*get_unexp_str_token(char *token)
 	return ("||");
 }
 
-/*
 static char	*get_unexp_char_token(char token)
 {
 	if (token == ';')
 		return (";");
-	else if (token == '\\')
-		return ("\\");
+	return ("\\");
 }
-*/
 
 t_token	*separator_handler(char	**cmd_line, t_minishell *m)
 {
@@ -93,7 +90,7 @@ t_token	*identifier_handler(char **cmd_line, t_minishell *m)
 		else
 		{
 			if (unexpected_token(tmp[i]))
-				return (error(E_UNEXP_TOK, &tmp[i], NULL, m), NULL);
+				return (error(E_UNEXP_TOK,get_unexp_char_token(tmp[i]), NULL, m), NULL);
 			i++;
 		}
 	}

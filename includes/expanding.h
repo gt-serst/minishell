@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expanding.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 10:52:16 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 14:00:02 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:57:17 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ int		append_redir(char *args, t_minishell *m);
 
 //	utils
 bool	arg_is_redir(char *arg);
+bool	is_delimiter(char *delimiter, char *line);
 
 #endif

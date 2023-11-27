@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:01:08 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 15:35:24 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:56:57 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,6 @@ static void	heredoc_sigint_handler(int signum)
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
-}
-
-static bool	is_delimiter(char *delimiter, char *line)
-{
-	if (!line || ft_strcmp(line, "") == 0)
-		return (false);
-	while (*line)
-	{
-		if (*delimiter == '"' || *delimiter == '\'')
-		{
-			delimiter++;
-			continue ;
-		}
-		else if (*line == *delimiter)
-		{
-			line++;
-			delimiter++;
-		}
-		else
-			return (false);
-	}
-	return (true);
 }
 
 static char	*append_input(char **cmd_line, char *new_line)
@@ -76,6 +54,7 @@ static char	*get_heredoc_input(int *fd, char *delimiter)
 		if (is_delimiter(delimiter, new_line) == true)
 			break ;
 		append_input(&cmd_line, new_line);
+		free(new_line);
 	}
 	free(new_line);
 	return (cmd_line);
@@ -94,9 +73,7 @@ int	heredoc_redir(t_minishell *m, char *delimiter)
 	ft_putstr_fd("\n", fd[STDOUT_FILENO]);
 	free(input);
 	close(fd[STDOUT_FILENO]);
-	dup2(fd[0], STDIN_FILENO);
-	close(fd[0]);
-	return (1);
+	return (fd[STDIN_FILENO]);
 }
 /*if (multiple_heredoc)
 {

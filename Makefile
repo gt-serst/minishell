@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/11/27 14:28:55 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/11/27 16:39:40 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,7 @@ OBJS			:=	$(SRCS:.c=.o)
 READLINE_PATH	:=	/Users/$(USER)/homebrew/opt/readline
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ -Iinclude -I$(READLINE_PATH)/include
+	$(CC) $(CFLAGS) -c $< -o $@ -Iinclude -I$(READLINE_PATH)/include -g3
 
 all: $(NAME)
 
@@ -86,7 +86,7 @@ $(LIBFT):
 	@make bonus -C $(LIBFT_PATH)
 
 $(NAME): $(LIBFT) $(OBJS)
-	@$(CC) -o $(NAME) $(OBJS) $(LIBFT_PATH)/$(LIBFT) -L$(LIBFT_PATH) -lreadline -dL$(READLINE_PATH)/lib -g3 -fsanitize=address
+	@$(CC) -o $(NAME) $(OBJS) $(LIBFT_PATH)/$(LIBFT) -L$(LIBFT_PATH) -lreadline -dL$(READLINE_PATH)/lib
 
 clean:
 	@make clean -C $(LIBFT_PATH)
