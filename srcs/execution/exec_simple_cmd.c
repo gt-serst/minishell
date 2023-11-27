@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 14:28:50 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:51:01 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,6 @@ int	exec_simple_cmd(t_minishell *m, t_node *node, bool piped)
 {
 	int	status;
 
-	//printf("Cmd %s\n", node->data.simple_cmd.expanded_args[1]);
-	//printf("Fdin %d\n", node->data.simple_cmd.fdin);
-	//printf("Fdout %d\n", node->data.simple_cmd.fdout);
 	if (!node->data.simple_cmd.expanded_args[0])
 		return (close_io(m, piped), EXIT_FAILURE);
 	prepare_redirections(m, node);

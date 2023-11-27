@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 14:28:40 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:11:55 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(int argc, char **argv, char **envp)
 	{
 		init_signals(&m);
 		m.cmd_line = readline("~>");
-		printf ("%i", m.err_code);
 		if (!m.cmd_line)
 			(shell_cleaner(&m),
 				ft_putstr_fd("exit\n", 1), exit(E_CMD_NOT_FOUND));

@@ -6,14 +6,14 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:33:32 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 13:59:04 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:57:50 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 static char	*heredoc_handle_normal_str(char *str, size_t *i)
-{// remove simple and double quotes for a random str without envars to carry
+{
 	size_t	start;
 
 	start = *i;
@@ -21,6 +21,7 @@ static char	*heredoc_handle_normal_str(char *str, size_t *i)
 		(*i)++;
 	return (ft_substr(str, start, *i - start));
 }
+// remove simple and double quotes for a random str without envars to carry
 
 char	*heredoc_expander(t_minishell *m, char *str)
 {
@@ -94,7 +95,8 @@ bool	expand_args(t_minishell *m, t_node *node)
 	ft_bzero(node->data.simple_cmd.expanded_args, sizeof(char *));
 	while (node->data.simple_cmd.args[i])
 	{
-		node->data.simple_cmd.expanded_args[i] = expand_argument(m, node->data.simple_cmd.args[i], i);
+		node->data.simple_cmd.expanded_args[i]
+			= expand_argument(m, node->data.simple_cmd.args[i], i);
 		if (!node->data.simple_cmd.expanded_args[i])
 				return (false);
 		i++;

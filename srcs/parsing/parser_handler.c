@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:24:59 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 12:49:12 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:58:57 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static int	arglen(t_token **curr_token)
 	return (res);
 }
 
-static bool	token_into_args(t_node *simple_cmd, t_token **curr_token, t_minishell *m)
+static bool	token_into_args(t_node *simple_cmd,
+	t_token **curr_token, t_minishell *m)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:38:20 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 14:31:25 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:59:13 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ static bool	check_redir(t_minishell *m, t_node *node, char **arg)
 {
 	if (ft_strcmp(*arg, "<") == 0)
 		node->data.simple_cmd.fdin = input_redir(*(arg + 1), m);
-	else if(ft_strcmp(*arg, "<<") == 0)
+	else if (ft_strcmp(*arg, "<<") == 0)
 		node->data.simple_cmd.fdin = heredoc_redir(m, *(arg + 1));
-	else if(ft_strcmp(*arg, ">") == 0)
+	else if (ft_strcmp(*arg, ">") == 0)
 		node->data.simple_cmd.fdout = output_redir(*(arg + 1), m);
-	else if(ft_strcmp(*arg, ">>") == 0)
+	else if (ft_strcmp(*arg, ">>") == 0)
 		node->data.simple_cmd.fdout = append_redir(*(arg + 1), m);
 	if (node->data.simple_cmd.fdin < 0 || node->data.simple_cmd.fdout < 0)
 		return (false);
@@ -50,11 +50,11 @@ static bool	open_redir(t_minishell *m, t_node *node)
 		if (arg_is_redir(node->data.simple_cmd.expanded_args[i]))
 		{
 			if (ft_strlen(node->data.simple_cmd.expanded_args[i + 1]) > 255)
-				return (error(E_FILE_LENGTH, NULL, node->data.simple_cmd.expanded_args[i + 1], m), false);
+				return (error(E_FILE_LENGTH, NULL,
+						node->data.simple_cmd.expanded_args[i + 1], m), false);
 			if (!check_redir(m, node, &node->data.simple_cmd.expanded_args[i]))
 				return (false);
 			remove_redir(&node->data.simple_cmd.expanded_args[i]);
-			//ft_print_expanded_ast(node);
 		}
 		else
 			i++;

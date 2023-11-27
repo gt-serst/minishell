@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:45:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 12:45:46 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:08:18 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_node
 //	parser
 t_node			*parser(t_minishell *m);
 t_node			*ast_builder(t_token **curr_token, t_minishell *m);
+t_node			*error_unexpected_token(t_token **curr_token, t_minishell *m);
 t_node			*get_simple_cmd(t_token **curr_token, t_minishell *m);
 
 //	parser utils

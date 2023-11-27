@@ -6,13 +6,14 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 08:50:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 12:50:23 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:07:38 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static t_node	*get_children(t_token_type op, t_node *left, t_node *right, t_minishell *m)
+static t_node	*get_children(t_token_type op, t_node *left,
+	t_node *right, t_minishell *m)
 {
 	t_node	*pipe;
 
@@ -39,10 +40,7 @@ t_node	*ast_builder(t_token **curr_token, t_minishell *m)
 	while (*curr_token && is_pipe(*curr_token))
 	{
 		if ((*curr_token)->next == NULL)
-		{
-			error(E_UNEXP_TOK, (*curr_token)->value, NULL, m);
-			return (get_next_token(curr_token), NULL);
-		}
+			return (error_unexpected_token(curr_token, m));
 		op = (*curr_token)->type;
 		get_next_token(curr_token);
 		right = ast_builder(curr_token, m);
@@ -54,5 +52,12 @@ t_node	*ast_builder(t_token **curr_token, t_minishell *m)
 	}
 	return (left);
 }
+
+t_node	*error_unexpected_token(t_token **curr_token, t_minishell *m)
+{
+	error(E_UNEXP_TOK, (*curr_token)->value, NULL, m);
+	return (get_next_token(curr_token), NULL);
+}
+
 //give the priority for each elements
 // in the ast according to a precedence climbing algorithm
