@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:18:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 14:28:27 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:33:28 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ typedef struct s_minishell
 	t_node				*ast;
 	t_env				*envlst;
 	char				**env;
-	static int					err_code;
+	int					err_code;
 	struct termios		original_term;
 }		t_minishell;
 

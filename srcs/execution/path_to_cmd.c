@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:51:52 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 14:32:28 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:34:40 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static	char	*check_access(char *cmd_path)
 	return (NULL);
 }
 
-static char	*env_path_parsed(char *path, char *cmd)
+static char	*env_path_parsed(char *path, char *cmd, t_minishell *m)
 {
 	size_t	i;
 	char	*cmd_path;
@@ -36,7 +36,7 @@ static char	*env_path_parsed(char *path, char *cmd)
 		i++;
 	}
 	ft_free_malloc(split_path);
-	return (error(E_CMD_NOT_FOUND, NULL, cmd), NULL);
+	return (error(E_CMD_NOT_FOUND, NULL, cmd, m), NULL);
 }
 //if path not already in the command
 
@@ -50,7 +50,7 @@ char	*path_to_cmd(t_env *envlst, char *cmd, t_minishell *m)
 		return (check_access(cmd), cmd);
 	value = envlst_val(&envlst, "PATH");
 	if (value)
-		return (env_path_parsed(value, cmd));
+		return (env_path_parsed(value, cmd, m));
 	return (error(E_FILE, NULL, cmd, m), NULL);
 }
 //if path already in the command
