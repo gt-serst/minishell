@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:51:52 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 10:58:23 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:02:28 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,17 @@ static char	*env_path_parsed(char *path, char *cmd)
 }
 //if path not already in the command
 
-char	*path_to_cmd(t_env *envlst, char *cmd)
+char	*path_to_cmd(t_env *envlst, char *cmd, t_minishell *m)
 {
 	char	*value;
 
 	if (*cmd == '\0')
-		return (error(E_CMD_NOT_FOUND, NULL, cmd), NULL);
+		return (error(E_CMD_NOT_FOUND, NULL, cmd, m), NULL);
 	if (ft_strnstr(cmd, "/", ft_strlen(cmd)))
 		return (check_access(cmd), cmd);
 	value = envlst_val(&envlst, "PATH");
 	if (value)
 		return (env_path_parsed(value, cmd));
-	return (error(E_NO_SUCH_FILE, NULL, cmd), NULL);
+	return (error(E_NO_SUCH_FILE, NULL, cmd, m), NULL);
 }
 //if path already in the command

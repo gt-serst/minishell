@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   other_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:04:46 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 19:58:01 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:01:18 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	input_redir(char *args)
+int	input_redir(char *args, t_minishell *m)
 {
 	int	fd;
 
@@ -20,12 +20,12 @@ int	input_redir(char *args)
 		return (-1);
 	fd = open(args, O_RDONLY);
 	if (fd < 0)
-		error(E_FILE, NULL, args);
+		error(E_FILE, NULL, args, m);
 	return (fd);
 }
 //input redirection -> modification of stdin
 
-int	output_redir(char *args)
+int	output_redir(char *args, t_minishell *m)
 {
 	int	fd;
 
@@ -33,14 +33,14 @@ int	output_redir(char *args)
 		return (-1);
 	fd = open(args, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd < 0)
-		error(E_FILE, NULL, args);
+		error(E_FILE, NULL, args, m);
 	return (fd);
 }
 //output redirection -> modification of stdout,
 // if the file doesn't exist it is create,
 // if it exist but there is aleardy content in it, the content will be erased
 
-int	append_redir(char *args)
+int	append_redir(char *args, t_minishell *m)
 {
 	int	fd;
 
@@ -48,7 +48,7 @@ int	append_redir(char *args)
 		return (-1);
 	fd = open(args, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (fd < 0)
-		error(E_FILE, NULL, args);
+		error(E_FILE, NULL, args, m);
 	return (fd);
 }
 //output redirection -> modification of stdout,

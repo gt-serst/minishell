@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expanding.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 10:52:16 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 20:00:08 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:00:02 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ bool	is_valid_var_char(char c);
 
 //	redir
 bool	recursive_redir(t_minishell *m, t_node *node);
-int		input_redir(char *args);
+int		input_redir(char *args, t_minishell *m);
 int		heredoc_redir(t_minishell *m, char *delimiter);
-int		output_redir(char *args);
-int		append_redir(char *args);
+int		output_redir(char *args, t_minishell *m);
+int		append_redir(char *args, t_minishell *m);
 
 //	utils
 bool	arg_is_redir(char *arg);

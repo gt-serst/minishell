@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:33:32 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 20:09:35 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 13:59:04 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*heredoc_expander(t_minishell *m, char *str)
 		else
 			ret = ft_strjoin_free(ret, heredoc_handle_normal_str(str, &i));
 		if (!ret)
-			return (error(E_MEM, NULL, NULL), NULL);
+			return (error(E_MEM, NULL, NULL, m), NULL);
 	}
 	return (ret);
 }
@@ -59,7 +59,7 @@ static char	*cmd_pre_expander(t_minishell *m, char *str)
 		else
 			ret = ft_strjoin_free(ret, handle_normal_str(str, &i));
 		if (!ret)
-			return (error(E_MEM, NULL, NULL), NULL);
+			return (error(E_MEM, NULL, NULL, m), NULL);
 	}
 	return (ret);
 }
@@ -90,7 +90,7 @@ bool	expand_args(t_minishell *m, t_node *node)
 	node->data.simple_cmd.expanded_args
 		= malloc(sizeof(char *) * (get_rows(node->data.simple_cmd.args) + 1));
 	if (!node->data.simple_cmd.expanded_args)
-		return (error(E_MEM, NULL, NULL), false);
+		return (error(E_MEM, NULL, NULL, m), false);
 	ft_bzero(node->data.simple_cmd.expanded_args, sizeof(char *));
 	while (node->data.simple_cmd.args[i])
 	{

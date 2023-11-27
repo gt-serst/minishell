@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:56:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 19:52:02 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 12:46:53 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ t_node	*parser(t_minishell *m)
 	t_token	**token;
 
 	token = &m->token;
-	m->ast = ast_builder(token);
+	m->ast = ast_builder(token, m);
 	if (*token)
 	{
-		error(E_UNEXP_TOK, (*token)->value, NULL);
+		error(E_UNEXP_TOK, (*token)->value, NULL, m);
 		tkclear(token);
 		return (shell_cleaner(m), NULL);
 	}

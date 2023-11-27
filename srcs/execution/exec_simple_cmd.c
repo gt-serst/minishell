@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/25 12:34:17 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/27 14:03:19 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ static void	exec_child_process(t_minishell *m, t_node *node)
 	char	*path_status;
 
 	path_status = path_to_cmd(m->envlst,
-			node->data.simple_cmd.expanded_args[0]);
+			node->data.simple_cmd.expanded_args[0], m);
 	if (!path_status)
 	{
-		error(E_CMD_NOT_FOUND, NULL, node->data.simple_cmd.expanded_args[0]);
+		error(E_CMD_NOT_FOUND, NULL, node->data.simple_cmd.expanded_args[0], m);
 		shell_cleaner(m);
 		exit(1);
 	}
 	if (execve(path_status, node->data.simple_cmd.expanded_args, m->env) == -1)
 	{
-		error(E_CMD_NOT_FOUND, NULL, node->data.simple_cmd.expanded_args[0]);
+		error(E_CMD_NOT_FOUND, NULL, node->data.simple_cmd.expanded_args[0], m);
 		shell_cleaner(m);
 		exit(1);
 	}

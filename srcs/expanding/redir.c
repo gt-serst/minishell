@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:38:20 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 19:57:33 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:10:57 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ static void	remove_redir(char **arg)
 static bool	check_redir(t_minishell *m, t_node *node, char **arg)
 {
 	if (ft_strcmp(*arg, "<") == 0)
-		node->data.simple_cmd.fdin = input_redir(*(arg + 1));
+		node->data.simple_cmd.fdin = input_redir(*(arg + 1), m);
 	else if(ft_strcmp(*arg, "<<") == 0)
 		node->data.simple_cmd.fdin = heredoc_redir(m, *(arg + 1));
 	else if(ft_strcmp(*arg, ">") == 0)
-		node->data.simple_cmd.fdout = output_redir(*(arg + 1));
+		node->data.simple_cmd.fdout = output_redir(*(arg + 1), m);
 	else if(ft_strcmp(*arg, ">>") == 0)
-		node->data.simple_cmd.fdout = append_redir(*(arg + 1));
+		node->data.simple_cmd.fdout = append_redir(*(arg + 1), m);
 	if (node->data.simple_cmd.fdin < 0 || node->data.simple_cmd.fdout < 0)
 		return (false);
 	return (true);
@@ -50,7 +50,7 @@ static bool	open_redir(t_minishell *m, t_node *node)
 		if (arg_is_redir(node->data.simple_cmd.expanded_args[i]))
 		{
 			if (ft_strlen(node->data.simple_cmd.expanded_args[i + 1]) > 255)
-				return (error(E_FILE_LONG, NULL, node->data.simple_cmd.expanded_args[i + 1]), false);
+				return (error(E_FILE_LONG, NULL, node->data.simple_cmd.expanded_args[i + 1], m), false);
 			if (!check_redir(m, node, &node->data.simple_cmd.expanded_args[i]))
 				return (false);
 			remove_redir(&node->data.simple_cmd.expanded_args[i]);

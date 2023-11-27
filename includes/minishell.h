@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 19:52:47 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 12:28:53 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_err
 void	init_env(t_minishell *m, char **envp);
 
 //	error
-void	error(t_err_type type, char *token, char *cmd);
+void	error(t_err_type type, char *token, char *cmd, t_minishell *m);
 void	num_mandatory_err_message(char *cmd);
 void	cmd_err_message(char *cmd);
 void	unexp_tok_err_message(char *token);

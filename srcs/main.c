@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 19:55:56 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:20:19 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		init_signals(&m);
 		m.cmd_line = readline("~>");
+		printf ("%i", m.err_code);
 		if (!m.cmd_line)
 			(shell_cleaner(&m),
 				ft_putstr_fd("exit\n", 1), exit(E_CMD_NOT_FOUND));
@@ -41,7 +42,7 @@ int	main(int argc, char **argv, char **envp)
 	return (EXIT_SUCCESS);
 }
 // main function, the bash cmd requested
-//by the user is located in arguments,
-//the function in in charge of the core routine for minishell,
-//the following steps will be launched:
-//read, lexer, parser, expander and execution
+// by the user is located in arguments,
+// the function in in charge of the core routine for minishell,
+// the following steps will be launched:
+// read, lexer, parser, expander and execution

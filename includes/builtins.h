@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:38:07 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/23 14:02:58 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:06:17 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ft_pwd(void);
 void	ft_exit(t_minishell *m, char **args, bool piped);
 
 //	export
-int		ft_export(t_env **envlst, char **argv);
+int		ft_export(t_env **envlst, char **argv, t_minishell *m);
 
 //	unset
 int		ft_unset(t_env **env, char **args);

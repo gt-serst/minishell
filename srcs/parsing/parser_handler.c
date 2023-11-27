@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:24:59 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 19:51:55 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 12:49:12 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	arglen(t_token **curr_token)
 	return (res);
 }
 
-static bool	token_into_args(t_node *simple_cmd, t_token **curr_token)
+static bool	token_into_args(t_node *simple_cmd, t_token **curr_token, t_minishell *m)
 {
 	int	i;
 
@@ -49,7 +49,7 @@ static bool	token_into_args(t_node *simple_cmd, t_token **curr_token)
 	simple_cmd->data.simple_cmd.args
 		= malloc(sizeof(char *) * (arglen(curr_token) + 1));
 	if (!simple_cmd->data.simple_cmd.args)
-		return (error(E_MEM, NULL, NULL), false);
+		return (error(E_MEM, NULL, NULL, m), false);
 	ft_bzero(simple_cmd->data.simple_cmd.args, sizeof(char *));
 	while (*curr_token && ((*curr_token)->type == T_IDENTIFIER
 			|| is_redir((*curr_token)->type)))
@@ -70,7 +70,7 @@ static bool	token_into_args(t_node *simple_cmd, t_token **curr_token)
 		}
 */
 
-t_node	*get_simple_cmd(t_token **curr_token)
+t_node	*get_simple_cmd(t_token **curr_token, t_minishell *m)
 {
 	t_node	*simple_cmd;
 
@@ -78,7 +78,7 @@ t_node	*get_simple_cmd(t_token **curr_token)
 		return (NULL);
 	simple_cmd = new_nd(N_CMD);
 	if (!simple_cmd)
-		return (error(E_MEM, NULL, NULL), NULL);
+		return (error(E_MEM, NULL, NULL, m), NULL);
 	while (*curr_token && ((*curr_token)->type == T_IDENTIFIER
 			|| is_redir((*curr_token)->type)))
 	{
@@ -90,8 +90,8 @@ t_node	*get_simple_cmd(t_token **curr_token)
 		}
 		simple_cmd->data.simple_cmd.fdin = STDIN_FILENO;
 		simple_cmd->data.simple_cmd.fdout = STDOUT_FILENO;
-		if (!token_into_args(simple_cmd, curr_token))
-			return (error(E_MEM, NULL, NULL), NULL);
+		if (!token_into_args(simple_cmd, curr_token, m))
+			return (error(E_MEM, NULL, NULL, m), NULL);
 	}
 	return (simple_cmd);
 }

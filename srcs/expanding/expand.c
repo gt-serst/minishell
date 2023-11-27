@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:23:17 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 17:33:03 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:10:31 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*handle_dollar(t_minishell *m, char *str, size_t *i)
 	else if (str[*i] == '?')
 	{
 		(*i)++;
-		return (ft_itoa(*ft_get_exit_val()));
+		return (ft_itoa(m->err_code));
 	}
 	else if (!is_valid_var_char(str[*i]))
 		return (ft_strdup("$"));
