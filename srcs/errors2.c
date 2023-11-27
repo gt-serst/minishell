@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 09:44:38 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 14:50:24 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:40:27 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	set_err_code(t_err_type type, t_minishell *m)
 	if (type == E_UNEXP_TOK)
 		m->err_code = 258;
 	else if (type == E_QUOTES)
-		m->err_code = 0;
+		m->err_code = 2;
 	else if (type == E_FILE)
 		m->err_code = 1;
 	else if (type == E_FILE_LENGTH)

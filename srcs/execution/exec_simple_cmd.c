@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 15:35:32 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:32:59 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,14 @@ static void	exec_child_process(t_minishell *m, t_node *node)
 			node->data.simple_cmd.expanded_args[0], m);
 	if (!path_status)
 	{
-		error(E_CMD_NOT_FOUND, NULL, node->data.simple_cmd.expanded_args[0], m);
 		shell_cleaner(m);
-		exit(1);
+		exit(m->err_code);
 	}
 	if (execve(path_status, node->data.simple_cmd.expanded_args, m->env) == -1)
 	{
 		error(E_CMD_NOT_FOUND, NULL, node->data.simple_cmd.expanded_args[0], m);
 		shell_cleaner(m);
-		exit(1);
+		exit(m->err_code);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 14:49:15 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:39:14 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ volatile sig_atomic_t	g_signint;
 
 typedef enum e_err_type
 {
-	E_QUOTES,
+	E_QUOTES = 2,
 	E_FILE,
 	E_FILE_LENGTH,
 	E_TOO_MANY_ARGS,
