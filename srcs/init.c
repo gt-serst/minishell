@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:06:38 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 15:31:17 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:34:44 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,4 @@ void	init_env(t_minishell *m, char **envp)
 	ft_set_exit_val(0);
 	tcgetattr(STDIN_FILENO, &m->original_term);
 }
-//init env variables and all variables from our shell to correctly start
+// init env variables and all variables from our shell to correctly start

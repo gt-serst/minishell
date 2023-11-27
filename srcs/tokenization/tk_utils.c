@@ -6,19 +6,19 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:59:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 11:56:19 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 12:40:51 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_token	*new_tk(void *content, t_token_type type)
+t_token	*new_tk(void *content, t_token_type type, t_minishell *m)
 {
 	t_token	*elem;
 
 	elem = malloc(sizeof(t_token));
 	if (!elem)
-		return (error(E_MEM, NULL, NULL), NULL);
+		return (error(E_MEM, NULL, NULL, m), NULL);
 	elem->value = content;
 	elem->type = type;
 	elem->next = NULL;

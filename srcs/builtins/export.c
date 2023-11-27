@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 12:07:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/23 23:11:03 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/27 14:06:00 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	check_key(char *str)
 	return (1);
 }
 
-int	ft_export(t_env **envlst, char **argv)
+int	ft_export(t_env **envlst, char **argv, t_minishell *m)
 {
 	int		i;
 	int		err_code;
@@ -87,5 +87,6 @@ int	ft_export(t_env **envlst, char **argv)
 		}
 		i++;
 	}
+	m->err_code = err_code;
 	return (err_code);
 }

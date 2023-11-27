@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:14:07 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 15:32:04 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:35:50 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		exec_pipeline(t_minishell *m, t_node *node);
 int		exec_simple_cmd(t_minishell *m, t_node *node, bool piped);
 int		exec_builtins(t_minishell *m, char **args, bool piped);
 bool	is_builtin(char *arg);
-char	*path_to_cmd(t_env *envlst, char *cmd);
+char	*path_to_cmd(t_env *envlst, char *cmd, t_minishell *m);
 
 //	utils
 int		get_exit_status(int status);

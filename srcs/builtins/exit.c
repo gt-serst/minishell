@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:17:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 15:32:39 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:35:46 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ static int	exitnbr(t_minishell *m, char *str)
 	atoi_skip(str, &i, &sign);
 	if (!ft_isnumber(str + i))
 	{
-		error(E_NUM_MANDATORY, NULL, str + i);
+		error(E_NUM_MANDATORY, NULL, str + i, m);
 		shell_cleaner(m);
 		exit(*ft_get_exit_val());
 	}
 	result = parse_number(str, &i);
 	if (result == ULLONG_MAX)
 	{
-		error(E_NUM_MANDATORY, NULL, (char *)result);
+		error(E_NUM_MANDATORY, NULL, (char *)result, m);
 		shell_cleaner(m);
 		exit(*ft_get_exit_val());
 	}
@@ -87,7 +87,7 @@ void	ft_exit(t_minishell *m, char **args, bool piped)
 	{
 		if (args[2] && ft_isnumber(args[1]))
 		{
-			error(E_TOO_MANY_ARGS, NULL, NULL);
+			error(E_TOO_MANY_ARGS, NULL, NULL, m);
 			err_code = *ft_get_exit_val();
 			shell_cleaner(m);
 			return ;

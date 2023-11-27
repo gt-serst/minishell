@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:08:39 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 18:18:13 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:50:00 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	*ft_get_exit_val(void)
 {
 	static int	exit_val = 0;
 
-	
 	return (&exit_val);
 }
 

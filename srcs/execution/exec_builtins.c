@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:37:12 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 00:11:19 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/27 14:05:34 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	exec_builtins(t_minishell *m, char **args, bool piped)
 	if (ft_strcmp(args[0], "pwd") == 0)
 		return (ft_pwd());
 	if (ft_strcmp(args[0], "export") == 0)
-		return (ft_export(&m->envlst, args));
+		return (ft_export(&m->envlst, args, m));
 	if (ft_strcmp(args[0], "unset") == 0)
 		return (ft_unset(&m->envlst, args));
 	ft_exit(m, args, piped);

@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:37:52 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 14:02:37 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:11:46 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ t_token	*tokenizer(t_minishell *m)
 	while (*(cmd_line))
 	{
 		if (ft_ismetachar(*cmd_line))
-			new_token = separator_handler(&cmd_line);
+			new_token = separator_handler(&cmd_line, m);
 		else
-			new_token = identifier_handler(&cmd_line);
+			new_token = identifier_handler(&cmd_line, m);
 		if (!new_token)
 			return (tkclear(token), NULL);
 		else

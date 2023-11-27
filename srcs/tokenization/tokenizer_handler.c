@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:41:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 14:02:59 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 12:43:03 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*get_unexp_char_token(char token)
 }
 */
 
-t_token	*separator_handler(char	**cmd_line)
+t_token	*separator_handler(char	**cmd_line, t_minishell *m)
 {
 	size_t	i;
 	char	*substr;
@@ -57,25 +57,25 @@ t_token	*separator_handler(char	**cmd_line)
 		i++;
 	substr = ft_substr(tmp, 0, i);
 	if (!substr)
-		return (error(E_MEM, NULL, NULL), NULL);
+		return (error(E_MEM, NULL, NULL, m), NULL);
 	*cmd_line += i;
 	if (ft_strcmp(substr, "<") == 0)
-		return (new_tk(substr, T_INPUT));
+		return (new_tk(substr, T_INPUT, m));
 	else if (ft_strcmp(substr, ">") == 0)
-		return (new_tk(substr, T_OUTPUT));
+		return (new_tk(substr, T_OUTPUT, m));
 	else if (ft_strcmp(substr, "<<") == 0)
-		return (new_tk(substr, T_HEREDOC));
+		return (new_tk(substr, T_HEREDOC, m));
 	else if (ft_strcmp(substr, ">>") == 0)
-		return (new_tk(substr, T_APPEND));
+		return (new_tk(substr, T_APPEND, m));
 	else if (ft_strcmp(substr, "|") == 0)
-		return (new_tk(substr, T_PIPE));
+		return (new_tk(substr, T_PIPE, m));
 	else
-		return (error(E_UNEXP_TOK, get_unexp_str_token(substr), NULL), NULL);
+		return (error(E_UNEXP_TOK, get_unexp_str_token(substr), NULL, m), NULL);
 }
 // malloc allocation in token
 // retrieve the type of separator and called the separator_handler
 
-t_token	*identifier_handler(char **cmd_line)
+t_token	*identifier_handler(char **cmd_line, t_minishell *m)
 {
 	size_t	i;
 	char	*substr;
@@ -87,21 +87,21 @@ t_token	*identifier_handler(char **cmd_line)
 	{
 		if (ft_isquotes(tmp[i]))
 		{
-			if (!skip_quotes(tmp, &i))
+			if (!skip_quotes(tmp, &i, m))
 				return (NULL);
 		}
 		else
 		{
 			if (unexpected_token(tmp[i]))
-				return (error(E_UNEXP_TOK, &tmp[i], NULL), NULL);
+				return (error(E_UNEXP_TOK, &tmp[i], NULL, m), NULL);
 			i++;
 		}
 	}
 	substr = ft_substr(*cmd_line, 0, i);
 	if (!substr)
-		return (error(E_MEM, NULL, NULL), NULL);
+		return (error(E_MEM, NULL, NULL, m), NULL);
 	*cmd_line += i;
-	return (new_tk(substr, T_IDENTIFIER));
+	return (new_tk(substr, T_IDENTIFIER, m));
 }
 // malloc allocation in substr & token
 // create a tk and add it to the linkded list
