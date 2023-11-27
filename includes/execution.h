@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:14:07 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/22 15:45:35 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:32:04 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ char	*path_to_cmd(t_env *envlst, char *cmd);
 //	utils
 int		get_exit_status(int status);
 void	close_pipe(int *pipefd);
-void	close_io(t_minishell *m, bool piped);
+void	reset_io(t_minishell *m, bool piped);
 
 #endif

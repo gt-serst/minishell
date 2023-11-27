@@ -6,13 +6,13 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 12:03:18 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:31:40 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	close_io(t_minishell *m, bool piped)
+void	reset_io(t_minishell *m, bool piped)
 {
 	if (piped)
 		return ;
@@ -74,21 +74,17 @@ int	exec_simple_cmd(t_minishell *m, t_node *node, bool piped)
 {
 	int	status;
 
-	//printf("Cmd %s\n", node->data.simple_cmd.expanded_args[1]);
-	//printf("Fdin %d\n", node->data.simple_cmd.fdin);
-	//printf("Fdout %d\n", node->data.simple_cmd.fdout);
 	if (!node->data.simple_cmd.expanded_args[0])
-		return (close_io(m, piped), EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	prepare_redirections(m, node);
 	if (is_builtin(node->data.simple_cmd.expanded_args[0]))
 	{
 		status = exec_builtins(m, node->data.simple_cmd.expanded_args, piped);
-		return (close_io(m, piped), status);
+		return (reset_io(m, piped), status);
 	}
 	else
 	{
 		status = exec_child(m, node);
-		return (close_io(m, piped), status);
+		return (reset_io(m, piped), status);
 	}
 }
-// output redir is blocked or in the command ls is not found into this dup2

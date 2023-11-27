@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:17:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 16:50:26 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:32:39 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	ft_exit(t_minishell *m, char **args, bool piped)
 		else
 			err_code = exitnbr(m, args[1]);
 	}
-	close_io(m, piped);
+	reset_io(m, piped);
 	shell_shutdown(m);
 	exit(err_code);
 }

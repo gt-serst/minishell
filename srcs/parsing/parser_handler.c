@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:24:59 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 19:51:55 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:34:34 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,12 @@ static bool	token_into_args(t_node *simple_cmd, t_token **curr_token)
 	while (*curr_token && ((*curr_token)->type == T_IDENTIFIER
 			|| is_redir((*curr_token)->type)))
 	{
+		if (is_redir((*curr_token)->type) && ((*curr_token)->next == NULL))
+		{
+			free((*curr_token)->value);
+			(*curr_token)->value = ft_strdup("new_line");
+			return (NULL);
+		}
 		if ((*curr_token)->type == T_HEREDOC)
 			simple_cmd->data.simple_cmd.heredoc = true;
 		simple_cmd->data.simple_cmd.args[++i] = ft_strdup((*curr_token)->value);
@@ -82,16 +88,10 @@ t_node	*get_simple_cmd(t_token **curr_token)
 	while (*curr_token && ((*curr_token)->type == T_IDENTIFIER
 			|| is_redir((*curr_token)->type)))
 	{
-		if (is_redir((*curr_token)->type) && ((*curr_token)->next == NULL))
-		{
-			free((*curr_token)->value);
-			(*curr_token)->value = ft_strdup("new_line");
-			return (NULL);
-		}
 		simple_cmd->data.simple_cmd.fdin = STDIN_FILENO;
 		simple_cmd->data.simple_cmd.fdout = STDOUT_FILENO;
 		if (!token_into_args(simple_cmd, curr_token))
-			return (error(E_MEM, NULL, NULL), NULL);
+			return (NULL);
 	}
 	return (simple_cmd);
 }
