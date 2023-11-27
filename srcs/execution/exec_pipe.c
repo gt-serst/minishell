@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:57:14 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 00:35:54 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/27 11:51:22 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ int	exec_pipeline(t_minishell *m, t_node *node)
 
 	g_signint = 1;
 	pipe(pipefd);
-	//m->save_input = pipefd[0];
-	//m->save_output = pipefd[1];
 	left_pid = fork();
 	if (!left_pid)
 		exec_pipe_child(m, node->data.pipe.left, pipefd, D_LEFT);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 00:21:03 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/27 10:57:36 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_minishell	m;
 
-	//while (*envp)
-	//	printf("%s\n", *envp++);
 	((void)argc, (void)argv);
 	init_env(&m, envp);
 	while (1)

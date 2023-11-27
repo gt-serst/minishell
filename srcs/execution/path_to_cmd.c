@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_to_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geraudtserstevens <geraudtserstevens@st    +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:51:52 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/25 23:00:08 by geraudtsers      ###   ########.fr       */
+/*   Updated: 2023/11/27 11:02:13 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	*env_path_parsed(char *path, char *cmd)
 		i++;
 	}
 	ft_free_malloc(split_path);
-	return (NULL);
+	return (error(E_CMD_NOT_FOUND, NULL, cmd), NULL);
 }
 //if path not already in the command
 
