@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:22:32 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 16:43:38 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:59:10 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char **argv, char **envp)
 		if (!m.ast)
 			continue ;
 		signal(SIGQUIT, sigquit_handler);
-		exec_ast(&m, m.ast);
+		m.err_code = exec_ast(&m, m.ast);
 		tcsetattr(STDIN_FILENO, TCSANOW, &m.original_term);
 		shell_cleaner(&m);
 	}

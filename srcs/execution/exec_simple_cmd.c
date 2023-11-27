@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 17:45:29 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:59:51 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ static void	exec_child_process(t_minishell *m, t_node *node, bool piped)
 	if (!path_status)
 	{
 		shell_cleaner(m);
-		exit(1);
+		exit(m->err_code);
 	}
 	if (execve(path_status, node->data.simple_cmd.expanded_args, m->env) == -1)
 	{
 		error(E_CMD_NOT_FOUND, NULL, node->data.simple_cmd.expanded_args[0], m);
 		shell_cleaner(m);
-		exit(1);
+		exit(m->err_code);
 	}
 	if (!piped)
 		shell_cleaner(m);

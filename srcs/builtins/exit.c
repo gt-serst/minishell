@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:17:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 15:35:46 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:32:35 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,29 +73,26 @@ static int	exitnbr(t_minishell *m, char *str)
 	{
 		error(E_NUM_MANDATORY, NULL, (char *)result, m);
 		shell_cleaner(m);
-		exit(*ft_get_exit_val());
+		exit(m->err_code);
 	}
 	return ((result * sign) % 256);
 }
 
 void	ft_exit(t_minishell *m, char **args, bool piped)
 {
-	int	err_code;
-
-	err_code = 0;
 	if (args[1])
 	{
 		if (args[2] && ft_isnumber(args[1]))
 		{
 			error(E_TOO_MANY_ARGS, NULL, NULL, m);
-			err_code = *ft_get_exit_val();
+			m->err_code = *ft_get_exit_val();
 			shell_cleaner(m);
 			return ;
 		}
 		else
-			err_code = exitnbr(m, args[1]);
+			m->err_code = exitnbr(m, args[1]);
 	}
 	reset_io(m, piped);
 	shell_shutdown(m);
-	exit(err_code);
+	exit(m->err_code);
 }
