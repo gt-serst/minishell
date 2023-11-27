@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 14:03:19 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:28:50 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,7 @@ static int	exec_child(t_minishell *m, t_node *node)
 	g_signint = 1;
 	fork_pid = fork();
 	if (!fork_pid)
-	{
 		exec_child_process(m, node);
-	}
 	waitpid(fork_pid, &status, 0);
 	g_signint = 0;
 	return (get_exit_status(status));
@@ -78,6 +76,9 @@ int	exec_simple_cmd(t_minishell *m, t_node *node, bool piped)
 {
 	int	status;
 
+	//printf("Cmd %s\n", node->data.simple_cmd.expanded_args[1]);
+	//printf("Fdin %d\n", node->data.simple_cmd.fdin);
+	//printf("Fdout %d\n", node->data.simple_cmd.fdout);
 	if (!node->data.simple_cmd.expanded_args[0])
 		return (close_io(m, piped), EXIT_FAILURE);
 	prepare_redirections(m, node);

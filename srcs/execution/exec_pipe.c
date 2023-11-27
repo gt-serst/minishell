@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:57:14 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/24 10:54:00 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 11:51:22 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	exec_pipe_child(t_minishell *m, 
+static void	exec_pipe_child(t_minishell *m,
 	t_node *node, int *pipefd, t_ast_direction direction)
 {
 	int	status;
@@ -52,7 +52,7 @@ int	exec_pipeline(t_minishell *m, t_node *node)
 			exec_pipe_child(m, node->data.pipe.right, pipefd, D_RIGHT);
 		else
 		{
-			(close_pipe(pipefd), 
+			(close_pipe(pipefd),
 				waitpid(left_pid, &status, 0), waitpid(right_pid, &status, 0));
 			g_signint = 0;
 			return (get_exit_status(status));

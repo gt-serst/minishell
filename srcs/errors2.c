@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 09:44:38 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 14:09:29 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:27:58 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ void	error(t_err_type type, char *token, char *cmd, t_minishell *m)
 	{
 		m->err_code = 1;
 		file_err_message(cmd);
+	}
+	else if (type == E_FILE_LENGTH)
+	{
+		ft_set_exit_val(E_FILE_LENGTH);
+		file_length_err_message(cmd);
 	}
 	else if (type == E_CMD_NOT_FOUND)
 	{

@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:38:20 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 14:10:57 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:31:25 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static bool	open_redir(t_minishell *m, t_node *node)
 		if (arg_is_redir(node->data.simple_cmd.expanded_args[i]))
 		{
 			if (ft_strlen(node->data.simple_cmd.expanded_args[i + 1]) > 255)
-				return (error(E_FILE_LONG, NULL, node->data.simple_cmd.expanded_args[i + 1], m), false);
+				return (error(E_FILE_LENGTH, NULL, node->data.simple_cmd.expanded_args[i + 1], m), false);
 			if (!check_redir(m, node, &node->data.simple_cmd.expanded_args[i]))
 				return (false);
 			remove_redir(&node->data.simple_cmd.expanded_args[i]);

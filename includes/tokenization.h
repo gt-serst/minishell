@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:18:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 14:23:48 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:28:27 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ typedef struct s_minishell
 {
 	int					input;
 	int					output;
+	int					save_input;
+	int					save_output;
 	char				*cmd_line;
 	t_token				*token;
 	t_node				*ast;

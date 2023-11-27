@@ -6,7 +6,7 @@
 /*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 12:28:53 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:28:19 by mde-plae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ typedef enum e_err_type
 {
 	E_QUOTES,
 	E_FILE,
-	E_NO_SUCH_FILE,
-	E_FILE_LONG,
+	E_FILE_LENGTH,
 	E_TOO_MANY_ARGS,
 	E_SYNTAX,
 	E_MEM = 12,
@@ -65,7 +64,7 @@ void	num_mandatory_err_message(char *cmd);
 void	cmd_err_message(char *cmd);
 void	unexp_tok_err_message(char *token);
 void	file_err_message(char *file);
-void	file_long_err_message(char *file);
+void	file_length_err_message(char *file);
 void	quotes_err_message(char *s);
 void	ft_exit_message(char *str);
 void	ft_set_exit_val(int exit_value);
