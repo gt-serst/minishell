@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_to_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:51:52 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 14:34:40 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:15:42 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ char	*path_to_cmd(t_env *envlst, char *cmd, t_minishell *m)
 	value = envlst_val(&envlst, "PATH");
 	if (value)
 		return (env_path_parsed(value, cmd, m));
-	return (error(E_FILE, NULL, cmd, m), NULL);
+	return (error(E_PATH_NOT_FOUND, NULL, cmd, m), NULL);
 }
 //if path already in the command

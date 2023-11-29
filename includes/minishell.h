@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:42:13 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/29 11:47:30 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:14:09 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ volatile sig_atomic_t	g_signint;
 
 typedef enum e_err_type
 {
-	E_QUOTES = 2,
+	E_MEM,
+	E_UNEXP_TOK,
+	E_QUOTES,
 	E_FILE,
 	E_FILE_LENGTH,
 	E_TOO_MANY_ARGS,
-	E_SYNTAX,
-	E_MEM = 12,
-	E_CMD_NOT_FOUND = 127,
-	E_NUM_MANDATORY = 255,
-	E_UNEXP_TOK = 258
+	E_CMD_NOT_FOUND,
+	E_PATH_NOT_FOUND,
+	E_NUM_MANDATORY
 }		t_err_type;
 
 typedef struct s_err

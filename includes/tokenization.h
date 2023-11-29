@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:18:19 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 16:45:44 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:53:07 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ typedef struct s_minishell
 	t_node				*ast;
 	t_env				*envlst;
 	char				**env;
-	uint8_t				err_code;
+	int					err_code;
 	struct termios		original_term;
 }		t_minishell;
 

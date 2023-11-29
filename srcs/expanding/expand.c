@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:23:17 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 14:54:44 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:56:21 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ char	*handle_dollar(t_minishell *m, char *str, size_t *i)
 		return (free(var), ft_strdup(""));
 	return (free(var), ft_strdup(env_val));
 }
-// handle particular case like $ + digit, $ + @, $ + ? and $ 
-// + non-numerical then get the value of 
+// handle particular case like $ + digit, $ + @, $ + ? and $
+// + non-numerical then get the value of
 // the envar to replace it in str
 
 bool	recursive_expander(t_minishell *m, t_node *node)
