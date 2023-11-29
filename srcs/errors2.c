@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 09:44:38 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 17:59:16 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:09:37 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ static char	*get_str_err(t_err_type type, t_minishell *m)
 	if (type == E_MEM)
 	{
 		m->err_code = 12;
-		return ("bash: malloc allocation failed");
+		return ("bash: malloc allocation failed\n");
 	}
 	else if (type == E_TOO_MANY_ARGS)
 	{
 		m->err_code = 4;
-		return ("bash: exit: too many arguments");
+		return ("bash: exit: too many arguments\n");
 	}
 	else if (type == E_SYNTAX)
 	{
 		m->err_code = 5;
-		return ("bash: syntax error");
+		return ("bash: syntax error\n");
 	}
-	return ("bash: error undefined");
+	return ("bash: error undefined\n");
 }
 
 void	set_err_code(t_err_type type, t_minishell *m)
@@ -41,7 +41,7 @@ void	set_err_code(t_err_type type, t_minishell *m)
 	else if (type == E_FILE)
 		m->err_code = 1;
 	else if (type == E_FILE_LENGTH)
-		ft_set_exit_val(E_FILE_LENGTH);
+		m->err_code = 4;
 	else if (type == E_CMD_NOT_FOUND)
 		m->err_code = 127;
 	else if (type == E_NUM_MANDATORY)

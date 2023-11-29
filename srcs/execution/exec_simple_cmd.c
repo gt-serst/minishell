@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:41:56 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 17:59:51 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:00:38 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,11 @@ int	exec_simple_cmd(t_minishell *m, t_node *node, bool piped)
 		status = exec_builtins(m, node->data.simple_cmd.expanded_args, piped);
 		if (!piped)
 			shell_cleaner(m);
-		//system("leaks minishell");
 		return (reset_io(m, piped), status);
 	}
 	else
 	{
 		status = exec_child(m, node, piped);
-		//system("leaks minishell");
 		return (reset_io(m, piped), status);
 	}
 }

@@ -6,7 +6,7 @@
 #    By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 10:54:47 by gt-serst          #+#    #+#              #
-#    Updated: 2023/11/27 17:59:06 by gt-serst         ###   ########.fr        #
+#    Updated: 2023/11/27 18:06:55 by gt-serst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,6 @@ SRCS			:=	$(BUILTINS)\
 					srcs/main_output.c\
 					srcs/errors.c\
 					srcs/errors2.c\
-					srcs/error_code.c
 
 
 OBJS			:=	$(SRCS:.c=.o)
@@ -78,7 +77,7 @@ OBJS			:=	$(SRCS:.c=.o)
 READLINE_PATH	:=	/Users/$(USER)/homebrew/opt/readline
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ -Iinclude -I$(READLINE_PATH)/include -g3
+	$(CC) $(CFLAGS) -c $< -o $@ -Iinclude -I$(READLINE_PATH)/include
 
 all: $(NAME)
 

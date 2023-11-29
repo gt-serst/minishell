@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:38:20 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 17:42:36 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:25:41 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ static void	remove_redir(char **arg)
 {
 	size_t	i;
 
-	i = 0;
+	i = 2;
 	while (arg[i])
 	{
-		free(arg[i]);
-		arg[i] = NULL;
-		i++;
+		arg[i - 2] = arg[i];
+		++i;
 	}
+	arg[i - 2] = arg[i];
 }
 
 static bool	check_redir(t_minishell *m, t_node *node, char **arg)

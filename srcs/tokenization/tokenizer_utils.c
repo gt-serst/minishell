@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:58:21 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 12:41:45 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:26:00 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,10 @@ bool	skip_quotes(char *cmd_line, size_t *i, t_minishell *m)
 		return (true);
 	}
 	else
-		return (error(E_QUOTES, &quote, NULL, m), NULL);
+	{
+		if (quote == '\'')
+			return (error(E_QUOTES, "\'", NULL, m), NULL);
+		else
+			return (error(E_QUOTES, "\"", NULL, m), NULL);
+	}
 }

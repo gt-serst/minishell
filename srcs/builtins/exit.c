@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:17:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 17:32:35 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:11:45 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	exitnbr(t_minishell *m, char *str)
 	{
 		error(E_NUM_MANDATORY, NULL, str + i, m);
 		shell_cleaner(m);
-		exit(*ft_get_exit_val());
+		exit(m->err_code);
 	}
 	result = parse_number(str, &i);
 	if (result == ULLONG_MAX)
@@ -85,13 +85,13 @@ void	ft_exit(t_minishell *m, char **args, bool piped)
 		if (args[2] && ft_isnumber(args[1]))
 		{
 			error(E_TOO_MANY_ARGS, NULL, NULL, m);
-			m->err_code = *ft_get_exit_val();
 			shell_cleaner(m);
 			return ;
 		}
 		else
 			m->err_code = exitnbr(m, args[1]);
 	}
+	ft_putstr_fd("exit\n", 1);
 	reset_io(m, piped);
 	shell_shutdown(m);
 	exit(m->err_code);

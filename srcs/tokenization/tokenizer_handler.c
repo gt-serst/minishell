@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:41:04 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 15:43:33 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:06:31 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,24 +75,19 @@ t_token	*separator_handler(char	**cmd_line, t_minishell *m)
 t_token	*identifier_handler(char **cmd_line, t_minishell *m)
 {
 	size_t	i;
-	char	*substr;
 	char	*tmp;
+	char	*substr;
 
 	i = 0;
 	tmp = *cmd_line;
 	while (tmp[i] && !ft_ismetachar(tmp[i]) && !ft_isspace(tmp[i]))
 	{
-		if (ft_isquotes(tmp[i]))
-		{
-			if (!skip_quotes(tmp, &i, m))
-				return (NULL);
-		}
-		else
-		{
-			if (unexpected_token(tmp[i]))
-				return (error(E_UNEXP_TOK,get_unexp_char_token(tmp[i]), NULL, m), NULL);
-			i++;
-		}
+		if (ft_isquotes(tmp[i]) && !skip_quotes(tmp, &i, m))
+			return (NULL);
+		if (unexpected_token(tmp[i]))
+			return (error(E_UNEXP_TOK,
+					get_unexp_char_token(tmp[i]), NULL, m), NULL);
+		i++;
 	}
 	substr = ft_substr(*cmd_line, 0, i);
 	if (!substr)
@@ -100,6 +95,7 @@ t_token	*identifier_handler(char **cmd_line, t_minishell *m)
 	*cmd_line += i;
 	return (new_tk(substr, T_IDENTIFIER, m));
 }
+
 // malloc allocation in substr & token
 // create a tk and add it to the linkded list
 // and then allocate a type of token to the cmd part
