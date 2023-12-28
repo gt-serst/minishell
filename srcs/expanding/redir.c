@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:38:20 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 18:25:41 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/12/28 20:55:46 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static bool	open_redir(t_minishell *m, t_node *node)
 						node->data.simple_cmd.expanded_args[i + 1], m), false);
 			if (!check_redir(m, node, &node->data.simple_cmd.expanded_args[i]))
 				return (false);
+			garbage_collector(node->data.simple_cmd.expanded_args[i], false);
+			garbage_collector(node->data.simple_cmd.expanded_args[i + 1], false);
 			remove_redir(&node->data.simple_cmd.expanded_args[i]);
 		}
 		else

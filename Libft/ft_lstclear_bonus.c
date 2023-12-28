@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:55:10 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/12/28 19:37:36 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/12/28 20:45:18 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	ft_del(void	*content)
 	nb_free_done++;
 }
 */
+#include <stdio.h>
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
@@ -42,6 +43,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	current = *lst;
 	while (current != NULL)
 	{
+		printf("%s\n", current->content);
 		next = current->next;
 		ft_lstdelone(current, del);
 		current = next;

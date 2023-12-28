@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:24:59 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 17:59:32 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/12/28 20:22:39 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ t_node	*get_simple_cmd(t_token **curr_token, t_minishell *m)
 	{
 		simple_cmd->data.simple_cmd.fdin = STDIN_FILENO;
 		simple_cmd->data.simple_cmd.fdout = STDOUT_FILENO;
+		simple_cmd->data.simple_cmd.heredoc = false;
 		if (!token_into_args(simple_cmd, curr_token, m))
 			return (NULL);
 	}

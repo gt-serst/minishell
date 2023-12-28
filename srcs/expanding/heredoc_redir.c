@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:01:08 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 18:02:06 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/12/28 22:30:02 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ static void	heredoc_sigint_handler(int signum)
 {
 	(void)signum;
 	ft_putstr_fd("\n", 1);
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	rl_redisplay();
+	g_signint = 1;
 }
 
 static char	*append_input(char **cmd_line, char *new_line)
@@ -48,7 +46,7 @@ static char	*get_heredoc_input(int *fd, char *delimiter)
 	while (1)
 	{
 		new_line = readline("> ");
-		if (!new_line)
+		if (g_signint || !new_line)
 			break ;
 		if (is_delimiter(delimiter, new_line) == true)
 			break ;
@@ -64,6 +62,7 @@ int	heredoc_redir(t_minishell *m, char *delimiter)
 	char	*input;
 	int		fd[2];
 
+	m->ast->data.simple_cmd.heredoc = true;
 	input = get_heredoc_input(fd, delimiter);
 	if (!input)
 		return (0);
@@ -74,12 +73,6 @@ int	heredoc_redir(t_minishell *m, char *delimiter)
 	close(fd[STDOUT_FILENO]);
 	return (fd[STDIN_FILENO]);
 }
-/*if (multiple_heredoc)
-{
-	close(fd[STDOUT_FILENO]);
-	free(input);
-	return (fd[0]);
-}*/
 //heredoc is a write input, when the user types a sequence
 // of predefined characters (EOF) then the write input closes,
 // a sigint signal can also interrupt the write input

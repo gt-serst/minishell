@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:43:49 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 10:52:14 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/12/28 20:10:17 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ int	ft_pwd(void)
 		return (1);
 	ft_putstr_fd(cwd, 1);
 	ft_putstr_fd("\n", 1);
+	free(cwd);
 	return (0);
 }
