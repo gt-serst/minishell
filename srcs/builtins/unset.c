@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:37:51 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 10:52:46 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/12/28 19:27:16 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_unset(t_env **envlst, char **args)
 	err = false;
 	while (args[i])
 	{
-		if (!env_key(args[i]))
+		if (check_key(args[i]) == 0)
 		{
 			ft_putstr_fd("minishell: unset: `", 2);
 			ft_putstr_fd(args[i], 2);
@@ -68,7 +68,7 @@ int	ft_unset(t_env **envlst, char **args)
 			err = true;
 		}
 		else
-			unset_env(envlst, envlst_handler(env_key(args[i]), false));
+			unset_env(envlst, garbage_collector(get_env_key(args[i]), false));
 		i++;
 	}
 	return (err);

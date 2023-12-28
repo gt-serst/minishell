@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 10:52:16 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/27 18:01:32 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/12/28 19:35:58 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,6 @@
 # define EXPANDING_H
 
 # include "minishell.h"
-
-/*
-typedef struct s_env
-{
-	char			*key;
-	char			*value;
-	struct s_env	*next;
-}	t_env;
-
-typedef struct s_minishell
-{
-	int					input;
-	int					output;
-	char				*cmd_line;
-	t_token				*token;
-	t_node				*ast;
-	t_env				*envlst;
-	char				**env;
-	int					err_code;
-	struct termios		original_term;
-}		t_minishell;
-*/
 
 //	expander
 bool	recursive_expander(t_minishell *m, t_node *node);

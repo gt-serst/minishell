@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:38:07 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 14:06:17 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/12/28 19:26:40 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ int		ft_unset(t_env **env, char **args);
 //	env & env_utils
 int		ft_env(t_env **envlst);
 void	update_envlst(t_env **envlst, char *key, char *value, bool create);
-char	*envlst_val(t_env **envlst, char *key);
-void	*envlst_handler(void *ptr, bool clean);
+char	*envlst_value(t_env **envlst, char *key);
+void	*garbage_collector(void *ptr, bool clean);
 void	envlst_init(t_env **envlst, char **env);
 bool	env_exists(t_env **envlst, char *key);
-char	*env_value(char *str);
-char	*env_key(char *str);
+char	*get_env_value(char *str);
+char	*get_env_key(char *str);
+int		check_key(char *str);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:26:14 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 10:45:56 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/12/28 19:26:56 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static t_env	*new_envlst(char *key, char *value)
 	new = (t_env *)malloc(sizeof(t_env));
 	if (!new)
 		return (NULL);
-	new->key = envlst_handler(ft_strdup(key), false);
+	new->key = garbage_collector(ft_strdup(key), false);
 	if (value)
-		new->value = envlst_handler(ft_strdup(value), false);
+		new->value = garbage_collector(ft_strdup(value), false);
 	new->next = NULL;
 	return (new);
 }
@@ -32,7 +32,7 @@ static void	ft_del(void *ptr)
 	ptr = NULL;
 }
 
-void	*envlst_handler(void *ptr, bool clean)
+void	*garbage_collector(void *ptr, bool clean)
 {
 	static t_list	*lst;
 
@@ -75,7 +75,7 @@ void	update_envlst(t_env **envlst, char *key, char *value, bool create)
 		if (!ft_strcmp(key, lst->key))
 		{
 			if (value)
-				lst->value = envlst_handler(ft_strdup(value), false);
+				lst->value = garbage_collector(ft_strdup(value), false);
 			return ;
 		}
 		lst = lst->next;

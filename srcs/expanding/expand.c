@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:23:17 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/11/29 11:56:21 by gt-serst         ###   ########.fr       */
+/*   Updated: 2023/12/28 19:20:08 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*handle_dollar(t_minishell *m, char *str, size_t *i)
 	while (is_valid_var_char(str[*i]))
 		(*i)++;
 	var = ft_substr(str, start, *i - start);
-	env_val = envlst_val(&m->envlst, var);
+	env_val = envlst_value(&m->envlst, var);
 	if (!env_val)
 		return (free(var), ft_strdup(""));
 	return (free(var), ft_strdup(env_val));

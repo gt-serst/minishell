@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:59:51 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 10:34:28 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/12/28 19:20:08 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static int	cd_home_user(t_env **envlst)
 {
 	char	*home;
 
-	update_envlst(envlst, "OLDPWD", envlst_val(envlst, "PWD"), false);
-	home = envlst_val(envlst, "HOME");
+	update_envlst(envlst, "OLDPWD", envlst_value(envlst, "PWD"), false);
+	home = envlst_value(envlst, "HOME");
 	if (!home)
 	{
 		ft_putstr_fd("minishell: cd: HOME not set\n", 2);
@@ -55,6 +55,6 @@ int	ft_cd(t_env **envlst, char *path)
 		return (cd_home_user(envlst));
 	if (chdir(path) != 0)
 		return (cd_err_msg(path));
-	update_envlst(envlst, "OLDPWD", envlst_val(envlst, "PWD"), false);
+	update_envlst(envlst, "OLDPWD", envlst_value(envlst, "PWD"), false);
 	return (new_pwd(envlst));
 }

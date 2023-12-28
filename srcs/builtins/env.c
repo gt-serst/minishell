@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:24:26 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/24 10:45:50 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/12/28 19:27:08 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*envlst_val(t_env **envlst, char *key)
+char	*envlst_value(t_env **envlst, char *key)
 {
 	t_env	*lst;
 
@@ -26,7 +26,7 @@ char	*envlst_val(t_env **envlst, char *key)
 	return (NULL);
 }
 
-char	*env_key(char *str)
+char	*get_env_key(char *str)
 {
 	int	i;
 
@@ -36,12 +36,12 @@ char	*env_key(char *str)
 		if (str[i] != '=')
 			i++;
 		else
-			return (envlst_handler(ft_substr(str, 0, i), false));
+			return (garbage_collector(ft_substr(str, 0, i), false));
 	}
 	return (ft_strdup(str));
 }
 
-char	*env_value(char *str)
+char	*get_env_value(char *str)
 {
 	int	i;
 
@@ -51,12 +51,12 @@ char	*env_value(char *str)
 		if (str[i] == '=')
 		{
 			i++;
-			return (envlst_handler
+			return (garbage_collector
 				(ft_substr(str, i, ft_strlen(str) - i), false));
 		}
 		i++;
 	}
-	return (ft_strdup(str));
+	return (NULL);
 }
 
 void	envlst_init(t_env **envlst, char **env)
@@ -71,8 +71,8 @@ void	envlst_init(t_env **envlst, char **env)
 	i = 0;
 	while (env[i])
 	{
-		key = env_key(env[i]);
-		value = env_value(env[i]);
+		key = get_env_key(env[i]);
+		value = get_env_value(env[i]);
 		update_envlst(envlst, key, value, true);
 		i++;
 	}

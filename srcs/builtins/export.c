@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-plae <mde-plae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 12:07:10 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 14:06:00 by mde-plae         ###   ########.fr       */
+/*   Updated: 2023/12/28 19:20:56 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	declare_envlst(t_env **envlst)
 	}
 }
 
-static int	check_key(char *str)
+int	check_key(char *str)
 {
 	int	i;
 
@@ -79,11 +79,11 @@ int	ft_export(t_env **envlst, char **argv, t_minishell *m)
 			err_code = export_err_message(argv[i]);
 		else
 		{
-			key = env_key(argv[i]);
+			key = get_env_key(argv[i]);
 			if (env_exists(envlst, key))
-				update_envlst(envlst, key, env_value(argv[i]), false);
+				update_envlst(envlst, key, get_env_value(argv[i]), false);
 			else
-				update_envlst(envlst, key, env_value(argv[i]), true);
+				update_envlst(envlst, key, get_env_value(argv[i]), true);
 		}
 		i++;
 	}
