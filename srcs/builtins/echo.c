@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:40:40 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 16:08:03 by gt-serst         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:58:19 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,26 @@ static bool	is_option_n(char *s)
 	return (1);
 }
 
+static void	is_dollar(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		i++;
+		if (s[i] == '$')
+			ft_putstr_fd(ft_itoa(getpid()), 1);
+		else
+			ft_putstr_fd(ft_substr(s, i - 1, ft_strlen(s)), 1);
+		i++;
+	}
+}
+
 int	ft_echo(char **args)
 {
 	int		i;
+	int		j;
 	bool	no_newline;
 
 	i = 1;
@@ -43,7 +60,11 @@ int	ft_echo(char **args)
 	}
 	while (args[i])
 	{
-		ft_putstr_fd(args[i], 1);
+		j = 0;
+		if (args[i][j] == '$')
+			is_dollar(args[i]);
+		else
+			ft_putstr_fd(args[i], 1);
 		if (args[i + 1] != NULL)
 			ft_putstr_fd(" ", 1);
 		i++;
