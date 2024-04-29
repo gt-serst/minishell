@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:01:08 by gt-serst          #+#    #+#             */
-/*   Updated: 2024/04/29 15:54:39 by gt-serst         ###   ########.fr       */
+/*   Updated: 2024/04/29 16:44:54 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,13 @@ int	heredoc_redir(t_minishell *m, char *delimiter)
 
 	m->ast->data.simple_cmd.heredoc = true;
 	input = get_heredoc_input(fd, delimiter);
-	if (!input)
-		return (0);
-	input = heredoc_expander(m, input);
-	ft_putstr_fd(input, fd[STDOUT_FILENO]);
-	ft_putstr_fd("\n", fd[STDOUT_FILENO]);
-	free(input);
+	if (input)
+	{
+		input = heredoc_expander(m, input);
+		ft_putstr_fd(input, fd[STDOUT_FILENO]);
+		ft_putstr_fd("\n", fd[STDOUT_FILENO]);
+		free(input);
+	}
 	close(fd[STDOUT_FILENO]);
 	return (fd[STDIN_FILENO]);
 }
