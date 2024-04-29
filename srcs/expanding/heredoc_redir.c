@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:01:08 by gt-serst          #+#    #+#             */
-/*   Updated: 2023/12/28 22:30:02 by gt-serst         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:54:39 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	heredoc_sigint_handler(int signum)
 	(void)signum;
 	ft_putstr_fd("\n", 1);
 	g_signint = 1;
+	exit(1);
 }
 
 static char	*append_input(char **cmd_line, char *new_line)

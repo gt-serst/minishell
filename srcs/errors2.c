@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 09:44:38 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/29 13:15:02 by gt-serst         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:57:45 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ void	error(t_err_type type, char *token, char *cmd, t_minishell *m)
 		file_err_message(cmd);
 	else if (type == E_FILE_LENGTH)
 		file_length_err_message(cmd);
-	else if (type == E_CMD_NOT_FOUND || type == E_NUM_MANDATORY)
+	else if (type == E_CMD_NOT_FOUND)
 		cmd_err_message(cmd);
+	else if (type == E_NUM_MANDATORY)
+		num_mandatory_err_message(cmd);
 	else
 		ft_putstr_fd(get_str_err(type), 2);
 }

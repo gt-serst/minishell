@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:33:32 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/11/27 18:01:51 by gt-serst         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:50:45 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ static int	get_rows(char **str)
 	return (i);
 }
 
-static char	*expand_argument(t_minishell *m, char *arg, size_t i)
+static char	*expand_argument(t_minishell *m, char **args, size_t i)
 {
-	if (ft_strchr(arg, '$') != NULL && (i > 0) && ft_strcmp(arg - 1, "<<") == 0)
-		return (ft_strdup(arg));
+	if (ft_strchr(args[i], '$') != NULL && (i > 0) && ft_strcmp(args[i - 1], "<<") == 0)
+		return (ft_strdup(args[i]));
 	else
-		return (cmd_pre_expander(m, arg));
+		return (cmd_pre_expander(m, args[i]));
 }
 
 bool	expand_args(t_minishell *m, t_node *node)
@@ -66,7 +66,7 @@ bool	expand_args(t_minishell *m, t_node *node)
 	while (node->data.simple_cmd.args[i])
 	{
 		node->data.simple_cmd.expanded_args[i]
-			= expand_argument(m, node->data.simple_cmd.args[i], i);
+			= expand_argument(m, node->data.simple_cmd.args, i);
 		if (!node->data.simple_cmd.expanded_args[i])
 			return (false);
 		i++;

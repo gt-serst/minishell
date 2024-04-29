@@ -6,7 +6,7 @@
 /*   By: gt-serst <gt-serst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:24:26 by mde-plae          #+#    #+#             */
-/*   Updated: 2023/12/28 19:27:08 by gt-serst         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:18:18 by gt-serst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	envlst_init(t_env **envlst, char **env)
 	char	*value;
 	int		i;
 
-	(void)value;
 	if (!env)
 		return ;
 	i = 0;
